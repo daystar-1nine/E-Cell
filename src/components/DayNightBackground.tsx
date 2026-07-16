@@ -43,7 +43,8 @@ export default function DayNightBackground() {
         start: "top top",
         end: "bottom bottom",
         scrub: 0.5, // 0.5s smoothing
-      }
+      },
+      defaults: { ease: "sine.inOut" }
     });
 
     // Initial state (Dawn)
@@ -122,7 +123,8 @@ export default function DayNightBackground() {
       scrimOpacity: 0.3,
       sunColor: "#f97316", // Dawn
       sunBloomOpacity: 0.8,
-      sunHaloOpacity: 0.6
+      sunHaloOpacity: 0.6,
+      nightLightsOpacity: 0
     };
 
     const tlTheme = gsap.timeline({
@@ -131,7 +133,8 @@ export default function DayNightBackground() {
         start: "top top",
         end: "bottom bottom",
         scrub: 0.5,
-      }
+      },
+      defaults: { ease: "sine.inOut" }
     });
     
     const applyTheme = () => {
@@ -142,6 +145,7 @@ export default function DayNightBackground() {
       document.documentElement.style.setProperty('--sun-color', themeProxy.sunColor);
       document.documentElement.style.setProperty('--sun-bloom-opacity', themeProxy.sunBloomOpacity.toString());
       document.documentElement.style.setProperty('--sun-halo-opacity', themeProxy.sunHaloOpacity.toString());
+      document.documentElement.style.setProperty('--night-lights-opacity', themeProxy.nightLightsOpacity.toString());
     };
 
     tlTheme.to(themeProxy, {
@@ -152,6 +156,7 @@ export default function DayNightBackground() {
       sunColor: "#fef08a",
       sunBloomOpacity: 0.4,
       sunHaloOpacity: 0.2,
+      nightLightsOpacity: 0,
       duration: 0.25,
       onUpdate: applyTheme
     }, 0)
@@ -163,6 +168,7 @@ export default function DayNightBackground() {
       sunColor: "#fb923c",
       sunBloomOpacity: 0.9,
       sunHaloOpacity: 0.7,
+      nightLightsOpacity: 0.2,
       duration: 0.35,
       onUpdate: applyTheme
     }, 0.25)
@@ -174,6 +180,7 @@ export default function DayNightBackground() {
       sunColor: "#f43f5e",
       sunBloomOpacity: 1.0,
       sunHaloOpacity: 0.9,
+      nightLightsOpacity: 0.8,
       duration: 0.2,
       onUpdate: applyTheme
     }, 0.6)
@@ -185,6 +192,7 @@ export default function DayNightBackground() {
       sunColor: "#1e1b4b", // Hidden
       sunBloomOpacity: 0,
       sunHaloOpacity: 0,
+      nightLightsOpacity: 1.0,
       duration: 0.2,
       onUpdate: applyTheme
     }, 0.8);
@@ -245,7 +253,7 @@ export default function DayNightBackground() {
       {/* Cloud Layers (using mix-blend-overlay to catch sky color) */}
       <div 
         ref={cloudLayer1Ref}
-        className="absolute inset-0 opacity-70 mix-blend-overlay animate-[drift_60s_linear_infinite]"
+        className="absolute inset-0 opacity-70 mix-blend-overlay hidden md:block motion-safe:animate-[drift_60s_linear_infinite]"
         style={{
           backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 20%), radial-gradient(ellipse at 70% 40%, rgba(255,255,255,0.3) 0%, transparent 30%), radial-gradient(circle at 40% 70%, rgba(255,255,255,0.2) 0%, transparent 15%)',
           backgroundSize: '200vw 100vh',
@@ -253,7 +261,7 @@ export default function DayNightBackground() {
       />
       <div 
         ref={cloudLayer2Ref}
-        className="absolute inset-0 opacity-50 mix-blend-overlay animate-[drift_90s_linear_infinite_reverse]"
+        className="absolute inset-0 opacity-50 mix-blend-overlay hidden md:block motion-safe:animate-[drift_90s_linear_infinite_reverse]"
         style={{
           backgroundImage: 'radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.4) 0%, transparent 25%), radial-gradient(circle at 30% 80%, rgba(255,255,255,0.3) 0%, transparent 20%)',
           backgroundSize: '250vw 120vh',
@@ -271,6 +279,10 @@ export default function DayNightBackground() {
         <div className="absolute inset-0 rounded-full bg-[var(--sun-color)] mix-blend-screen blur-[15px]" style={{ opacity: "var(--sun-bloom-opacity)" }} />
         {/* Outer Halo */}
         <div className="absolute -inset-10 rounded-full bg-[var(--sun-color)] mix-blend-screen blur-[40px]" style={{ opacity: "var(--sun-halo-opacity)" }} />
+        
+        {/* Lens Flare (Diagonal Rays) - hidden on mobile/reduced-motion */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-1 bg-gradient-to-r from-transparent via-white to-transparent rotate-45 blur-[1px] mix-blend-screen hidden md:block motion-safe:block" style={{ opacity: "calc(var(--sun-halo-opacity) * 0.7)" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-1 bg-gradient-to-r from-transparent via-white to-transparent -rotate-12 blur-[2px] mix-blend-screen hidden md:block motion-safe:block" style={{ opacity: "calc(var(--sun-halo-opacity) * 0.4)" }} />
       </div>
       
       <div 
@@ -295,13 +307,19 @@ export default function DayNightBackground() {
 
       {/* -------------------- GLOBAL COLOR GRADING OVERLAYS -------------------- */}
       {/* Placed above celestial bodies but below the z-10 UI sections so it tints everything behind UI, and UI's backdrop-blur picks it up without ruining text contrast */}
-      <div className="absolute inset-0 z-0 pointer-events-none mix-blend-overlay">
+      <div className="absolute inset-0 z-20 pointer-events-none mix-blend-overlay">
         <div ref={gradingDawnRef} className="absolute inset-0 bg-orange-300/30" />
         <div ref={gradingNoonRef} className="absolute inset-0 bg-white/10 mix-blend-soft-light" />
         <div ref={gradingGoldenRef} className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(217,119,6,0.3)_100%)]" />
         <div ref={gradingDuskRef} className="absolute inset-0 bg-indigo-900/40" />
         <div ref={gradingNightRef} className="absolute inset-0 bg-blue-950/50" />
       </div>
+
+      {/* -------------------- FILM GRAIN -------------------- */}
+      <div 
+        className="fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay hidden md:block motion-safe:block"
+        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+      />
     </div>
   );
 }
