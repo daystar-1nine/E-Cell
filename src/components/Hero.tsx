@@ -115,14 +115,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative h-[100dvh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-40 pb-16">
       {/* Constellation Canvas Layer */}
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 z-0 opacity-60 pointer-events-none"
       />
 
-      <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center mt-12 md:mt-20">
+      <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -143,8 +143,8 @@ export default function Hero() {
           <span className="text-lg md:text-2xl font-medium text-white/60 tracking-[0.15em] md:tracking-[0.2em] uppercase mb-2 md:mb-4 font-inter">
             IIC's
           </span>
-          <h1 className="text-[3.5rem] leading-[1] md:text-8xl lg:text-[9rem] font-extrabold font-inter md:leading-[0.9] tracking-tighter w-full max-w-full overflow-hidden">
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 block break-words">
+          <h1 className="text-[3.5rem] leading-[1.1] md:text-7xl lg:text-[7.5rem] font-extrabold font-inter md:leading-[1] tracking-tighter w-full max-w-full overflow-hidden">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
               Entrepreneurship
             </span>
             <br />
