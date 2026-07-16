@@ -36,6 +36,7 @@ function EventCard({ event }: { event: Event }) {
       transition={{ duration: 0.3 }}
     >
       <motion.div
+        whileTap={{ scale: 0.98 }}
         style={{ rotateX, rotateY }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -81,16 +82,16 @@ export default function Events() {
   const filteredEvents = eventsData.filter((e) => e.status === filter);
 
   return (
-    <section id="events" className="relative min-h-screen w-full flex items-center py-32 z-10">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="events" className="relative min-h-[100dvh] w-full flex items-center py-20 lg:py-32 z-10">
+      <div className="container mx-auto px-4 md:px-12">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6 md:gap-8">
           <div>
             <div className="mb-4 flex items-center gap-4">
               <div className="h-[2px] w-12 bg-pink-500"></div>
               <span className="text-pink-400 font-semibold tracking-wider uppercase text-sm dynamic-text-shadow">Events</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold font-inter text-white dynamic-text-shadow">
+            <h2 className="text-3xl md:text-5xl font-bold font-inter text-white dynamic-text-shadow">
               Where ideas meet execution.
             </h2>
           </div>

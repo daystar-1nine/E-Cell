@@ -25,28 +25,28 @@ const textVariants: Variants = {
 
 export default function AboutECell() {
   return (
-    <section id="about-ecell" className="relative min-h-screen w-full flex items-center py-32 z-10">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+    <section id="about-ecell" className="relative min-h-[100dvh] w-full flex items-center py-20 lg:py-32 z-10">
+      <div className="container mx-auto px-4 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Text Content */}
           <motion.div 
-            className="lg:col-span-8 dynamic-scrim p-8 rounded-3xl backdrop-blur-sm border border-white/10 shadow-xl"
+            className="lg:col-span-8 dynamic-scrim p-6 md:p-8 rounded-3xl backdrop-blur-sm border border-white/10 shadow-xl"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            <motion.div variants={textVariants} className="mb-6 flex items-center gap-4">
+            <motion.div variants={textVariants} className="mb-4 md:mb-6 flex items-center gap-4">
               <div className="h-[2px] w-12 bg-orange-400"></div>
               <span className="text-orange-400 font-semibold tracking-wider uppercase text-sm dynamic-text-shadow">About Us</span>
             </motion.div>
             
-            <motion.h2 variants={textVariants} className="text-4xl md:text-5xl font-bold font-inter text-white mb-8 leading-tight dynamic-text-shadow">
+            <motion.h2 variants={textVariants} className="text-3xl md:text-5xl font-bold font-inter text-white mb-6 md:mb-8 leading-tight dynamic-text-shadow">
               Breaking the shackles of prejudice and inertia.
             </motion.h2>
             
-            <div className="space-y-6 text-lg md:text-xl text-slate-200 font-outfit leading-relaxed">
+            <div className="space-y-4 md:space-y-6 text-base md:text-xl text-slate-200 font-outfit leading-relaxed">
               <motion.p variants={textVariants} className="dynamic-text-shadow">
                 We, at the Entrepreneurship Cell, share the common belief that India will only emerge as a world power if the youth breaks the shackles of prejudices and inertia that has kept them from starting up.
               </motion.p>
@@ -61,7 +61,7 @@ export default function AboutECell() {
 
           {/* Stats Sidebar */}
           <motion.div 
-            className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-6"
+            className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 md:gap-6"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -71,7 +71,7 @@ export default function AboutECell() {
               <motion.div 
                 key={idx}
                 variants={textVariants}
-                className="dynamic-scrim backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-xl flex items-center gap-4 group hover:bg-white/10 hover:dynamic-glow transition-all"
+                className="dynamic-scrim backdrop-blur-md border border-white/20 p-5 md:p-6 rounded-2xl shadow-xl flex items-center gap-4 group hover:bg-white/10 hover:dynamic-glow transition-all"
               >
                 <div className="p-3 bg-orange-500/20 rounded-xl text-orange-400 group-hover:scale-110 transition-transform">
                   <stat.icon className="w-6 h-6" />

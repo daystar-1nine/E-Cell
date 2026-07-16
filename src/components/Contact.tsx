@@ -32,27 +32,27 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen w-full flex flex-col pt-32 pb-8 z-10">
-      <div className="container mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center">
+    <section id="contact" className="relative min-h-[100dvh] w-full flex flex-col pt-24 md:pt-32 pb-8 z-10">
+      <div className="container mx-auto px-4 md:px-12 flex-1 flex flex-col justify-center">
         
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <div className="mb-4 flex items-center justify-center gap-4">
             <div className="h-[2px] w-12 bg-indigo-500"></div>
             <span className="text-indigo-400 font-semibold tracking-wider uppercase text-sm dynamic-text-shadow">Contact Us</span>
             <div className="h-[2px] w-12 bg-indigo-500"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-inter text-white dynamic-text-shadow">
+          <h2 className="text-3xl md:text-5xl font-bold font-inter text-white dynamic-text-shadow">
             Send a Signal.
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 max-w-5xl mx-auto w-full">
           
           {/* Info Side */}
-          <div className="flex flex-col justify-center space-y-10">
+          <div className="flex flex-col justify-center space-y-8 md:space-y-10">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6 font-inter">Get in touch</h3>
-              <p className="text-slate-400 font-outfit text-lg">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-inter">Get in touch</h3>
+              <p className="text-slate-400 font-outfit text-base md:text-lg">
                 Whether you have an idea, want to partner, or just want to say hi, we're always listening to the stars.
               </p>
             </div>
@@ -148,7 +148,7 @@ export default function Contact() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-32 border-t border-slate-800/50 bg-slate-950/30 backdrop-blur-md w-full relative z-20">
+      <footer className="mt-20 md:mt-32 border-t border-slate-800/50 bg-slate-950/30 backdrop-blur-md w-full relative z-20">
         <div className="container mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-slate-500 font-outfit text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} Entrepreneurship Cell, SJCEM. All rights reserved.

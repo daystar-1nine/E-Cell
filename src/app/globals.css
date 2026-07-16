@@ -10,42 +10,44 @@
     animation: shine 2s infinite linear;
   }
   
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--theme-scrollbar, rgba(255, 255, 255, 0.2));
-    border-radius: 10px;
-    border: 2px solid transparent;
-    background-clip: content-box;
-    transition: background 0.3s;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar, rgba(255, 255, 255, 0.4));
-    background-clip: border-box;
-    border-width: 0;
-  }
-  
-  /* Apply to global scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--theme-scrollbar, rgba(255, 255, 255, 0.2));
-    border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    background-clip: content-box;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-scrollbar, rgba(255, 255, 255, 0.4));
-    background-clip: border-box;
-    border-width: 0;
+  @media (pointer: fine) {
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: var(--theme-scrollbar, rgba(255, 255, 255, 0.2));
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+      transition: background 0.3s;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: var(--theme-scrollbar, rgba(255, 255, 255, 0.4));
+      background-clip: border-box;
+      border-width: 0;
+    }
+    
+    /* Apply to global scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--theme-scrollbar, rgba(255, 255, 255, 0.2));
+      border-radius: 10px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      background-clip: content-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--theme-scrollbar, rgba(255, 255, 255, 0.4));
+      background-clip: border-box;
+      border-width: 0;
+    }
   }
   
   /* Utilities for contrast */
