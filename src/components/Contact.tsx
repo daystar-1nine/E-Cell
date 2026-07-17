@@ -2,7 +2,30 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MapPin, Mail, Globe, Link as LinkIcon, Heart } from "lucide-react";
+import { Send, MapPin, Mail } from "lucide-react";
+
+// Brand Icons
+const Instagram = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
+const Linkedin = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+);
+
+const Twitter = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+  </svg>
+);
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
@@ -32,8 +55,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-[100dvh] w-full flex flex-col pt-24 md:pt-32 pb-8 z-10">
-      <div className="container mx-auto px-4 md:px-12 flex-1 flex flex-col justify-center">
+    <section id="contact" className="relative min-h-[100dvh] w-full flex flex-col py-24 lg:py-32 z-10">
+      <div className="container mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center">
         
         <div className="text-center mb-10 md:mb-16">
           <div className="mb-4 flex items-center justify-center gap-4">
@@ -58,7 +81,7 @@ export default function Contact() {
             </div>
             
             <div className="space-y-6">
-              <a href="#" className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group">
+              <a href="mailto:ecell@sjcem.edu.in" className="flex items-center gap-4 text-slate-300 hover:text-white transition-colors group">
                 <div className="w-12 h-12 rounded-full bg-slate-800/80 flex items-center justify-center group-hover:bg-indigo-600 transition-colors border border-slate-700 group-hover:border-indigo-500">
                   <Mail className="w-5 h-5" />
                 </div>
@@ -76,11 +99,15 @@ export default function Contact() {
             </div>
 
             <div className="pt-6 border-t border-slate-800 flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 transition-colors">
-                <Globe className="w-4 h-4" />
+              {/* TODO: Add real social media URLs */}
+              <a href="#" aria-label="Instagram" className="w-12 h-12 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 hover:border-pink-500 transition-all hover:-translate-y-1">
+                <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-colors">
-                <LinkIcon className="w-4 h-4" />
+              <a href="#" aria-label="LinkedIn" className="w-12 h-12 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all hover:-translate-y-1">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="#" aria-label="Twitter" className="w-12 h-12 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-sky-500 hover:border-sky-400 transition-all hover:-translate-y-1">
+                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -147,17 +174,6 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="mt-20 md:mt-32 border-t border-slate-800/50 bg-slate-950/30 backdrop-blur-md w-full relative z-20">
-        <div className="container mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-slate-500 font-outfit text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} Entrepreneurship Cell, SJCEM. All rights reserved.
-          </div>
-          <div className="flex items-center gap-2 text-slate-500 font-outfit text-sm">
-            Built with <Heart className="w-4 h-4 text-pink-500 fill-pink-500" /> for the future of India.
-          </div>
-        </div>
-      </footer>
     </section>
   );
 }

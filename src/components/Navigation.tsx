@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -16,6 +16,28 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  const { scrollYProgress } = useScroll();
+  
+  // Map scroll progress to the day-night cycle background tint
+  const navBg = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.5, 0.75, 1],
+    [
+      "rgba(56, 189, 248, 0.2)",  // Dawn - sky tint
+      "rgba(255, 255, 255, 0.1)", // Day - light tint
+      "rgba(245, 158, 11, 0.3)",  // Golden Hour - amber tint
+      "rgba(15, 23, 42, 0.6)",    // Dusk - dark slate tint
+      "rgba(2, 6, 23, 0.8)",      // Night - deeper slate
+    ]
+  );
+  
+  // Dynamic accent color for hover underlines
+  const navAccent = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    ["#f97316", "#0ea5e9", "#eab308", "#ec4899", "#6366f1"] // orange, sky, yellow, pink, indigo
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,15 +60,21 @@ export default function Navigation() {
   }, [isOpen]);
 
   return (
-    <header
+    <motion.header
+      style={{ backgroundColor: scrolled ? navBg : "transparent" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/40 backdrop-blur-md py-3" : "bg-transparent py-5 md:py-6"
+        scrolled ? "backdrop-blur-md py-3 border-b border-white/10 shadow-lg" : "py-5 md:py-6"
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="text-xl md:text-2xl font-bold font-inter text-white tracking-wide flex items-center gap-2 z-50 relative p-2 -ml-2">
-          <span className="bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">E-Cell</span>
+        <a href="#home" className="text-xl md:text-2xl font-bold font-inter text-white tracking-wide flex items-center gap-2 z-50 relative p-2 -ml-2 group">
+          <motion.span 
+            style={{ color: navAccent }}
+            className="transition-colors duration-300"
+          >
+            E-Cell
+          </motion.span>
           <span className="font-light">SJCEM</span>
         </a>
 
@@ -59,7 +87,10 @@ export default function Navigation() {
               className="text-sm font-medium text-slate-200 hover:text-white transition-colors relative group py-2"
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-400 transition-all group-hover:w-full rounded-full" />
+              <motion.span 
+                style={{ backgroundColor: navAccent }}
+                className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full rounded-full" 
+              />
             </a>
           ))}
         </nav>
@@ -106,6 +137,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

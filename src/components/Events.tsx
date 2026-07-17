@@ -5,6 +5,28 @@ import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-mo
 import { Calendar, ArrowRight, Image as ImageIcon } from "lucide-react";
 import { eventsData, Event } from "@/utils/events";
 
+// Helper to parse date string and get relative days
+const getDaysAway = (dateStr: string) => {
+  try {
+    // Basic parse for strings like "August 15-17, 2026" -> "August 15, 2026"
+    const firstDatePart = dateStr.split("-")[0].trim();
+    const yearMatch = dateStr.match(/\d{4}/);
+    const year = yearMatch ? yearMatch[0] : new Date().getFullYear().toString();
+    
+    // Construct parseable date string
+    const parseable = firstDatePart.includes(year) ? firstDatePart : `${firstDatePart}, ${year}`;
+    const d = new Date(parseable);
+    
+    if (!isNaN(d.getTime())) {
+      const diff = Math.ceil((d.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+      if (diff > 0) return `In ${diff} Days`;
+      if (diff === 0) return "Today!";
+      return "Happening Now";
+    }
+  } catch(e) {}
+  return "Coming Soon";
+};
+
 // 3D Tilt Card Component
 function EventCard({ event }: { event: Event }) {
   const x = useMotionValue(0);
@@ -40,11 +62,19 @@ function EventCard({ event }: { event: Event }) {
         style={{ rotateX, rotateY }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="w-full h-full rounded-2xl bg-slate-900/40 backdrop-blur-md border border-pink-500/20 shadow-xl overflow-hidden flex flex-col group cursor-pointer hover:dynamic-glow transition-shadow duration-300"
+        className="w-full h-full rounded-2xl bg-slate-900/40 backdrop-blur-md border border-pink-500/20 shadow-xl overflow-hidden flex flex-col group cursor-pointer hover:dynamic-glow transition-shadow duration-300 relative"
       >
+        {/* Urgency Badge */}
+        {event.status === "upcoming" && (
+          <div className="absolute top-4 right-4 bg-pink-600/90 backdrop-blur-sm border border-pink-400 text-white text-xs font-bold font-inter px-3 py-1 rounded-full shadow-lg z-20 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            {getDaysAway(event.date)}
+          </div>
+        )}
+
         <div className="h-48 w-full bg-slate-800 relative overflow-hidden flex items-center justify-center">
           {event.imageUrl ? (
-            <img src={event.imageUrl} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <img src={event.imageUrl} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-pink-900/50 flex flex-col items-center justify-center text-pink-300/50">
               <ImageIcon className="w-12 h-12 mb-2 group-hover:scale-110 transition-transform duration-500" />
@@ -55,7 +85,7 @@ function EventCard({ event }: { event: Event }) {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80" />
         </div>
         
-        <div className="p-6 flex-1 flex flex-col">
+        <div className="p-6 flex-1 flex flex-col relative z-10">
           <div className="flex items-center gap-2 text-pink-300 text-sm font-outfit mb-3">
             <Calendar className="w-4 h-4" />
             <span>{event.date}</span>
@@ -82,8 +112,8 @@ export default function Events() {
   const filteredEvents = eventsData.filter((e) => e.status === filter);
 
   return (
-    <section id="events" className="relative min-h-[100dvh] w-full flex items-center py-20 lg:py-32 z-10">
-      <div className="container mx-auto px-4 md:px-12">
+    <section id="events" className="relative min-h-[100dvh] w-full flex items-center py-24 lg:py-32 z-10">
+      <div className="container mx-auto px-6 md:px-12">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6 md:gap-8">
           <div>

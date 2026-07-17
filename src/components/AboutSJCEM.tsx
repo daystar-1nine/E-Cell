@@ -37,8 +37,8 @@ export default function AboutSJCEM() {
   const rotateX = useTransform(scrollYProgress, [0, 1], [10, -10]);
 
   return (
-    <section id="about-sjcem" ref={sectionRef} className="relative min-h-[100dvh] w-full flex items-center py-20 lg:py-32 z-10 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-12">
+    <section id="about-sjcem" ref={sectionRef} className="relative min-h-[100dvh] w-full flex items-center py-24 lg:py-32 z-10 overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row-reverse gap-10 lg:gap-16 items-center">
           
           {/* Text Content */}
@@ -68,11 +68,13 @@ export default function AboutSJCEM() {
             </div>
 
             {/* Credential Badges */}
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-2 md:gap-3">
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-8 border-t border-white/10 pt-8">
               {credentials.map((cred, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-slate-900/40 backdrop-blur-md border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-sm hover:bg-slate-900/60 transition-colors">
-                  <cred.icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-sky-400" />
-                  <span className="text-xs md:text-sm font-medium text-white">{cred.label}</span>
+                <div key={idx} className="flex items-center gap-4 bg-sky-950/30 backdrop-blur-md border border-sky-500/20 p-3 md:p-4 rounded-2xl shadow-[0_0_15px_rgba(14,165,233,0.1)] hover:bg-sky-900/40 hover:border-sky-400/40 hover:-translate-y-1 transition-all group">
+                  <div className="p-2.5 bg-sky-500/20 rounded-xl text-sky-400 group-hover:scale-110 group-hover:bg-sky-500/30 transition-all shrink-0">
+                    <cred.icon className="w-5 h-5 md:w-6 md:h-6" />
+                  </div>
+                  <span className="text-sm md:text-base font-semibold text-slate-200 font-inter leading-tight">{cred.label}</span>
                 </div>
               ))}
             </motion.div>
@@ -84,15 +86,13 @@ export default function AboutSJCEM() {
               style={{ y, rotateX }}
               className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/30 bg-slate-200 flex items-center justify-center group"
             >
-              {/* TODO: replace with real campus photo */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 to-amber-50 opacity-50 mix-blend-overlay"></div>
+              {/* PLACEHOLDER: replace with real campus photo */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 to-amber-50 opacity-20 mix-blend-overlay z-10"></div>
+              
+              <img src="/images/campus_photo.png" alt="SJCEM Campus" className="w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700" />
               
               {/* Decorative elements for the placeholder */}
-              <div className="absolute inset-0 border-[8px] md:border-[10px] border-white/20 rounded-3xl z-10 m-4"></div>
-              <Building2 className="w-16 h-16 md:w-24 md:h-24 text-slate-400 opacity-50 z-20 group-hover:scale-110 transition-transform duration-700" />
-              <div className="absolute bottom-6 md:bottom-10 z-20 text-slate-500 font-inter font-medium tracking-wide uppercase text-xs md:text-sm">
-                [ Campus Photo Placeholder ]
-              </div>
+              <div className="absolute inset-0 border-[8px] md:border-[10px] border-white/20 rounded-3xl z-10 m-4 pointer-events-none"></div>
             </motion.div>
           </div>
 

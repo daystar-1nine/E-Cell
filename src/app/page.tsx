@@ -4,6 +4,7 @@ import AboutSJCEM from "@/components/AboutSJCEM";
 import TeamDesktop from "@/components/TeamDesktop";
 import Events from "@/components/Events";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <TeamDesktop />
       <Events />
       <Contact />
+      <Footer />
     </main>
   );
 }

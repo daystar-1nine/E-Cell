@@ -122,7 +122,7 @@ export default function Hero() {
         className="absolute inset-0 z-0 opacity-60 pointer-events-none"
       />
 
-      <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -140,8 +140,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center w-full"
         >
-          <span className="text-lg md:text-2xl font-medium text-white/60 tracking-[0.15em] md:tracking-[0.2em] uppercase mb-2 md:mb-4 font-inter">
-            IIC's
+          <span className="text-sm md:text-xl font-medium text-amber-200/80 tracking-[0.15em] md:tracking-[0.2em] uppercase mb-2 md:mb-4 font-inter">
+            Institution's Innovation Council
           </span>
           <h1 className="text-[3.5rem] leading-[1.1] md:text-7xl lg:text-[7.5rem] font-extrabold font-inter md:leading-[1] tracking-tighter w-full max-w-full overflow-hidden">
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
@@ -158,26 +158,26 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="mt-10 text-lg md:text-xl text-slate-300/80 max-w-2xl font-light font-outfit"
+          className="mt-8 text-base md:text-xl text-slate-300 max-w-2xl font-light font-outfit"
         >
-          Sparking ideas, fueling ambition, and building India's next generation of founders. Join the movement.
+          Transforming student ideas into real-world startups through dedicated mentorship, intensive ideation, and comprehensive ecosystem support.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-          className="mt-14"
+          className="mt-10 md:mt-14"
         >
           <a
-            href="#team"
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium rounded-full overflow-hidden transition-all hover:bg-white/20 hover:scale-105"
+            href="#events"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white font-bold rounded-full overflow-hidden shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all hover:bg-orange-400 hover:scale-105 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)]"
           >
-            <span className="relative z-10 flex items-center gap-2 font-inter tracking-wide">
-              Explore the Vision
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-2 font-inter tracking-wide text-sm md:text-base">
+              See Upcoming Events
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
             </span>
-            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-shine z-0" />
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine z-0" />
           </a>
         </motion.div>
       </div>
@@ -186,9 +186,9 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/40 hover:text-white transition-colors cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors cursor-pointer"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] font-medium font-inter">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.2em] font-medium font-inter">Discover</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}

@@ -9,8 +9,8 @@ export default function TeamDesktop() {
   const [activeTeam, setActiveTeam] = useState<Team | null>(null);
 
   return (
-    <section id="team" className="relative min-h-[100dvh] w-full flex items-center py-20 lg:py-32 z-10">
-      <div className="container mx-auto px-4 md:px-12 flex flex-col items-center">
+    <section id="team" className="relative min-h-[100dvh] w-full flex items-center py-24 lg:py-32 z-10">
+      <div className="container mx-auto px-6 md:px-12 flex flex-col items-center">
         
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-bold font-inter text-white mb-4 dynamic-text-shadow">
@@ -36,6 +36,11 @@ export default function TeamDesktop() {
               >
                 <div className="relative">
                   <Folder className="w-12 h-12 md:w-16 md:h-16 text-amber-400 drop-shadow-md group-hover:text-amber-300 transition-colors fill-amber-400/50" strokeWidth={1} />
+                  {team.members.length > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-amber-500 text-amber-950 text-[10px] md:text-xs font-bold w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full shadow-sm border border-amber-300">
+                      {team.members.length}
+                    </span>
+                  )}
                 </div>
                 <span className="text-xs md:text-sm font-inter text-slate-100 font-medium text-center drop-shadow-sm group-hover:text-white">
                   {team.name}
