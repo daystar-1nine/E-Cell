@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, ArrowRight, Bookmark, BookmarkCheck, X, Share2, Sparkles, CheckCircle2 } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ArrowLeft, Bookmark, BookmarkCheck, X, Share2, Sparkles, CheckCircle2 } from "lucide-react";
 
 export interface BlogPost {
   id: number;
@@ -193,7 +193,7 @@ export default function BlogsInsights() {
 
   // Auto-close modal on section navigation or click on any navbar link
   useEffect(() => {
-    const handleNavigation = () => {
+    const handleCloseModal = () => {
       setSelectedBlog(null);
     };
 
@@ -208,14 +208,16 @@ export default function BlogsInsights() {
       }
     };
 
-    window.addEventListener("hashchange", handleNavigation);
-    window.addEventListener("popstate", handleNavigation);
+    window.addEventListener("close-blog-modal", handleCloseModal);
+    window.addEventListener("hashchange", handleCloseModal);
+    window.addEventListener("popstate", handleCloseModal);
     // Use capture phase to intercept nav clicks before smooth-scroll prevents propagation
     document.addEventListener("click", handleAnchorClick, true);
 
     return () => {
-      window.removeEventListener("hashchange", handleNavigation);
-      window.removeEventListener("popstate", handleNavigation);
+      window.removeEventListener("close-blog-modal", handleCloseModal);
+      window.removeEventListener("hashchange", handleCloseModal);
+      window.removeEventListener("popstate", handleCloseModal);
       document.removeEventListener("click", handleAnchorClick, true);
     };
   }, []);
@@ -281,7 +283,10 @@ export default function BlogsInsights() {
             className="bg-slate-900/80 backdrop-blur-md border border-white/10 p-1.5 rounded-full inline-flex gap-1.5 shadow-lg"
           >
             <button
-              onClick={() => setActiveTab("all")}
+              onClick={() => {
+                setActiveTab("all");
+                setSelectedBlog(null);
+              }}
               className={`relative px-6 sm:px-8 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeTab === "all"
                   ? "text-white shadow-md"
@@ -301,7 +306,10 @@ export default function BlogsInsights() {
             </button>
 
             <button
-              onClick={() => setActiveTab("myReads")}
+              onClick={() => {
+                setActiveTab("myReads");
+                setSelectedBlog(null);
+              }}
               className={`relative px-6 sm:px-8 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeTab === "myReads"
                   ? "text-white shadow-md"
@@ -479,14 +487,23 @@ export default function BlogsInsights() {
                   className="bg-[#1e1424] border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl relative text-white"
                 >
                   {/* Modal Header */}
-                  <div className="sticky top-0 bg-[#1e1424]/90 backdrop-blur-md z-20 px-6 py-4 border-b border-white/10 flex items-center justify-between">
-                    <span className="bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-                      {selectedBlog.category}
-                    </span>
-                    
-                    <div className="flex items-center gap-3">
+                  <div className="sticky top-0 bg-[#1e1424]/95 backdrop-blur-md z-20 px-4 sm:px-6 py-3.5 border-b border-white/10 flex items-center justify-between gap-3">
+                    <button
+                      onClick={() => setSelectedBlog(null)}
+                      className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-pink-300 hover:text-white bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 px-3 py-1.5 rounded-full transition-all"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      Back to Blogs
+                    </button>
+
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <span className="hidden sm:inline-block bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                        {selectedBlog.category}
+                      </span>
+                      
                       <button
                         onClick={() => toggleSaveBlog(selectedBlog.id)}
+                        title={savedBlogIds.includes(selectedBlog.id) ? "Remove bookmark" : "Bookmark article"}
                         className={`p-2 rounded-full transition-colors ${
                           savedBlogIds.includes(selectedBlog.id)
                             ? "text-pink-400 bg-pink-500/20"
@@ -502,9 +519,10 @@ export default function BlogsInsights() {
 
                       <button
                         onClick={() => setSelectedBlog(null)}
-                        className="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/15 rounded-full transition-all"
+                        className="p-2 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all flex items-center gap-1 text-xs font-semibold px-3"
                       >
-                        <X className="w-5 h-5" />
+                        <X className="w-4 h-4" />
+                        <span className="hidden sm:inline">Close</span>
                       </button>
                     </div>
                   </div>

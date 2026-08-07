@@ -84,6 +84,11 @@ export default function Navigation() {
             <a
               key={link.name}
               href={link.href}
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("close-blog-modal"));
+                }
+              }}
               className="text-sm font-medium text-slate-200 hover:text-white transition-colors relative group py-2"
             >
               {link.name}
@@ -127,7 +132,12 @@ export default function Navigation() {
                   transition={{ delay: i * 0.05 }}
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("close-blog-modal"));
+                    }
+                  }}
                   className="text-2xl font-bold font-outfit text-white hover:text-orange-400 transition-colors py-4 w-full text-center border-b border-white/5 last:border-0"
                 >
                   {link.name}
