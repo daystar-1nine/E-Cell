@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, ArrowRight, ArrowLeft, Bookmark, BookmarkCheck, X, Share2, Sparkles, CheckCircle2 } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ChevronUp, Bookmark, BookmarkCheck, Share2, Sparkles, CheckCircle2 } from "lucide-react";
 
 export interface BlogPost {
   id: number;
@@ -52,7 +51,7 @@ const blogsData: BlogPost[] = [
       keyTakeaways: [
         "Focus on problem discovery before product development.",
         "Launch minimal versions to accelerate user feedback cycles.",
-        "Prioritize sustainable economic metrics over vanity vanity signals."
+        "Prioritize sustainable economic metrics over vanity signals."
       ]
     }
   },
@@ -132,7 +131,7 @@ const blogsData: BlogPost[] = [
           body: "Teams were forced to distill their pitch deck to core values, build working UI prototypes, and formulate business revenue models within two days—proving how much speed matters in startup culture."
         },
         {
-          heading: "Mentor Feeback is Gold",
+          heading: "Mentor Feedback is Gold",
           body: "Direct feedback from seasoned venture capitalists and founders helped teams pivot quickly before final pitches to jury panels."
         }
       ],
@@ -148,13 +147,8 @@ const blogsData: BlogPost[] = [
 export default function BlogsInsights() {
   const [activeTab, setActiveTab] = useState<"all" | "myReads">("all");
   const [savedBlogIds, setSavedBlogIds] = useState<number[]>([]);
-  const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
+  const [expandedBlogIds, setExpandedBlogIds] = useState<number[]>([]);
   const [copiedId, setCopiedId] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Load saved blogs from localStorage on client render
   useEffect(() => {
@@ -168,58 +162,13 @@ export default function BlogsInsights() {
     }
   }, []);
 
-  // Lock body scroll when modal is open
+  // Collapse all expanded cards when navigating away via nav links
   useEffect(() => {
-    if (selectedBlog) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
+    const handleCollapseAll = () => {
+      setExpandedBlogIds([]);
     };
-  }, [selectedBlog]);
-
-  // Close modal when pressing Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedBlog(null);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  // Auto-close modal on section navigation or click on any navbar link
-  useEffect(() => {
-    const handleCloseModal = () => {
-      setSelectedBlog(null);
-    };
-
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest("a");
-      if (anchor) {
-        const href = anchor.getAttribute("href");
-        if (href && href.startsWith("#")) {
-          setSelectedBlog(null);
-        }
-      }
-    };
-
-    window.addEventListener("close-blog-modal", handleCloseModal);
-    window.addEventListener("hashchange", handleCloseModal);
-    window.addEventListener("popstate", handleCloseModal);
-    // Use capture phase to intercept nav clicks before smooth-scroll prevents propagation
-    document.addEventListener("click", handleAnchorClick, true);
-
-    return () => {
-      window.removeEventListener("close-blog-modal", handleCloseModal);
-      window.removeEventListener("hashchange", handleCloseModal);
-      window.removeEventListener("popstate", handleCloseModal);
-      document.removeEventListener("click", handleAnchorClick, true);
-    };
+    window.addEventListener("close-blog-modal", handleCollapseAll);
+    return () => window.removeEventListener("close-blog-modal", handleCollapseAll);
   }, []);
 
   const toggleSaveBlog = (id: number, e?: React.MouseEvent) => {
@@ -233,6 +182,12 @@ export default function BlogsInsights() {
       }
       return updated;
     });
+  };
+
+  const toggleExpandBlog = (id: number) => {
+    setExpandedBlogIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
   const displayedBlogs = activeTab === "all" 
@@ -283,10 +238,7 @@ export default function BlogsInsights() {
             className="bg-slate-900/80 backdrop-blur-md border border-white/10 p-1.5 rounded-full inline-flex gap-1.5 shadow-lg"
           >
             <button
-              onClick={() => {
-                setActiveTab("all");
-                setSelectedBlog(null);
-              }}
+              onClick={() => setActiveTab("all")}
               className={`relative px-6 sm:px-8 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeTab === "all"
                   ? "text-white shadow-md"
@@ -306,10 +258,7 @@ export default function BlogsInsights() {
             </button>
 
             <button
-              onClick={() => {
-                setActiveTab("myReads");
-                setSelectedBlog(null);
-              }}
+              onClick={() => setActiveTab("myReads")}
               className={`relative px-6 sm:px-8 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeTab === "myReads"
                   ? "text-white shadow-md"
@@ -356,11 +305,13 @@ export default function BlogsInsights() {
           </motion.div>
         )}
 
-        {/* Blogs Stack / Grid */}
+        {/* Blogs Stack / Cards */}
         <div className="space-y-6 sm:space-y-8">
           <AnimatePresence mode="popLayout">
             {displayedBlogs.map((blog, index) => {
               const isSaved = savedBlogIds.includes(blog.id);
+              const isExpanded = expandedBlogIds.includes(blog.id);
+
               return (
                 <motion.article
                   key={blog.id}
@@ -369,244 +320,183 @@ export default function BlogsInsights() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   layout
-                  onClick={() => setSelectedBlog(blog)}
-                  className="group relative bg-[#2a1d2e]/60 hover:bg-[#332238]/70 backdrop-blur-md rounded-3xl border border-white/10 hover:border-pink-500/40 p-4 sm:p-5 md:p-6 shadow-xl transition-all duration-300 cursor-pointer flex flex-col md:flex-row gap-5 md:gap-8 items-stretch overflow-hidden"
+                  className="group relative bg-[#2a1d2e]/60 hover:bg-[#332238]/70 backdrop-blur-md rounded-3xl border border-white/10 hover:border-pink-500/40 p-4 sm:p-5 md:p-6 shadow-xl transition-all duration-300 flex flex-col gap-6 overflow-hidden"
                 >
-                  {/* Image Container */}
-                  <div className="w-full md:w-5/12 aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden relative shadow-md shrink-0 bg-slate-900">
-                    <img
-                      src={blog.image}
-                      alt={blog.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+                  {/* Summary Row (Image + Meta + Read More button) */}
+                  <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-start">
+                    {/* Cover Image */}
+                    <div className="w-full md:w-5/12 aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden relative shadow-md shrink-0 bg-slate-900">
+                      <img
+                        src={blog.image}
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    </div>
 
-                  {/* Content Container */}
-                  <div className="w-full md:w-7/12 flex flex-col justify-between py-1">
-                    <div>
-                      {/* Category Badge & Meta */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                        <span className="bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                          {blog.category}
-                        </span>
+                    {/* Meta & Summary Details */}
+                    <div className="w-full md:w-7/12 flex flex-col justify-between self-stretch py-1">
+                      <div>
+                        {/* Category Badge & Meta */}
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                          <span className="bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                            {blog.category}
+                          </span>
 
-                        <div className="flex items-center gap-3 text-slate-300 text-xs sm:text-sm font-outfit">
-                          <span className="flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5 text-pink-400" />
-                            {blog.date}
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5 text-pink-400" />
-                            {blog.readTime}
-                          </span>
+                          <div className="flex items-center gap-3 text-slate-300 text-xs sm:text-sm font-outfit">
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5 text-pink-400" />
+                              {blog.date}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Clock className="w-3.5 h-3.5 text-pink-400" />
+                              {blog.readTime}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h2 className="text-xl sm:text-2xl font-bold font-inter text-white mb-2 sm:mb-3 leading-snug group-hover:text-pink-300 transition-colors">
+                          {blog.title}
+                        </h2>
+
+                        {/* Excerpt */}
+                        <p className="text-slate-300 text-sm sm:text-base font-outfit leading-relaxed mb-4">
+                          {blog.excerpt}
+                        </p>
+                      </div>
+
+                      {/* Card Action Controls */}
+                      <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto">
+                        <button
+                          onClick={() => toggleExpandBlog(blog.id)}
+                          className="text-pink-400 hover:text-pink-300 font-semibold text-sm sm:text-base flex items-center gap-1.5 transition-all group-hover:gap-2"
+                        >
+                          {isExpanded ? (
+                            <>
+                              Read Less
+                              <ChevronUp className="w-4 h-4 text-pink-400" />
+                            </>
+                          ) : (
+                            <>
+                              Read More
+                              <ArrowRight className="w-4 h-4" />
+                            </>
+                          )}
+                        </button>
+
+                        <div className="flex items-center gap-2">
+                          {/* Share Button */}
+                          <button
+                            onClick={(e) => handleShare(blog, e)}
+                            title="Share article link"
+                            className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-full transition-colors relative"
+                          >
+                            <Share2 className="w-4 h-4" />
+                            {copiedId === blog.id && (
+                              <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-pink-600 text-white text-[10px] px-2 py-0.5 rounded shadow">
+                                Copied!
+                              </span>
+                            )}
+                          </button>
+
+                          {/* Bookmark Button */}
+                          <button
+                            onClick={(e) => toggleSaveBlog(blog.id, e)}
+                            title={isSaved ? "Remove from My Reads" : "Save to My Reads"}
+                            className={`p-2 rounded-full transition-colors ${
+                              isSaved 
+                                ? "text-pink-400 bg-pink-500/20" 
+                                : "text-slate-400 hover:text-white hover:bg-white/10"
+                            }`}
+                          >
+                            {isSaved ? (
+                              <BookmarkCheck className="w-4 h-4 fill-pink-400" />
+                            ) : (
+                              <Bookmark className="w-4 h-4" />
+                            )}
+                          </button>
                         </div>
                       </div>
-
-                      {/* Title */}
-                      <h2 className="text-xl sm:text-2xl font-bold font-inter text-white mb-2 sm:mb-3 leading-snug group-hover:text-pink-300 transition-colors">
-                        {blog.title}
-                      </h2>
-
-                      {/* Excerpt */}
-                      <p className="text-slate-300 text-sm sm:text-base font-outfit leading-relaxed mb-4 line-clamp-2 md:line-clamp-3">
-                        {blog.excerpt}
-                      </p>
-                    </div>
-
-                    {/* Footer Actions */}
-                    <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedBlog(blog);
-                        }}
-                        className="text-pink-400 group-hover:text-pink-300 font-semibold text-sm sm:text-base flex items-center gap-1.5 transition-all group-hover:gap-2"
-                      >
-                        Read More
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-
-                      <div className="flex items-center gap-2">
-                        {/* Share Button */}
-                        <button
-                          onClick={(e) => handleShare(blog, e)}
-                          title="Share article link"
-                          className="p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-full transition-colors relative"
-                        >
-                          <Share2 className="w-4 h-4" />
-                          {copiedId === blog.id && (
-                            <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-pink-600 text-white text-[10px] px-2 py-0.5 rounded shadow">
-                              Copied!
-                            </span>
-                          )}
-                        </button>
-
-                        {/* Bookmark Button */}
-                        <button
-                          onClick={(e) => toggleSaveBlog(blog.id, e)}
-                          title={isSaved ? "Remove from My Reads" : "Save to My Reads"}
-                          className={`p-2 rounded-full transition-colors ${
-                            isSaved 
-                              ? "text-pink-400 bg-pink-500/20" 
-                              : "text-slate-400 hover:text-white hover:bg-white/10"
-                          }`}
-                        >
-                          {isSaved ? (
-                            <BookmarkCheck className="w-4 h-4 fill-pink-400" />
-                          ) : (
-                            <Bookmark className="w-4 h-4" />
-                          )}
-                        </button>
-                      </div>
                     </div>
                   </div>
+
+                  {/* Expanded Full Article Content (In-place inside card!) */}
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden pt-6 border-t border-white/15 space-y-6 text-white"
+                      >
+                        {/* Introduction Quote */}
+                        <div className="bg-pink-500/10 border-l-4 border-pink-500 p-4 rounded-r-2xl">
+                          <p className="text-base sm:text-lg text-slate-200 font-outfit leading-relaxed italic">
+                            "{blog.content.intro}"
+                          </p>
+                        </div>
+
+                        {/* Article Sections */}
+                        <div className="space-y-5">
+                          {blog.content.sections.map((sec, idx) => (
+                            <div key={idx} className="space-y-2">
+                              <h3 className="text-lg font-bold text-white font-inter flex items-center gap-2">
+                                <Sparkles className="w-4 h-4 text-pink-400 shrink-0" />
+                                {sec.heading}
+                              </h3>
+                              <p className="text-slate-300 font-outfit text-sm sm:text-base leading-relaxed">
+                                {sec.body}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Key Takeaways Box */}
+                        <div className="bg-pink-950/40 border border-pink-500/30 rounded-2xl p-4 sm:p-5">
+                          <h4 className="text-base font-bold text-pink-300 font-inter mb-3 flex items-center gap-2">
+                            <CheckCircle2 className="w-4.5 h-4.5 text-pink-400" />
+                            Key Takeaways
+                          </h4>
+                          <ul className="space-y-2 text-slate-200 text-sm font-outfit">
+                            {blog.content.keyTakeaways.map((item, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <span className="text-pink-400 font-bold">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Author Footer & Read Less Button */}
+                        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-600 to-purple-600 flex items-center justify-center text-white font-bold font-inter text-sm">
+                              {blog.author.substring(0, 2).toUpperCase()}
+                            </div>
+                            <div>
+                              <h4 className="text-white font-bold font-inter text-sm">{blog.author}</h4>
+                              <p className="text-slate-400 text-xs font-outfit">{blog.authorRole}</p>
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={() => toggleExpandBlog(blog.id)}
+                            className="px-4 py-2 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/30 text-pink-300 hover:text-white rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all"
+                          >
+                            Read Less
+                            <ChevronUp className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                 </motion.article>
               );
             })}
           </AnimatePresence>
         </div>
-
-        {/* Reader Overlay Modal Portaled to document.body */}
-        {mounted && typeof window !== "undefined" && createPortal(
-          <AnimatePresence>
-            {selectedBlog && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedBlog(null)}
-                className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
-              >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                  transition={{ type: "spring", duration: 0.5 }}
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-[#1e1424] border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl relative text-white"
-                >
-                  {/* Modal Header */}
-                  <div className="sticky top-0 bg-[#1e1424]/95 backdrop-blur-md z-20 px-4 sm:px-6 py-3.5 border-b border-white/10 flex items-center justify-between gap-3">
-                    <button
-                      onClick={() => setSelectedBlog(null)}
-                      className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-pink-300 hover:text-white bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 px-3 py-1.5 rounded-full transition-all"
-                    >
-                      <ArrowLeft className="w-4 h-4" />
-                      Back to Blogs
-                    </button>
-
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <span className="hidden sm:inline-block bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-                        {selectedBlog.category}
-                      </span>
-                      
-                      <button
-                        onClick={() => toggleSaveBlog(selectedBlog.id)}
-                        title={savedBlogIds.includes(selectedBlog.id) ? "Remove bookmark" : "Bookmark article"}
-                        className={`p-2 rounded-full transition-colors ${
-                          savedBlogIds.includes(selectedBlog.id)
-                            ? "text-pink-400 bg-pink-500/20"
-                            : "text-slate-300 hover:bg-white/10"
-                        }`}
-                      >
-                        {savedBlogIds.includes(selectedBlog.id) ? (
-                          <BookmarkCheck className="w-5 h-5 fill-pink-400" />
-                        ) : (
-                          <Bookmark className="w-5 h-5" />
-                        )}
-                      </button>
-
-                      <button
-                        onClick={() => setSelectedBlog(null)}
-                        className="p-2 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all flex items-center gap-1 text-xs font-semibold px-3"
-                      >
-                        <X className="w-4 h-4" />
-                        <span className="hidden sm:inline">Close</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hero Banner Image */}
-                  <div className="w-full h-56 sm:h-72 relative bg-slate-950">
-                    <img
-                      src={selectedBlog.image}
-                      alt={selectedBlog.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e1424] via-transparent to-transparent" />
-                  </div>
-
-                  {/* Article Body Content */}
-                  <div className="px-6 sm:px-10 py-6 space-y-6">
-                    <div>
-                      <h2 className="text-2xl sm:text-4xl font-bold font-inter text-white mb-4 leading-snug">
-                        {selectedBlog.title}
-                      </h2>
-
-                      <div className="flex items-center gap-4 text-slate-400 text-sm font-outfit pb-6 border-b border-white/10">
-                        <span>By <strong className="text-pink-300">{selectedBlog.author}</strong></span>
-                        <span>•</span>
-                        <span>{selectedBlog.date}</span>
-                        <span>•</span>
-                        <span>{selectedBlog.readTime}</span>
-                      </div>
-                    </div>
-
-                    {/* Intro */}
-                    <p className="text-lg sm:text-xl text-slate-200 font-outfit leading-relaxed font-light italic">
-                      "{selectedBlog.content.intro}"
-                    </p>
-
-                    {/* Sections */}
-                    <div className="space-y-6 pt-2">
-                      {selectedBlog.content.sections.map((sec, idx) => (
-                        <div key={idx} className="space-y-2">
-                          <h3 className="text-xl font-bold text-white font-inter flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-pink-400 shrink-0" />
-                            {sec.heading}
-                          </h3>
-                          <p className="text-slate-300 font-outfit text-base leading-relaxed">
-                            {sec.body}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Key Takeaways Box */}
-                    <div className="bg-pink-950/40 border border-pink-500/30 rounded-2xl p-5 sm:p-6 mt-8">
-                      <h4 className="text-lg font-bold text-pink-300 font-inter mb-3 flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-pink-400" />
-                        Key Takeaways
-                      </h4>
-                      <ul className="space-y-2 text-slate-200 text-sm sm:text-base font-outfit">
-                        {selectedBlog.content.keyTakeaways.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-pink-400 font-bold">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Author Box */}
-                    <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-pink-600 to-purple-600 flex items-center justify-center text-white font-bold font-inter text-lg">
-                        {selectedBlog.author.substring(0, 2).toUpperCase()}
-                      </div>
-                      <div>
-                        <h4 className="text-white font-bold font-inter text-base">{selectedBlog.author}</h4>
-                        <p className="text-slate-400 text-xs font-outfit">{selectedBlog.authorRole}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body
-        )}
 
       </div>
     </section>

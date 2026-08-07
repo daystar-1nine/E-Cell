@@ -16,7 +16,8 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
+  const [mounted, setMounted] = useState(false);
+
   const { scrollYProgress } = useScroll();
   
   // Map scroll progress to the day-night cycle background tint
@@ -38,6 +39,11 @@ export default function Navigation() {
     [0, 0.25, 0.5, 0.75, 1],
     ["#f97316", "#0ea5e9", "#eab308", "#ec4899", "#6366f1"] // orange, sky, yellow, pink, indigo
   );
+
+  // Only apply motion-value styles after client hydration to prevent SSR mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +67,8 @@ export default function Navigation() {
 
   return (
     <motion.header
-      style={{ backgroundColor: scrolled ? navBg : "transparent" }}
+      style={{ backgroundColor: mounted && scrolled ? navBg : "transparent" }}
+      suppressHydrationWarning
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "backdrop-blur-md py-3 border-b border-white/10 shadow-lg" : "py-5 md:py-6"
       }`}
@@ -70,7 +77,8 @@ export default function Navigation() {
         {/* Logo */}
         <a href="#home" className="text-xl md:text-2xl font-bold font-inter text-white tracking-wide flex items-center gap-2 z-50 relative p-2 -ml-2 group">
           <motion.span 
-            style={{ color: navAccent }}
+            style={{ color: mounted ? navAccent : "#f97316" }}
+            suppressHydrationWarning
             className="transition-colors duration-300"
           >
             E-Cell
@@ -93,7 +101,8 @@ export default function Navigation() {
             >
               {link.name}
               <motion.span 
-                style={{ backgroundColor: navAccent }}
+                style={{ backgroundColor: mounted ? navAccent : "#f97316" }}
+                suppressHydrationWarning
                 className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full rounded-full" 
               />
             </a>
