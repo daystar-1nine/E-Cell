@@ -162,6 +162,54 @@ export default function BlogsInsights() {
     }
   }, []);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedBlog) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedBlog]);
+
+  // Close modal when pressing Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedBlog(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Auto-close modal on section navigation or hash change
+  useEffect(() => {
+    const handleNavigation = () => {
+      setSelectedBlog(null);
+    };
+
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (anchor && anchor.getAttribute("href")?.startsWith("#")) {
+        setSelectedBlog(null);
+      }
+    };
+
+    window.addEventListener("hashchange", handleNavigation);
+    window.addEventListener("popstate", handleNavigation);
+    document.addEventListener("click", handleAnchorClick);
+
+    return () => {
+      window.removeEventListener("hashchange", handleNavigation);
+      window.removeEventListener("popstate", handleNavigation);
+      document.removeEventListener("click", handleAnchorClick);
+    };
+  }, []);
+
   const toggleSaveBlog = (id: number, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setSavedBlogIds((prev) => {
