@@ -40,6 +40,7 @@ export default function Footer() {
               <h4 className="text-white font-inter font-medium mb-1">Navigation</h4>
               <Link href="#home" className="text-sm text-slate-400 hover:text-white transition-colors font-outfit">Home</Link>
               <Link href="#about-ecell" className="text-sm text-slate-400 hover:text-white transition-colors font-outfit">About Us</Link>
+              <Link href="#blogs-insights" className="text-sm text-slate-400 hover:text-white transition-colors font-outfit">Blogs & Insights</Link>
               <Link href="#team" className="text-sm text-slate-400 hover:text-white transition-colors font-outfit">Team</Link>
               <Link href="#events" className="text-sm text-slate-400 hover:text-white transition-colors font-outfit">Events</Link>
             </div>
