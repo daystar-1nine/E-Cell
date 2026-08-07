@@ -30,6 +30,7 @@ const Twitter = ({ className }: { className?: string }) => (
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [signalPos, setSignalPos] = useState({ x: 0, y: 0 });
+  const [signalRandomX, setSignalRandomX] = useState(0);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,6 +46,7 @@ export default function Contact() {
       });
     }
 
+    setSignalRandomX((Math.random() - 0.5) * 200);
     setStatus("sending");
     
     // Simulate network request
@@ -157,7 +159,7 @@ export default function Contact() {
               {status === "sending" && (
                 <motion.div
                   initial={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-                  animate={{ opacity: 0, scale: 0.2, y: -800, x: (Math.random() - 0.5) * 200 }}
+                  animate={{ opacity: 0, scale: 0.2, y: -800, x: signalRandomX }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 1.5, ease: "easeIn" }}
                   className="absolute bottom-10 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white shadow-[0_0_30px_10px_rgba(255,255,255,0.8)] z-0 pointer-events-none"
