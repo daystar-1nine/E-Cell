@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, ArrowRight, Bookmark, BookmarkCheck, X, Share2, Sparkles, CheckCircle2 } from "lucide-react";
 
@@ -149,6 +150,11 @@ export default function BlogsInsights() {
   const [savedBlogIds, setSavedBlogIds] = useState<number[]>([]);
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   const [copiedId, setCopiedId] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Load saved blogs from localStorage on client render
   useEffect(() => {
@@ -185,7 +191,7 @@ export default function BlogsInsights() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Auto-close modal on section navigation or hash change
+  // Auto-close modal on section navigation or click on any navbar link
   useEffect(() => {
     const handleNavigation = () => {
       setSelectedBlog(null);
@@ -194,19 +200,23 @@ export default function BlogsInsights() {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
-      if (anchor && anchor.getAttribute("href")?.startsWith("#")) {
-        setSelectedBlog(null);
+      if (anchor) {
+        const href = anchor.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          setSelectedBlog(null);
+        }
       }
     };
 
     window.addEventListener("hashchange", handleNavigation);
     window.addEventListener("popstate", handleNavigation);
-    document.addEventListener("click", handleAnchorClick);
+    // Use capture phase to intercept nav clicks before smooth-scroll prevents propagation
+    document.addEventListener("click", handleAnchorClick, true);
 
     return () => {
       window.removeEventListener("hashchange", handleNavigation);
       window.removeEventListener("popstate", handleNavigation);
-      document.removeEventListener("click", handleAnchorClick);
+      document.removeEventListener("click", handleAnchorClick, true);
     };
   }, []);
 
@@ -449,133 +459,136 @@ export default function BlogsInsights() {
           </AnimatePresence>
         </div>
 
-        {/* Reader Overlay Modal */}
-        <AnimatePresence>
-          {selectedBlog && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedBlog(null)}
-              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
-            >
+        {/* Reader Overlay Modal Portaled to document.body */}
+        {mounted && typeof window !== "undefined" && createPortal(
+          <AnimatePresence>
+            {selectedBlog && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                onClick={(e) => e.stopPropagation()}
-                className="bg-[#1e1424] border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl relative text-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedBlog(null)}
+                className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
               >
-                {/* Modal Header */}
-                <div className="sticky top-0 bg-[#1e1424]/90 backdrop-blur-md z-20 px-6 py-4 border-b border-white/10 flex items-center justify-between">
-                  <span className="bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-                    {selectedBlog.category}
-                  </span>
-                  
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => toggleSaveBlog(selectedBlog.id)}
-                      className={`p-2 rounded-full transition-colors ${
-                        savedBlogIds.includes(selectedBlog.id)
-                          ? "text-pink-400 bg-pink-500/20"
-                          : "text-slate-300 hover:bg-white/10"
-                      }`}
-                    >
-                      {savedBlogIds.includes(selectedBlog.id) ? (
-                        <BookmarkCheck className="w-5 h-5 fill-pink-400" />
-                      ) : (
-                        <Bookmark className="w-5 h-5" />
-                      )}
-                    </button>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="bg-[#1e1424] border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl relative text-white"
+                >
+                  {/* Modal Header */}
+                  <div className="sticky top-0 bg-[#1e1424]/90 backdrop-blur-md z-20 px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                    <span className="bg-[#be185d] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                      {selectedBlog.category}
+                    </span>
+                    
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => toggleSaveBlog(selectedBlog.id)}
+                        className={`p-2 rounded-full transition-colors ${
+                          savedBlogIds.includes(selectedBlog.id)
+                            ? "text-pink-400 bg-pink-500/20"
+                            : "text-slate-300 hover:bg-white/10"
+                        }`}
+                      >
+                        {savedBlogIds.includes(selectedBlog.id) ? (
+                          <BookmarkCheck className="w-5 h-5 fill-pink-400" />
+                        ) : (
+                          <Bookmark className="w-5 h-5" />
+                        )}
+                      </button>
 
-                    <button
-                      onClick={() => setSelectedBlog(null)}
-                      className="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/15 rounded-full transition-all"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Hero Banner Image */}
-                <div className="w-full h-56 sm:h-72 relative bg-slate-950">
-                  <img
-                    src={selectedBlog.image}
-                    alt={selectedBlog.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e1424] via-transparent to-transparent" />
-                </div>
-
-                {/* Article Body Content */}
-                <div className="px-6 sm:px-10 py-6 space-y-6">
-                  <div>
-                    <h2 className="text-2xl sm:text-4xl font-bold font-inter text-white mb-4 leading-snug">
-                      {selectedBlog.title}
-                    </h2>
-
-                    <div className="flex items-center gap-4 text-slate-400 text-sm font-outfit pb-6 border-b border-white/10">
-                      <span>By <strong className="text-pink-300">{selectedBlog.author}</strong></span>
-                      <span>•</span>
-                      <span>{selectedBlog.date}</span>
-                      <span>•</span>
-                      <span>{selectedBlog.readTime}</span>
+                      <button
+                        onClick={() => setSelectedBlog(null)}
+                        className="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/15 rounded-full transition-all"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
                     </div>
                   </div>
 
-                  {/* Intro */}
-                  <p className="text-lg sm:text-xl text-slate-200 font-outfit leading-relaxed font-light italic">
-                    "{selectedBlog.content.intro}"
-                  </p>
-
-                  {/* Sections */}
-                  <div className="space-y-6 pt-2">
-                    {selectedBlog.content.sections.map((sec, idx) => (
-                      <div key={idx} className="space-y-2">
-                        <h3 className="text-xl font-bold text-white font-inter flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-pink-400 shrink-0" />
-                          {sec.heading}
-                        </h3>
-                        <p className="text-slate-300 font-outfit text-base leading-relaxed">
-                          {sec.body}
-                        </p>
-                      </div>
-                    ))}
+                  {/* Hero Banner Image */}
+                  <div className="w-full h-56 sm:h-72 relative bg-slate-950">
+                    <img
+                      src={selectedBlog.image}
+                      alt={selectedBlog.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e1424] via-transparent to-transparent" />
                   </div>
 
-                  {/* Key Takeaways Box */}
-                  <div className="bg-pink-950/40 border border-pink-500/30 rounded-2xl p-5 sm:p-6 mt-8">
-                    <h4 className="text-lg font-bold text-pink-300 font-inter mb-3 flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-pink-400" />
-                      Key Takeaways
-                    </h4>
-                    <ul className="space-y-2 text-slate-200 text-sm sm:text-base font-outfit">
-                      {selectedBlog.content.keyTakeaways.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-pink-400 font-bold">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Author Box */}
-                  <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-pink-600 to-purple-600 flex items-center justify-center text-white font-bold font-inter text-lg">
-                      {selectedBlog.author.substring(0, 2).toUpperCase()}
-                    </div>
+                  {/* Article Body Content */}
+                  <div className="px-6 sm:px-10 py-6 space-y-6">
                     <div>
-                      <h4 className="text-white font-bold font-inter text-base">{selectedBlog.author}</h4>
-                      <p className="text-slate-400 text-xs font-outfit">{selectedBlog.authorRole}</p>
+                      <h2 className="text-2xl sm:text-4xl font-bold font-inter text-white mb-4 leading-snug">
+                        {selectedBlog.title}
+                      </h2>
+
+                      <div className="flex items-center gap-4 text-slate-400 text-sm font-outfit pb-6 border-b border-white/10">
+                        <span>By <strong className="text-pink-300">{selectedBlog.author}</strong></span>
+                        <span>•</span>
+                        <span>{selectedBlog.date}</span>
+                        <span>•</span>
+                        <span>{selectedBlog.readTime}</span>
+                      </div>
+                    </div>
+
+                    {/* Intro */}
+                    <p className="text-lg sm:text-xl text-slate-200 font-outfit leading-relaxed font-light italic">
+                      "{selectedBlog.content.intro}"
+                    </p>
+
+                    {/* Sections */}
+                    <div className="space-y-6 pt-2">
+                      {selectedBlog.content.sections.map((sec, idx) => (
+                        <div key={idx} className="space-y-2">
+                          <h3 className="text-xl font-bold text-white font-inter flex items-center gap-2">
+                            <Sparkles className="w-4 h-4 text-pink-400 shrink-0" />
+                            {sec.heading}
+                          </h3>
+                          <p className="text-slate-300 font-outfit text-base leading-relaxed">
+                            {sec.body}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Key Takeaways Box */}
+                    <div className="bg-pink-950/40 border border-pink-500/30 rounded-2xl p-5 sm:p-6 mt-8">
+                      <h4 className="text-lg font-bold text-pink-300 font-inter mb-3 flex items-center gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-pink-400" />
+                        Key Takeaways
+                      </h4>
+                      <ul className="space-y-2 text-slate-200 text-sm sm:text-base font-outfit">
+                        {selectedBlog.content.keyTakeaways.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="text-pink-400 font-bold">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Author Box */}
+                    <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-pink-600 to-purple-600 flex items-center justify-center text-white font-bold font-inter text-lg">
+                        {selectedBlog.author.substring(0, 2).toUpperCase()}
+                      </div>
+                      <div>
+                        <h4 className="text-white font-bold font-inter text-base">{selectedBlog.author}</h4>
+                        <p className="text-slate-400 text-xs font-outfit">{selectedBlog.authorRole}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
 
       </div>
     </section>
