@@ -59,37 +59,37 @@ export default function AboutECell() {
         
         {/* Top: Scannable Text Content */}
         <motion.div 
-          className="max-w-4xl dynamic-scrim p-8 md:p-10 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl"
+          className="max-w-4xl bg-[var(--color-surface)] p-8 md:p-10 rounded-lg border border-hairline"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
           <motion.div variants={textVariants} className="mb-4 flex items-center gap-4">
-            <div className="h-[2px] w-12 bg-orange-400"></div>
-            <span className="text-orange-400 font-semibold tracking-wider uppercase text-sm dynamic-text-shadow">Our Mission</span>
+            <div className="h-[2px] w-12 bg-[var(--color-primary)]"></div>
+            <span className="text-[var(--color-primary)] text-label-caps">Our Mission</span>
           </motion.div>
           
-          <motion.h2 variants={textVariants} className="text-3xl md:text-5xl lg:text-6xl font-bold font-inter text-white mb-8 leading-tight dynamic-text-shadow">
+          <motion.h2 variants={textVariants} className="text-display-md lg:text-display-lg text-[var(--color-text-main)] mb-8">
             We turn student ideas into real startups.
           </motion.h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-base md:text-lg text-slate-200 font-outfit">
-            <motion.p variants={textVariants} className="leading-relaxed dynamic-text-shadow">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-base md:text-lg text-[var(--color-text-muted)] font-inter">
+            <motion.p variants={textVariants} className="leading-relaxed">
               We believe India's future depends on the youth breaking free from conventional career paths. At E-Cell SJCEM, we don't just talk about entrepreneurship—we build an ecosystem that makes it possible.
             </motion.p>
             <motion.div variants={textVariants} className="space-y-4">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0 mt-0.5" />
-                <span className="dynamic-text-shadow">Bridging the gap between students, faculty, and working professionals.</span>
+                <CheckCircle2 className="w-6 h-6 text-[var(--color-primary)] shrink-0 mt-0.5" />
+                <span>Bridging the gap between students, faculty, and working professionals.</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0 mt-0.5" />
-                <span className="dynamic-text-shadow">Connecting aspiring founders with mentors, angel investors, and VCs.</span>
+                <CheckCircle2 className="w-6 h-6 text-[var(--color-primary)] shrink-0 mt-0.5" />
+                <span>Connecting aspiring founders with mentors, angel investors, and VCs.</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-6 h-6 text-orange-400 shrink-0 mt-0.5" />
-                <span className="dynamic-text-shadow">Providing a safe platform to test, fail, and rebuild ideas.</span>
+                <CheckCircle2 className="w-6 h-6 text-[var(--color-primary)] shrink-0 mt-0.5" />
+                <span>Providing a safe platform to test, fail, and rebuild ideas.</span>
               </div>
             </motion.div>
           </div>
@@ -107,28 +107,17 @@ export default function AboutECell() {
             <motion.div 
               key={idx}
               variants={textVariants}
-              className={`p-6 md:p-8 rounded-3xl border transition-all duration-300 group hover:-translate-y-2
-                ${stat.featured 
-                  ? 'bg-orange-500/20 border-orange-500/40 backdrop-blur-xl shadow-[0_0_30px_rgba(249,115,22,0.2)] hover:shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:bg-orange-500/30' 
-                  : 'dynamic-scrim border-white/20 backdrop-blur-xl hover:bg-slate-900/60'
-                }
-              `}
+              className="p-6 md:p-8 rounded-lg bg-[var(--color-surface)] border border-hairline transition-colors hover:border-hairline-strong hover:bg-[var(--color-surface-elevated)] group flex flex-col items-start"
             >
-              <div className={`mb-4 md:mb-6 inline-flex p-3 rounded-2xl transition-transform group-hover:scale-110 shadow-inner
-                ${stat.featured ? 'bg-orange-500/30 text-orange-200' : 'bg-slate-800/80 text-slate-200'}
-              `}>
+              <div className="mb-4 md:mb-6 text-[var(--color-text-muted)] group-hover:text-[var(--color-text-main)] transition-colors">
                 <stat.icon className="w-6 h-6 md:w-8 md:h-8" />
               </div>
               
-              <div className={`text-4xl md:text-5xl lg:text-6xl font-extrabold font-inter mb-2 tracking-tighter drop-shadow-md
-                ${stat.featured ? 'text-white' : 'text-slate-100'}
-              `}>
+              <div className="text-stat-display text-[var(--color-primary)] mb-2">
                 <AnimatedCounter value={stat.numericValue} suffix={stat.suffix} />
               </div>
               
-              <div className={`text-sm md:text-base font-medium font-outfit uppercase tracking-wider
-                ${stat.featured ? 'text-orange-100' : 'text-slate-300'}
-              `}>
+              <div className="text-label-caps text-[var(--color-text-muted)] group-hover:text-[var(--color-text-main)] transition-colors">
                 {stat.label}
               </div>
             </motion.div>
