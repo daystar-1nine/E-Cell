@@ -53,7 +53,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
             transition={{ duration: 0.2 }}
             className="flex items-center justify-center"
           >
-            <Sun className="w-4 h-4 text-[var(--color-primary)]" />
+            <Sun className="w-4 h-4 text-[var(--color-text-main)]" />
           </motion.div>
         )}
       </AnimatePresence>

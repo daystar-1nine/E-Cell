@@ -70,7 +70,7 @@ export default function Hero() {
         >
           <a
             href="#events"
-            className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-[var(--color-primary)] text-[var(--color-text-inverse)] font-bold rounded-md transition-colors hover:bg-[var(--color-primary-hover)] min-h-[48px]"
+            className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-[var(--color-primary)] text-black font-bold rounded-md transition-colors hover:bg-[var(--color-primary-hover)] min-h-[48px] border border-black/15 dark:border-transparent shadow-sm"
           >
             <span className="relative z-10 flex items-center gap-2 font-inter tracking-wide text-sm sm:text-base">
               See Upcoming Events

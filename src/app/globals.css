@@ -5,9 +5,9 @@
   --font-outfit: var(--font-outfit);
   --font-mono: var(--font-jetbrains);
 
-  /* Light Theme (Crisp High-Contrast Swiss Palette) */
-  --color-primary: #d97706;
-  --color-primary-hover: #b45309;
+  /* Light Theme */
+  --color-primary: #faff69;
+  --color-primary-hover: #e6eb52;
   --color-background: #fbfbfa;
   --color-surface: #ffffff;
   --color-surface-elevated: #f3f4f6;
@@ -15,13 +15,13 @@
   --color-hairline-strong: #d1d5db;
   --color-text-main: #09090b;
   --color-text-muted: #52525b;
-  --color-text-inverse: #ffffff;
-  --color-success: #16a34a;
-  --color-error: #dc2626;
+  --color-text-inverse: #0a0a0a;
+  --color-success: #22c55e;
+  --color-error: #ef4444;
 
   --theme-cursor-dot: #09090b;
   --theme-cursor-ring: rgba(0, 0, 0, 0.25);
-  --theme-glow: rgba(217, 119, 6, 0.2);
+  --theme-glow: rgba(250, 255, 105, 0.35);
 
   /* Strict Radii */
   --radius-sm: 4px;
