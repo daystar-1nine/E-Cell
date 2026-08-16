@@ -1,11 +1,37 @@
 @import "tailwindcss";
 
-@theme inline {
+:root {
   --font-inter: var(--font-inter);
   --font-outfit: var(--font-outfit);
   --font-mono: var(--font-jetbrains);
 
-  /* High-Velocity Engineering Colors */
+  /* Light Theme (Crisp High-Contrast Swiss Palette) */
+  --color-primary: #d97706;
+  --color-primary-hover: #b45309;
+  --color-background: #fbfbfa;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f3f4f6;
+  --color-hairline: #e5e7eb;
+  --color-hairline-strong: #d1d5db;
+  --color-text-main: #09090b;
+  --color-text-muted: #52525b;
+  --color-text-inverse: #ffffff;
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+
+  --theme-cursor-dot: #09090b;
+  --theme-cursor-ring: rgba(0, 0, 0, 0.25);
+  --theme-glow: rgba(217, 119, 6, 0.2);
+
+  /* Strict Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px; /* Buttons */
+  --radius-lg: 12px; /* Cards */
+  --radius-pill: 9999px;
+}
+
+.dark {
+  /* Dark Theme (High-Velocity Engineering) */
   --color-primary: #faff69;
   --color-primary-hover: #e6eb52;
   --color-background: #0a0a0a;
@@ -19,55 +45,87 @@
   --color-success: #22c55e;
   --color-error: #ef4444;
 
-  /* Strict Radii */
-  --radius-sm: 4px;
-  --radius-md: 8px; /* Buttons */
-  --radius-lg: 12px; /* Cards */
-  --radius-pill: 9999px;
+  --theme-cursor-dot: #ffffff;
+  --theme-cursor-ring: rgba(255, 255, 255, 0.25);
+  --theme-glow: rgba(250, 255, 105, 0.2);
+}
+
+@theme inline {
+  --font-inter: var(--font-inter);
+  --font-outfit: var(--font-outfit);
+  --font-mono: var(--font-jetbrains);
+
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-strong: var(--color-hairline-strong);
+  --color-text-main: var(--color-text-main);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-inverse: var(--color-text-inverse);
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
 }
 
 @layer base {
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    -webkit-text-size-adjust: 100%;
+  }
   body {
+    overflow-x: hidden;
+    min-height: 100dvh;
     background-color: var(--color-background);
     color: var(--color-text-main);
     font-family: var(--font-inter), sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
 @layer utilities {
-  /* Typography Scale */
+  /* Fluid Responsive Typography Scale */
   .text-display-xl {
-    font-size: 72px;
+    font-size: clamp(2.25rem, 7vw, 4.5rem);
     font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -2.5px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
   }
   .text-display-lg {
-    font-size: 56px;
+    font-size: clamp(1.85rem, 5.5vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -2px;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
   }
   .text-display-md {
-    font-size: 40px;
+    font-size: clamp(1.6rem, 4.2vw, 2.5rem);
     font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -1.5px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
   }
   .text-display-sm {
-    font-size: 32px;
+    font-size: clamp(1.35rem, 3.2vw, 2rem);
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -1px;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
   }
   .text-stat-display {
-    font-size: 56px;
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.0;
-    letter-spacing: -1.5px;
+    letter-spacing: -0.03em;
   }
   .text-label-caps {
-    font-size: 12px;
+    font-size: clamp(10px, 2.2vw, 12px);
     font-weight: 600;
     line-height: 1.4;
     letter-spacing: 1.5px;
@@ -82,9 +140,10 @@
     border-color: var(--color-hairline-strong);
   }
 
-  /* Remove old animations that don't fit */
+  /* Scrollbars */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    height: 6px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
@@ -99,7 +158,8 @@
   }
   
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: var(--color-background);

@@ -59,19 +59,19 @@ export default function Cursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-white rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-3 h-3 bg-[var(--theme-cursor-dot)] rounded-full pointer-events-none z-[9999]"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
-          boxShadow: "0 0 10px rgba(255,255,255,0.5)",
+          boxShadow: "0 0 10px var(--theme-cursor-ring)",
         }}
       />
       
       {/* Trailing glow ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border border-white/50"
+        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border border-[var(--color-text-muted)]"
         style={{
           x: smoothX,
           y: smoothY,
@@ -79,12 +79,12 @@ export default function Cursor() {
           translateY: "-50%",
           width: isHovering ? 60 : 30,
           height: isHovering ? 60 : 30,
-          backgroundColor: isHovering ? "var(--theme-glow, rgba(255,255,255,0.2))" : "transparent",
-          boxShadow: isHovering ? "0 0 20px var(--theme-glow, rgba(255,255,255,0.2))" : "none",
+          backgroundColor: isHovering ? "var(--theme-glow)" : "transparent",
+          boxShadow: isHovering ? "0 0 20px var(--theme-glow)" : "none",
         }}
         animate={{
           scale: isHovering ? 1.2 : 1,
-          opacity: isHovering ? 0.8 : 0.5,
+          opacity: isHovering ? 0.8 : 0.4,
         }}
         transition={{ duration: 0.2 }}
       />
