@@ -1,20 +1,27 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
-import SplashCursor from "./SplashCursor";
 
 export default function Hero() {
-  const { theme } = useTheme();
-
   return (
     <section id="home" className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden pt-28 sm:pt-36 md:pt-40 pb-12 sm:pb-16">
       
-      <SplashCursor 
-        COLOR={theme === "dark" ? "#faff69" : "#d97706"}
-        RAINBOW_MODE={false}
-      />
+      {/* Flower Field Video & Poster Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/images/flower-field.jpg"
+          className="w-full h-full object-cover opacity-40 dark:opacity-30 filter brightness-90 contrast-105 transition-opacity duration-700"
+        >
+          <source src="/videos/flower-field.mp4" type="video/mp4" />
+        </video>
+        {/* Gradient overlay for contrast and seamless transition to next section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background)]/75 via-[var(--color-background)]/35 to-[var(--color-background)]" />
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10 flex flex-col items-center text-center pointer-events-none">
         <motion.div
