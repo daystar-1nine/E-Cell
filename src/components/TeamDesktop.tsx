@@ -2,10 +2,19 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User } from "lucide-react";
-import { executiveOfficers, departmentCohorts, wings, type TeamMember, type Wing } from "@/utils/teams";
+import { User, GraduationCap } from "lucide-react";
+import {
+  facultyCoordinators,
+  coreTeam,
+  departmentMembers,
+  wings,
+  getMembersByWing,
+  type TeamMember,
+  type FacultyCoordinator,
+  type Wing,
+} from "@/utils/teams";
 
-/* ─── Inline SVG Social Icons (lucide-react doesn't include brand icons) ─── */
+/* ─── Inline SVG Social Icons ─── */
 function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -35,10 +44,25 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-/* ─── Badge Component ─── */
-function Badge({ label }: { label: string }) {
+function MailIcon({ className }: { className?: string }) {
   return (
-    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--color-primary)] text-[var(--color-text-inverse)] leading-snug whitespace-nowrap">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
+
+/* ─── Badge Component ─── */
+function Badge({ label, variant = "default" }: { label: string; variant?: "default" | "core" | "director" | "faculty" }) {
+  const styles = {
+    default: "bg-[var(--color-primary)] text-[var(--color-text-inverse)]",
+    core: "bg-gradient-to-r from-amber-400 to-yellow-300 text-gray-900",
+    director: "bg-gradient-to-r from-cyan-400 to-sky-400 text-gray-900",
+    faculty: "bg-gradient-to-r from-amber-300/80 to-yellow-200/80 text-gray-900",
+  };
+  return (
+    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider leading-snug whitespace-nowrap ${styles[variant]}`}>
       {label}
     </span>
   );
@@ -59,47 +83,97 @@ function SocialButton({ href, icon: Icon, label }: { href: string; icon: React.E
   );
 }
 
-/* ─── Executive Officer Card (Large, horizontal layout) ─── */
-function ExecutiveCard({ member }: { member: TeamMember }) {
+/* ─── Faculty Coordinator Card (Largest images — centered vertical layout) ─── */
+function FacultyCard({ coordinator }: { coordinator: FacultyCoordinator }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-[var(--color-surface)] border border-[var(--color-primary)]/50 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 hover:border-[var(--color-primary)] hover:shadow-[0_0_20px_rgba(250,255,105,0.15)] transition-all duration-300 relative overflow-hidden"
+      className="glow-faculty bg-[var(--color-surface)] rounded-xl p-6 sm:p-8 flex flex-col items-center text-center transition-all duration-300 relative overflow-hidden group cursor-pointer"
     >
-      {/* Subtle background glow */}
+      {/* Subtle background gradient */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[var(--color-primary)]/5 to-transparent pointer-events-none" />
 
-      {/* Profile Image */}
-      <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-[var(--color-surface-elevated)] flex-shrink-0 flex items-center justify-center overflow-hidden border-2 border-[var(--color-primary)]/30 z-10">
-        {member.photoUrl ? (
+      {/* Profile Image — LARGEST */}
+      <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-full bg-[var(--color-surface-elevated)] mb-5 flex items-center justify-center overflow-hidden border-3 border-[var(--color-primary)]/35 z-10">
+        {coordinator.photoUrl ? (
           <img
-            src={member.photoUrl}
-            alt={member.name}
-            className="w-full h-full object-cover object-top"
+            src={coordinator.photoUrl}
+            alt={coordinator.name}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
           />
         ) : (
-          <User className="w-10 h-10 sm:w-12 sm:h-12 text-[var(--color-primary)] opacity-60" />
+          <GraduationCap className="w-16 h-16 sm:w-20 sm:h-20 text-[var(--color-primary)] opacity-60" />
         )}
       </div>
 
       {/* Info */}
-      <div className="flex-1 text-center sm:text-left min-w-0 z-10">
-        {/* Badges */}
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 mb-2">
-          {member.badges.map((badge) => (
-            <Badge key={badge} label={badge} />
-          ))}
-        </div>
+      <div className="z-10">
+        <Badge label={coordinator.title} variant="faculty" />
 
-        <h3 className="text-base sm:text-lg font-bold font-inter text-[var(--color-text-main)] mb-3 uppercase tracking-wide">
-          {member.name}
+        <h3 className="text-lg sm:text-xl font-bold font-inter text-[var(--color-text-main)] mt-2 mb-1 uppercase tracking-wide">
+          {coordinator.name}
         </h3>
+        <p className="text-sm text-[var(--color-text-muted)] mb-3">
+          {coordinator.department}
+        </p>
 
         {/* Social Links */}
-        <div className="flex items-center justify-center sm:justify-start gap-1">
+        <div className="flex items-center justify-center gap-1">
+          {coordinator.linkedinUrl && coordinator.linkedinUrl !== "#" && (
+            <SocialButton href={coordinator.linkedinUrl} icon={LinkedinIcon} label={`${coordinator.name} LinkedIn`} />
+          )}
+          {coordinator.emailUrl && coordinator.emailUrl !== "#" && (
+            <SocialButton href={coordinator.emailUrl} icon={MailIcon} label={`${coordinator.name} Email`} />
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Core Team Card (Large portrait images with gold glow) ─── */
+function CoreCard({ member, index }: { member: TeamMember; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.1 }}
+      className="glow-core bg-[var(--color-surface)] rounded-xl overflow-hidden transition-all duration-300 relative group cursor-pointer"
+    >
+      {/* Gold shimmer gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 via-transparent to-yellow-400/5 pointer-events-none z-[1]" />
+
+      {/* Large Portrait Image */}
+      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden relative">
+        {member.photoUrl ? (
+          <img
+            src={member.photoUrl}
+            alt={member.name}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <User className="w-16 h-16 text-amber-400 opacity-40" />
+          </div>
+        )}
+      </div>
+
+      {/* Info Section */}
+      <div className="p-4 sm:p-5 text-center relative z-10">
+        <Badge label={member.role} variant="core" />
+
+        <h4 className="text-sm sm:text-base font-bold font-inter text-[var(--color-text-main)] mt-2 mb-3 uppercase tracking-wide">
+          {member.name}
+        </h4>
+
+        {/* Social Links */}
+        <div className="flex items-center justify-center gap-1">
           {member.instagramUrl && member.instagramUrl !== "#" && (
             <SocialButton href={member.instagramUrl} icon={InstagramIcon} label={`${member.name} Instagram`} />
           )}
@@ -115,54 +189,66 @@ function ExecutiveCard({ member }: { member: TeamMember }) {
   );
 }
 
-/* ─── Department Cohort Card (Compact, vertical layout) ─── */
-function CohortCard({ member, index }: { member: TeamMember; index: number }) {
-  const isDirector = member.role.includes("Director");
+/* ─── Department Member Card (Large portrait images) ─── */
+function MemberCard({ member, index }: { member: TeamMember; index: number }) {
+  const isDirector = member.role === "Director";
+  const isDyDirector = member.role === "Dy. Director";
+  const glowClass = isDirector ? "glow-director" : isDyDirector ? "glow-dy-director" : "";
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.4, ease: "easeOut", delay: index % 3 * 0.08 }}
-      className={`bg-[var(--color-surface)] border ${isDirector ? 'border-[var(--color-primary)]/20' : 'border-[var(--color-hairline)]'} rounded-xl p-4 sm:p-5 flex flex-col items-center text-center ${isDirector ? 'hover:border-[var(--color-primary)]/40 hover:bg-[var(--color-surface-elevated)]/30' : 'hover:border-[var(--color-hairline-strong)]'} hover:shadow-md transition-all duration-300`}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: index % 4 * 0.08 }}
+      className={`${glowClass} bg-[var(--color-surface)] ${!isDirector && !isDyDirector ? 'border border-[var(--color-hairline)]' : ''} rounded-xl overflow-hidden hover:shadow-md transition-all duration-300 group cursor-pointer`}
     >
-      {/* Profile Image */}
-      <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--color-surface-elevated)] mb-3 flex items-center justify-center overflow-hidden border ${isDirector ? 'border-[var(--color-primary)]/20' : 'border-[var(--color-hairline)]'}`}>
+      {/* Large Portrait Image */}
+      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden">
         {member.photoUrl ? (
           <img
             src={member.photoUrl}
             alt={member.name}
-            className="w-full h-full object-cover object-top"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
           />
         ) : (
-          <User className={`w-7 h-7 sm:w-8 sm:h-8 ${isDirector ? 'text-[var(--color-primary)] opacity-60' : 'text-[var(--color-text-muted)] opacity-40'}`} />
+          <div className="w-full h-full flex items-center justify-center">
+            <User className={`w-14 h-14 ${isDirector || isDyDirector ? 'text-cyan-400 opacity-40' : 'text-[var(--color-text-muted)] opacity-30'}`} />
+          </div>
         )}
       </div>
 
-      {/* Badges */}
-      <div className="flex flex-wrap items-center justify-center gap-1 mb-2">
-        {member.badges.map((badge) => (
-          <Badge key={badge} label={badge} />
-        ))}
-      </div>
+      {/* Info Section */}
+      <div className="p-4 sm:p-5 text-center">
+        {/* Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-1 mb-2">
+          {member.badges.map((badge) => (
+            <Badge
+              key={badge}
+              label={badge}
+              variant={isDirector || isDyDirector ? "director" : "default"}
+            />
+          ))}
+        </div>
 
-      {/* Name */}
-      <h4 className="text-sm sm:text-base font-bold font-inter text-[var(--color-text-main)] mb-3 uppercase tracking-wide">
-        {member.name}
-      </h4>
+        {/* Name */}
+        <h4 className="text-sm sm:text-base font-bold font-inter text-[var(--color-text-main)] mb-3 uppercase tracking-wide">
+          {member.name}
+        </h4>
 
-      {/* Social Links */}
-      <div className="flex items-center justify-center gap-1 mt-auto">
-        {member.instagramUrl && member.instagramUrl !== "#" && (
-          <SocialButton href={member.instagramUrl} icon={InstagramIcon} label={`${member.name} Instagram`} />
-        )}
-        {member.linkedinUrl && member.linkedinUrl !== "#" && (
-          <SocialButton href={member.linkedinUrl} icon={LinkedinIcon} label={`${member.name} LinkedIn`} />
-        )}
-        {member.githubUrl && member.githubUrl !== "#" && (
-          <SocialButton href={member.githubUrl} icon={GithubIcon} label={`${member.name} GitHub`} />
-        )}
+        {/* Social Links */}
+        <div className="flex items-center justify-center gap-1">
+          {member.instagramUrl && member.instagramUrl !== "#" && (
+            <SocialButton href={member.instagramUrl} icon={InstagramIcon} label={`${member.name} Instagram`} />
+          )}
+          {member.linkedinUrl && member.linkedinUrl !== "#" && (
+            <SocialButton href={member.linkedinUrl} icon={LinkedinIcon} label={`${member.name} LinkedIn`} />
+          )}
+          {member.githubUrl && member.githubUrl !== "#" && (
+            <SocialButton href={member.githubUrl} icon={GithubIcon} label={`${member.name} GitHub`} />
+          )}
+        </div>
       </div>
     </motion.div>
   );
@@ -181,8 +267,8 @@ function SectionLabel({ label }: { label: string }) {
   );
 }
 
-/* ─── Wing Filter Tabs ─── */
-function WingFilter({
+/* ─── Wing Capsule Tabs ─── */
+function WingCapsules({
   activeWing,
   onSelect,
 }: {
@@ -191,19 +277,25 @@ function WingFilter({
 }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-10">
-      {wings.map((wing) => (
-        <button
-          key={wing}
-          onClick={() => onSelect(wing)}
-          className={`relative px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold font-inter transition-all duration-200 cursor-pointer border ${
-            activeWing === wing
-              ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)] shadow-sm"
-              : "bg-transparent text-[var(--color-text-muted)] border-[var(--color-hairline)] hover:border-[var(--color-hairline-strong)] hover:text-[var(--color-text-main)]"
-          }`}
-        >
-          {wing}
-        </button>
-      ))}
+      {wings.map((wing) => {
+        const isActive = activeWing === wing;
+        const isCore = wing === "Core Team";
+        return (
+          <button
+            key={wing}
+            onClick={() => onSelect(wing)}
+            className={`relative px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold font-inter transition-all duration-200 cursor-pointer border ${
+              isActive && isCore
+                ? "bg-gradient-to-r from-amber-400 to-yellow-300 text-gray-900 border-amber-400 shadow-[0_0_12px_rgba(250,255,105,0.3)]"
+                : isActive
+                ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)] shadow-sm"
+                : "bg-transparent text-[var(--color-text-muted)] border-[var(--color-hairline)] hover:border-[var(--color-hairline-strong)] hover:text-[var(--color-text-main)]"
+            }`}
+          >
+            {wing}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -212,47 +304,45 @@ function WingFilter({
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 export default function TeamDesktop() {
-  const [activeWing, setActiveWing] = useState<Wing>("All Wings");
+  const [activeWing, setActiveWing] = useState<Wing>("Core Team");
 
-  const filteredCohorts =
-    activeWing === "All Wings"
-      ? departmentCohorts
-      : departmentCohorts.filter((m) => m.wing === activeWing);
+  const activeMembers = getMembersByWing(activeWing);
+  const isCore = activeWing === "Core Team";
 
   return (
     <section id="team" className="relative w-full py-16 sm:py-24 lg:py-32 z-10">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-6xl">
-        
+
         {/* ─── Section Header ─── */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <div className="mb-3 sm:mb-4 flex items-center justify-center gap-3 sm:gap-4">
             <div className="h-[2px] w-8 sm:w-12 bg-[var(--color-primary)]" />
             <span className="text-[var(--color-primary)] text-label-caps">
-              People Network
+              People Behind ITSA
             </span>
             <div className="h-[2px] w-8 sm:w-12 bg-[var(--color-primary)]" />
           </div>
           <h2 className="text-display-md font-bold font-inter text-[var(--color-text-main)] mb-3 sm:mb-4 uppercase tracking-tight">
-            The Team
+            Meet Our Team
           </h2>
           <p className="text-[var(--color-text-muted)] font-inter text-sm sm:text-base md:text-lg max-w-xl mx-auto">
-            Meet the builders, innovators, and leaders driving E-Cell SJCEM forward.
+            Our dedicated faculty coordinator and student department members who drive ITSA forward.
           </p>
         </div>
 
-        {/* ─── Executive Officers ─── */}
-        <SectionLabel label="Executive Officers" />
+        {/* ─── Faculty Coordinators ─── */}
+        <SectionLabel label="Faculty Co-ordinators" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-16 sm:mb-20 lg:mb-24">
-          {executiveOfficers.map((member) => (
-            <ExecutiveCard key={member.name} member={member} />
+          {facultyCoordinators.map((coordinator) => (
+            <FacultyCard key={coordinator.name} coordinator={coordinator} />
           ))}
         </div>
 
-        {/* ─── Department Cohorts ─── */}
-        <SectionLabel label="Department Cohorts" />
-        <WingFilter activeWing={activeWing} onSelect={setActiveWing} />
+        {/* ─── Student Teams with Capsule Filters ─── */}
+        <SectionLabel label="Student Team" />
+        <WingCapsules activeWing={activeWing} onSelect={setActiveWing} />
 
-        {/* Cohort Cards Grid */}
+        {/* Team Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeWing}
@@ -260,15 +350,19 @@ export default function TeamDesktop() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
           >
-            {filteredCohorts.map((member, idx) => (
-              <CohortCard key={member.name} member={member} index={idx} />
-            ))}
+            {isCore
+              ? coreTeam.map((member, idx) => (
+                  <CoreCard key={member.name} member={member} index={idx} />
+                ))
+              : activeMembers.map((member, idx) => (
+                  <MemberCard key={member.name} member={member} index={idx} />
+                ))}
           </motion.div>
         </AnimatePresence>
 
-        {filteredCohorts.length === 0 && (
+        {activeMembers.length === 0 && !isCore && (
           <div className="text-center py-16 text-[var(--color-text-muted)] font-inter text-sm">
             No members found in this wing.
           </div>
