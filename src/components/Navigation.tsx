@@ -8,9 +8,9 @@ import ThemeToggle from "./ThemeToggle";
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About Us", href: "#about-ecell" },
-  { name: "Blogs & Insights", href: "#blogs-insights" },
   { name: "Team", href: "#team" },
   { name: "Events", href: "#events" },
+  { name: "Blogs & Insights", href: "#blogs-insights" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -47,11 +47,10 @@ export default function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[var(--color-background)]/90 backdrop-blur-md border-b border-hairline py-2.5 sm:py-3 shadow-sm"
-          : "bg-transparent py-4 sm:py-5 md:py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-[var(--color-background)]/90 backdrop-blur-md border-b border-hairline py-2.5 sm:py-3 shadow-sm"
+        : "bg-transparent py-4 sm:py-5 md:py-6"
+        }`}
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
@@ -115,7 +114,7 @@ export default function Navigation() {
             onClick={() => setIsOpen(false)}
             className="fixed inset-0 bg-[var(--color-background)]/98 backdrop-blur-xl z-40 flex flex-col justify-between items-center h-[100dvh] pt-24 pb-8 px-6 overflow-y-auto overscroll-contain"
           >
-            <nav 
+            <nav
               className="flex flex-col items-center gap-3 w-full max-w-sm my-auto"
               onClick={(e) => e.stopPropagation()}
             >
