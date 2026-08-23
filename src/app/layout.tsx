@@ -23,11 +23,6 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "E-Cell SJCEM",
   description: "IIC's Entrepreneurship Cell, SJCEM",
-  icons: {
-    icon: "/images/logo.png",
-    shortcut: "/images/logo.png",
-    apple: "/images/logo.png",
-  },
 };
 
 const themeScript = `
