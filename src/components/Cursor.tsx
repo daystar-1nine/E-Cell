@@ -59,7 +59,7 @@ export default function Cursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-[var(--theme-cursor-dot)] rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-3 h-3 bg-[var(--theme-cursor-dot)] rounded-full pointer-events-none z-[100001]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -71,7 +71,7 @@ export default function Cursor() {
       
       {/* Trailing glow ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border border-[var(--color-text-muted)]"
+        className="fixed top-0 left-0 pointer-events-none z-[100000] rounded-full border border-[var(--color-text-muted)]"
         style={{
           x: smoothX,
           y: smoothY,
