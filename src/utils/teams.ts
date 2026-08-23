@@ -9,33 +9,62 @@ export type TeamMember = {
   githubUrl?: string;
 };
 
+export type FacultyCoordinator = {
+  name: string;
+  title: string;
+  department: string;
+  photoUrl: string;
+  linkedinUrl?: string;
+  emailUrl?: string;
+};
+
 export type Team = {
   id: string;
   name: string;
   members: TeamMember[];
 };
 
-// Wings for filtering
+// Faculty Coordinators
+export const facultyCoordinators: FacultyCoordinator[] = [
+  {
+    name: "Ms. Shilpa Katre",
+    title: "Faculty Co-ordinator",
+    department: "SJCEM Palghar",
+    photoUrl: "/images/team/shilpa_katre.jpeg",
+    linkedinUrl: "#",
+    emailUrl: "#",
+  },
+  {
+    name: "Mr. Uday Prajapati",
+    title: "Faculty Co-ordinator",
+    department: "SJCEM Palghar",
+    photoUrl: "/images/team/uday.jpeg",
+    linkedinUrl: "#",
+    emailUrl: "#",
+  },
+];
+
+// Wings for capsule filtering
 export const wings = [
-  "All Wings",
+  "Core Team",
   "Technical",
   "Media & Design",
-  "PR",
   "Corporate",
+  "PR",
   "Planning & Ops",
   "Documentation",
 ] as const;
 
 export type Wing = (typeof wings)[number];
 
-// Executive Officers (Core Team leaders)
-export const executiveOfficers: TeamMember[] = [
+// Core Team (President, VP, Secretary, Advisor)
+export const coreTeam: TeamMember[] = [
   {
     name: "Tejas Bhavthankar",
     role: "President",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Tejas.jpg",
     badges: ["President"],
-    wing: "Core",
+    wing: "Core Team",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/tejas-bhavthankar-9560773b2",
     githubUrl: "#",
@@ -43,24 +72,19 @@ export const executiveOfficers: TeamMember[] = [
   {
     name: "Sahas Bochare",
     role: "Vice-President",
-    photoUrl: "/images/team/Sahas.jpg",
+    photoUrl: "/images/team/Sahas NEW.JPG",
     badges: ["Vice-President"],
-    wing: "Core",
+    wing: "Core Team",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/sahasbochare",
     githubUrl: "#",
   },
-];
-
-// Department Cohorts (all other members)
-export const departmentCohorts: TeamMember[] = [
-  // Core remaining
   {
     name: "Yash Tripathi",
     role: "Secretary",
-    photoUrl: "", // Missing
-    badges: ["Core", "Secretary"],
-    wing: "Core",
+    photoUrl: "/images/team/Honourable Secretary.JPG",
+    badges: ["Secretary"],
+    wing: "Core Team",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/yash-tripathi-744509295",
     githubUrl: "#",
@@ -69,18 +93,21 @@ export const departmentCohorts: TeamMember[] = [
     name: "Bhagwan Mourya",
     role: "Advisor",
     photoUrl: "/images/team/bhagwan.png",
-    badges: ["Core", "Advisor"],
-    wing: "Core",
+    badges: ["Advisor"],
+    wing: "Core Team",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/bhagwan-mourya-0598a3293",
     githubUrl: "#",
   },
+];
 
+// Department Members
+export const departmentMembers: TeamMember[] = [
   // Technical
   {
     name: "Sairaj Khade",
     role: "Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/sairaj.JPG",
     badges: ["Director", "Technical"],
     wing: "Technical",
     instagramUrl: "#",
@@ -90,7 +117,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Kunal Bhandarkar",
     role: "Dy. Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Kunal Bhandarkar.JPG",
     badges: ["Dy. Director", "Technical"],
     wing: "Technical",
     instagramUrl: "#",
@@ -100,7 +127,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Siddhi Patil",
     role: "Dy. Director",
-    photoUrl: "/images/team/Siddhi.png",
+    photoUrl: "/images/team/Siddhi.JPG",
     badges: ["Dy. Director", "Technical"],
     wing: "Technical",
     instagramUrl: "#",
@@ -120,7 +147,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Suraj Sawant",
     role: "Member",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Suraj_Sawant.jpg",
     badges: ["Member", "Technical"],
     wing: "Technical",
     instagramUrl: "#",
@@ -132,7 +159,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Dhavni Sawani",
     role: "Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Dhvani.jpg",
     badges: ["Director", "Media & Design"],
     wing: "Media & Design",
     instagramUrl: "#",
@@ -142,7 +169,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Vaibhav Somanna",
     role: "Dy. Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/vaibhav.jpeg",
     badges: ["Dy. Director", "Media & Design"],
     wing: "Media & Design",
     instagramUrl: "#",
@@ -152,7 +179,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Shubhra Shinde",
     role: "Member",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/shubhra shinde .jpg",
     badges: ["Member", "Media & Design"],
     wing: "Media & Design",
     instagramUrl: "#",
@@ -162,7 +189,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Soham Gunjal",
     role: "Member",
-    photoUrl: "/images/team/SohamG.png",
+    photoUrl: "/images/team/Soham_Gunjal.JPG",
     badges: ["Member", "Media & Design"],
     wing: "Media & Design",
     instagramUrl: "#",
@@ -182,7 +209,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Numaan Husain",
     role: "Member",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Numaan Bin Husain_.jpg",
     badges: ["Member", "Media & Design"],
     wing: "Media & Design",
     instagramUrl: "#",
@@ -204,7 +231,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Vaishnavi Khandagale",
     role: "Dy. Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Vaishnavi Khandagale.jpg",
     badges: ["Dy. Director", "Corporate"],
     wing: "Corporate",
     instagramUrl: "#",
@@ -214,7 +241,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Bhavesh Mishra",
     role: "Member",
-    photoUrl: "/images/team/Bhavesh Mishra_.jpg",
+    photoUrl: "/images/team/Bhavesh Mishra.JPG",
     badges: ["Member", "Corporate"],
     wing: "Corporate",
     instagramUrl: "#",
@@ -244,7 +271,7 @@ export const departmentCohorts: TeamMember[] = [
     githubUrl: "#",
   },
   {
-    name: "Shamitha Pillai",
+    name: "Shamitha Palai",
     role: "Dy. Director",
     photoUrl: "/images/team/Shamitha.jpg",
     badges: ["Dy. Director", "PR"],
@@ -256,7 +283,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Tanu Sharma",
     role: "Member",
-    photoUrl: "/images/team/tanu_real.jpg",
+    photoUrl: "/images/team/Tanus.JPG",
     badges: ["Member", "PR"],
     wing: "PR",
     instagramUrl: "#",
@@ -266,7 +293,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Aditi Patil",
     role: "Member",
-    photoUrl: "/images/team/aditii.jpg",
+    photoUrl: "/images/team/aditi patil.jpg",
     badges: ["Member", "PR"],
     wing: "PR",
     instagramUrl: "#",
@@ -276,7 +303,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Bipin Maurya",
     role: "Member",
-    photoUrl: "/images/team/Bipin Maurya.jpg",
+    photoUrl: "/images/team/Bipin_Maurya.JPG",
     badges: ["Member", "PR"],
     wing: "PR",
     instagramUrl: "#",
@@ -298,7 +325,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Riddhi Patil",
     role: "Dy. Director",
-    photoUrl: "/images/team/Riddhi.png",
+    photoUrl: "/images/team/Riddhi.JPG",
     badges: ["Dy. Director", "Planning & Ops"],
     wing: "Planning & Ops",
     instagramUrl: "#",
@@ -318,7 +345,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Shrawani Kudu",
     role: "Member",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Shrawani_Kudu.jpg",
     badges: ["Member", "Planning & Ops"],
     wing: "Planning & Ops",
     instagramUrl: "#",
@@ -328,7 +355,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Shubham Gole",
     role: "Member",
-    photoUrl: "/images/team/Shubham.JPG",
+    photoUrl: "/images/team/Shubham Gole.JPG",
     badges: ["Member", "Planning & Ops"],
     wing: "Planning & Ops",
     instagramUrl: "#",
@@ -350,7 +377,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Anand Ambhore",
     role: "Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/anand .png",
     badges: ["Director", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
@@ -360,7 +387,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Rutuja Gharat",
     role: "Dy. Director",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Rutuja_Gharat.JPG",
     badges: ["Dy. Director", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
@@ -370,7 +397,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Zeel Panchal",
     role: "Member",
-    photoUrl: "", // Missing
+    photoUrl: "/images/team/Zeel Panchal .jpg",
     badges: ["Member", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
@@ -390,7 +417,7 @@ export const departmentCohorts: TeamMember[] = [
   {
     name: "Tanvi Walam",
     role: "Member",
-    photoUrl: "/images/team/Tanvi.JPG",
+    photoUrl: "/images/team/Tanvi Walam.JPG",
     badges: ["Member", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
@@ -399,40 +426,8 @@ export const departmentCohorts: TeamMember[] = [
   },
 ];
 
-export const teamsData: Team[] = [
-  {
-    id: "core",
-    name: "Core Team",
-    members: [...executiveOfficers, ...departmentCohorts.filter((m) => m.wing === "Core")],
-  },
-  {
-    id: "technical",
-    name: "Technical",
-    members: departmentCohorts.filter((m) => m.wing === "Technical"),
-  },
-  {
-    id: "media-design",
-    name: "Media & Design",
-    members: departmentCohorts.filter((m) => m.wing === "Media & Design"),
-  },
-  {
-    id: "corporate-relations",
-    name: "Corporate Relations & Sponsorship",
-    members: departmentCohorts.filter((m) => m.wing === "Corporate"),
-  },
-  {
-    id: "pr",
-    name: "Public Relation (PR)",
-    members: departmentCohorts.filter((m) => m.wing === "PR"),
-  },
-  {
-    id: "planning-ops",
-    name: "Planning & Operations",
-    members: departmentCohorts.filter((m) => m.wing === "Planning & Ops"),
-  },
-  {
-    id: "documentation",
-    name: "Documentation",
-    members: departmentCohorts.filter((m) => m.wing === "Documentation"),
-  },
-];
+// Helper: get members by wing
+export function getMembersByWing(wing: Wing): TeamMember[] {
+  if (wing === "Core Team") return coreTeam;
+  return departmentMembers.filter((m) => m.wing === wing);
+}
