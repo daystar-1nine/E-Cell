@@ -25,8 +25,10 @@
 
   /* Strict Radii */
   --radius-sm: 4px;
-  --radius-md: 8px; /* Buttons */
-  --radius-lg: 12px; /* Cards */
+  --radius-md: 8px;
+  /* Buttons */
+  --radius-lg: 12px;
+  /* Cards */
   --radius-pill: 9999px;
 }
 
@@ -80,6 +82,7 @@
     transition: background-color 0.25s ease, color 0.25s ease;
     -webkit-text-size-adjust: 100%;
   }
+
   body {
     overflow-x: hidden;
     min-height: 100dvh;
@@ -92,6 +95,7 @@
 }
 
 @layer utilities {
+
   /* Fluid Responsive Typography Scale */
   .text-display-xl {
     font-size: clamp(2.25rem, 7vw, 4.5rem);
@@ -99,30 +103,35 @@
     line-height: 1.08;
     letter-spacing: -0.04em;
   }
+
   .text-display-lg {
     font-size: clamp(1.85rem, 5.5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.035em;
   }
+
   .text-display-md {
     font-size: clamp(1.6rem, 4.2vw, 2.5rem);
     font-weight: 700;
     line-height: 1.18;
     letter-spacing: -0.03em;
   }
+
   .text-display-sm {
     font-size: clamp(1.35rem, 3.2vw, 2rem);
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.025em;
   }
+
   .text-stat-display {
     font-size: clamp(2.25rem, 5.5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.0;
     letter-spacing: -0.03em;
   }
+
   .text-label-caps {
     font-size: clamp(10px, 2.2vw, 12px);
     font-weight: 600;
@@ -135,6 +144,7 @@
   .border-hairline {
     border-color: var(--color-hairline);
   }
+
   .border-hairline-strong {
     border-color: var(--color-hairline-strong);
   }
@@ -144,30 +154,36 @@
     width: 6px;
     height: 6px;
   }
+
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: var(--color-surface-elevated);
     border-radius: var(--radius-pill);
     border: 2px solid var(--color-background);
   }
+
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--color-hairline-strong);
   }
-  
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: var(--color-background);
   }
+
   ::-webkit-scrollbar-thumb {
     background: var(--color-surface-elevated);
     border-radius: var(--radius-pill);
     border: 2px solid var(--color-background);
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-hairline-strong);
   }

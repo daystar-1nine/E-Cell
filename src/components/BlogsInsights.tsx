@@ -23,125 +23,121 @@ export interface BlogPost {
 
 const blogsData: BlogPost[] = [
   {
-    id: 1,
-    title: "From Idea to Impact: Building Startups That Matter",
-    category: "Entrepreneurship",
-    date: "August 5, 2026",
-    readTime: "5 min read",
-    excerpt: "Turning ideas into real-world solutions requires more than just passion. Here's how you can build with purpose.",
-    image: "/images/blog_entrepreneurship.png",
-    author: "E-Cell Editorial Desk",
-    authorRole: "Startup Guidance & Research",
-    content: {
-      intro: "Every industry-defining company began as a simple observation of an unmet need. In the modern startup ecosystem, execution and purposeful direction separate successful ventures from short-lived experiments.",
-      sections: [
+    "id": 1,
+    "title": "BlackBerry had the customers, the technology, the brand, and the market. So how did it lose all four?",
+    "category": "Business Strategy",
+    "date": "August 23, 2026",
+    "readTime": "3 min read",
+    "excerpt": "A product can be successful today and still become irrelevant tomorrow. Why evolving with the market is critical for survival.",
+    "image": "/images/BlackBerrys.jpg",
+    "author": "E-Cell, IIT Bombay",
+    "authorRole": "Entrepreneurship Cell",
+    "content": {
+      "intro": "At its peak, BlackBerry was one of the strongest names in smartphones. Its edge was clear security, reliability, enterprise communication and productivity. It built a loyal customer base around exactly these strengths. But then, the market started changing.",
+      "sections": [
         {
-          heading: "1. Validate Before You Build",
-          body: "One of the most common pitfalls for young founders is spending months developing a product nobody actually wants. Talk to potential users first. Conduct problem-discovery interviews rather than pitch sessions to uncover genuine friction points."
+          "heading": "The Market Shift",
+          "body": "A smartphone was becoming more than a device for emails and calls. Customers wanted better interfaces, richer applications, personalization and an ecosystem that could do much more."
         },
         {
-          heading: "2. The MVP Mindset",
-          body: "A Minimum Viable Product isn't a half-baked product—it's the fastest vehicle to learn. Strip away non-essential features and focus relentlessly on solving the core problem exceptionally well for your first 100 passionate users."
-        },
-        {
-          heading: "3. Cultivate Sustainable Unit Economics",
-          body: "Venture capital might accelerate growth, but sound fundamentals keep a business alive. Understand customer acquisition costs (CAC), lifetime value (LTV), and build a business model that creates value sustainably from day one."
+          "heading": "Too Little, Too Late",
+          "body": "BlackBerry did try to respond. It introduced touchscreen devices, BlackBerry 10 and new enterprise solutions. But while the company was adapting, the market was moving even faster. Its product portfolio started ageing, customer expectations shifted, and stronger ecosystems began pulling users away."
         }
       ],
-      keyTakeaways: [
-        "Focus on problem discovery before product development.",
-        "Launch minimal versions to accelerate user feedback cycles.",
-        "Prioritize sustainable economic metrics over vanity signals."
+      "keyTakeaways": [
+        "A product can be successful today and still become irrelevant tomorrow.",
+        "Staying successful isn’t about protecting what worked yesterday; it’s about knowing what needs to change before the market forces you to.",
+        "Keep evolving your product as your customers, technology, and market evolve."
       ]
     }
   },
   {
-    id: 2,
-    title: "Innovation is a Mindset, Not a Department",
-    category: "Innovation",
-    date: "July 28, 2026",
-    readTime: "4 min read",
-    excerpt: "Why fostering curiosity and challenging the status quo can unlock the next big breakthrough.",
-    image: "/images/blog_innovation.png",
-    author: "SJCEM R&D Cell",
-    authorRole: "Innovation & Technology Guild",
-    content: {
-      intro: "True innovation rarely happens in isolated laboratory silos. It stems from a daily culture of questioning assumptions, encouraging cross-disciplinary experimentation, and embracing calculated risks.",
-      sections: [
+    "id": 2,
+    "title": "What if Tesla had tried to compete on price from Day 1?",
+    "category": "Startup Strategy",
+    "date": "August 23, 2026",
+    "readTime": "3 min read",
+    "excerpt": "Comparing the early strategies of Tesla and SpaceX to show why the best approach is the one that fits your specific problem.",
+    "image": "/images/tesla.jpg",
+    "author": "E-Cell, IIT Bombay",
+    "authorRole": "Entrepreneurship Cell",
+    "content": {
+      "intro": "What if Tesla had tried to compete on price from Day 1? It might have never become Tesla. That’s what makes its journey so interesting when you put it next to SpaceX.",
+      "sections": [
         {
-          heading: "Cross-Pollination of Ideas",
-          body: "The most novel solutions occur at the intersection of diverse disciplines—combining AI with agricultural tech, or clean energy with smart logistics. Encouraging engineers to collaborate with designers and business strategists produces breakthrough insights."
+          "heading": "Premium Positioning vs. Cost Reduction",
+          "body": "Tesla chose to go premium first - build an expensive product, prove the technology, create demand, and gradually move toward the mass market. SpaceX took a different bet. Instead of asking, 'How do we sell more rockets?', it asked: 'Why does a rocket have to cost this much in the first place?'"
         },
         {
-          heading: "Embracing Constructive Failure",
-          body: "If team members fear failure, they will default to incremental improvements. High-impact innovation requires creating a safe testing ground where failed experiments are treated as valuable learning data points."
+          "heading": "Different Paths to Scale",
+          "body": "One focused on creating a path to scale through a premium product. The other challenged the economics of an entire industry through cost reduction, rapid experimentation and first-principles thinking."
         }
       ],
-      keyTakeaways: [
-        "Foster cross-functional collaboration across engineering and business disciplines.",
-        "Normalize intelligent experimentation and iterative prototyping.",
-        "Question industry incumbents and status-quo workflows."
+      "keyTakeaways": [
+        "You don’t need to copy a successful startup’s strategy; you need to understand the problem your startup is actually solving.",
+        "Your market may reward premium positioning, or your industry may demand radical cost reduction.",
+        "The best startup strategy isn’t the most popular one, it’s the one that fits the problem."
       ]
     }
   },
   {
-    id: 3,
-    title: "The Power of Community: Growing Together",
-    category: "Community",
-    date: "July 18, 2026",
-    readTime: "6 min read",
-    excerpt: "Great things happen when like-minded people come together to learn, create, and inspire.",
-    image: "/images/blog_community.png",
-    author: "Student Network Lead",
-    authorRole: "Community & Engagement Team",
-    content: {
-      intro: "Entrepreneurship can be a lonely journey without a strong support network. Surrounding yourself with peers, mentors, and industry advisors creates a catalyst for growth and resilience.",
-      sections: [
+    "id": 3,
+    "title": "P.C. Mustafa’s first big business lesson came from customers returning his product.",
+    "category": "Startup Lessons",
+    "date": "August 23, 2026",
+    "readTime": "3 min read",
+    "excerpt": "How iD Fresh Foods turned initial product failures into a lesson on adaptation, trust, and long-term growth.",
+    "image": "/images/ID_Fresh.jpg",
+    "author": "E-Cell, IIT Bombay",
+    "authorRole": "Entrepreneurship Cell",
+    "content": {
+      "intro": "When iD Fresh Foods was just starting out, a large majority of the batter packets were coming back. For most founders, that would be a reason to stop. For Mustafa, it became a reason to rethink. The business had started with just ₹50,000, a 50 sq. ft. kitchen and a simple idea make better-quality idli and dosa batter than what customers were already getting.",
+      "sections": [
         {
-          heading: "Peer Mentorship & Accountability",
-          body: "Having founders at a similar stage allows for honest peer feedback, shared resources, and mutual motivation during high-stress product builds or funding rounds."
+          "heading": "Listening to the Market",
+          "body": "Having a good idea wasn’t enough. They listened to the market, adapted their selling approach, reduced wastage and kept improving the product. They spent months perfecting the batter and years refining the packaging."
         },
         {
-          heading: "Leveraging Alumni Networks",
-          body: "SJCEM's vast network of industry professionals and alumni offers invaluable guidance, early pilot opportunities, and pitch validation for student-led startups."
+          "heading": "Building Trust Over Time",
+          "body": "They understood something early: A business doesn’t grow just because people buy once. It grows when people trust the product enough to buy it again."
         }
       ],
-      keyTakeaways: [
-        "Build genuine relationships with peer founders and mentors.",
-        "Actively participate in hackathons, incubator cohorts, and pitch sessions.",
-        "Give back to the community as your startup scales."
+      "keyTakeaways": [
+        "Limited resources are a constraint, but refusing to adapt is a choice.",
+        "Start with a real problem. Listen closely. Adapt quickly. Build trust patiently.",
+        "Sometimes, a big business begins with nothing more than a small problem worth solving well."
       ]
     }
   },
-  {
-    id: 4,
-    title: "What We Learned from Startup Weekend 2026",
-    category: "Events",
-    date: "July 10, 2026",
-    readTime: "3 min read",
-    excerpt: "Key takeaways, memorable moments, and the winning ideas that stood out.",
-    image: "/images/blog_events.png",
-    author: "Events Core Team",
-    authorRole: "E-Cell Event Organizers",
-    content: {
-      intro: "Over 54 intense hours, 200+ student participants turned rough concepts into viable pitch-ready prototypes during SJCEM's flagship Startup Weekend 2026.",
-      sections: [
-        {
-          heading: "Rapid Prototyping Under Time Pressure",
-          body: "Teams were forced to distill their pitch deck to core values, build working UI prototypes, and formulate business revenue models within two days—proving how much speed matters in startup culture."
-        },
-        {
-          heading: "Mentor Feedback is Gold",
-          body: "Direct feedback from seasoned venture capitalists and founders helped teams pivot quickly before final pitches to jury panels."
-        }
-      ],
-      keyTakeaways: [
-        "Speed of execution beats perfection in early stages.",
-        "Crisp, storytelling-driven pitches resonate best with investors.",
-        "Collaboration under constraints brings out peak creativity."
-      ]
-    }
-  }
+  // {
+  //   id: 4,
+  //   title: "What We Learned from Startup Weekend 2026",
+  //   category: "Events",
+  //   date: "July 10, 2026",
+  //   readTime: "3 min read",
+  //   excerpt: "Key takeaways, memorable moments, and the winning ideas that stood out.",
+  //   image: "/images/blog_events.png",
+  //   author: "Events Core Team",
+  //   authorRole: "E-Cell Event Organizers",
+  //   content: {
+  //     intro: "Over 54 intense hours, 200+ student participants turned rough concepts into viable pitch-ready prototypes during SJCEM's flagship Startup Weekend 2026.",
+  //     sections: [
+  //       {
+  //         heading: "Rapid Prototyping Under Time Pressure",
+  //         body: "Teams were forced to distill their pitch deck to core values, build working UI prototypes, and formulate business revenue models within two days—proving how much speed matters in startup culture."
+  //       },
+  //       {
+  //         heading: "Mentor Feedback is Gold",
+  //         body: "Direct feedback from seasoned venture capitalists and founders helped teams pivot quickly before final pitches to jury panels."
+  //       }
+  //     ],
+  //     keyTakeaways: [
+  //       "Speed of execution beats perfection in early stages.",
+  //       "Crisp, storytelling-driven pitches resonate best with investors.",
+  //       "Collaboration under constraints brings out peak creativity."
+  //     ]
+  //   }
+  // }
 ];
 
 export default function BlogsInsights() {
@@ -190,8 +186,8 @@ export default function BlogsInsights() {
     );
   };
 
-  const displayedBlogs = activeTab === "all" 
-    ? blogsData 
+  const displayedBlogs = activeTab === "all"
+    ? blogsData
     : blogsData.filter((blog) => savedBlogIds.includes(blog.id));
 
   const handleShare = (blog: BlogPost, e: React.MouseEvent) => {
@@ -206,7 +202,7 @@ export default function BlogsInsights() {
   return (
     <section id="blogs-insights" className="relative min-h-[100dvh] w-full py-16 sm:py-20 lg:py-28 z-10 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-5xl">
-        
+
         {/* Header Section */}
         <div className="mb-8 sm:mb-12 md:mb-14">
           <div className="mb-3 sm:mb-4 flex items-center gap-3 sm:gap-4">
@@ -214,7 +210,7 @@ export default function BlogsInsights() {
             <span className="text-[var(--color-primary)] text-label-caps">Editorial & Insights</span>
           </div>
 
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -223,8 +219,8 @@ export default function BlogsInsights() {
           >
             Blogs & Insights
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -235,7 +231,7 @@ export default function BlogsInsights() {
           </motion.p>
 
           {/* Navigation Pill Switcher */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -244,11 +240,10 @@ export default function BlogsInsights() {
           >
             <button
               onClick={() => setActiveTab("all")}
-              className={`relative px-5 sm:px-8 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 min-h-[40px] flex items-center justify-center ${
-                activeTab === "all"
-                  ? "text-[var(--color-text-inverse)] shadow-md"
-                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-main)]"
-              }`}
+              className={`relative px-5 sm:px-8 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 min-h-[40px] flex items-center justify-center ${activeTab === "all"
+                ? "text-[var(--color-text-inverse)] shadow-md"
+                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-main)]"
+                }`}
             >
               {activeTab === "all" && (
                 <motion.div
@@ -264,11 +259,10 @@ export default function BlogsInsights() {
 
             <button
               onClick={() => setActiveTab("myReads")}
-              className={`relative px-5 sm:px-8 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 min-h-[40px] flex items-center justify-center ${
-                activeTab === "myReads"
-                  ? "text-[var(--color-text-inverse)] shadow-md"
-                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-main)]"
-              }`}
+              className={`relative px-5 sm:px-8 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 min-h-[40px] flex items-center justify-center ${activeTab === "myReads"
+                ? "text-[var(--color-text-inverse)] shadow-md"
+                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-main)]"
+                }`}
             >
               {activeTab === "myReads" && (
                 <motion.div
@@ -291,7 +285,7 @@ export default function BlogsInsights() {
 
         {/* Empty state for My Reads */}
         {activeTab === "myReads" && displayedBlogs.length === 0 && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-12 sm:py-16 bg-[var(--color-surface)] rounded-2xl border border-hairline p-6 sm:p-8"
@@ -409,11 +403,10 @@ export default function BlogsInsights() {
                           <button
                             onClick={(e) => toggleSaveBlog(blog.id, e)}
                             title={isSaved ? "Remove from My Reads" : "Save to My Reads"}
-                            className={`p-2 sm:p-2.5 rounded-full transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center ${
-                              isSaved 
-                                ? "text-[var(--color-primary)] bg-[var(--color-surface-elevated)] border border-[var(--color-primary)]/40" 
-                                : "text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] hover:bg-[var(--color-surface-elevated)]"
-                            }`}
+                            className={`p-2 sm:p-2.5 rounded-full transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center ${isSaved
+                              ? "text-[var(--color-primary)] bg-[var(--color-surface-elevated)] border border-[var(--color-primary)]/40"
+                              : "text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] hover:bg-[var(--color-surface-elevated)]"
+                              }`}
                             aria-label={isSaved ? "Remove bookmark" : "Bookmark article"}
                           >
                             {isSaved ? (
