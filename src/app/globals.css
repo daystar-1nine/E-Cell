@@ -5,33 +5,7 @@
   --font-outfit: var(--font-outfit);
   --font-mono: var(--font-jetbrains);
 
-  /* Light Theme */
-  --color-primary: #faff69;
-  --color-primary-hover: #e6eb52;
-  --color-background: #fbfbfa;
-  --color-surface: #ffffff;
-  --color-surface-elevated: #f3f4f6;
-  --color-hairline: #e5e7eb;
-  --color-hairline-strong: #d1d5db;
-  --color-text-main: #09090b;
-  --color-text-muted: #52525b;
-  --color-text-inverse: #0a0a0a;
-  --color-success: #22c55e;
-  --color-error: #ef4444;
-
-  --theme-cursor-dot: #09090b;
-  --theme-cursor-ring: rgba(0, 0, 0, 0.25);
-  --theme-glow: rgba(250, 255, 105, 0.35);
-
-  /* Strict Radii */
-  --radius-sm: 4px;
-  --radius-md: 8px; /* Buttons */
-  --radius-lg: 12px; /* Cards */
-  --radius-pill: 9999px;
-}
-
-.dark {
-  /* Dark Theme (High-Velocity Engineering) */
+  /* Dark Theme (High-Velocity Engineering) - Default */
   --color-primary: #faff69;
   --color-primary-hover: #e6eb52;
   --color-background: #0a0a0a;
@@ -48,6 +22,14 @@
   --theme-cursor-dot: #ffffff;
   --theme-cursor-ring: rgba(255, 255, 255, 0.25);
   --theme-glow: rgba(250, 255, 105, 0.2);
+
+  /* Strict Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  /* Buttons */
+  --radius-lg: 12px;
+  /* Cards */
+  --radius-pill: 9999px;
 }
 
 @theme inline {
@@ -80,6 +62,7 @@
     transition: background-color 0.25s ease, color 0.25s ease;
     -webkit-text-size-adjust: 100%;
   }
+
   body {
     overflow-x: hidden;
     min-height: 100dvh;
@@ -92,6 +75,7 @@
 }
 
 @layer utilities {
+
   /* Fluid Responsive Typography Scale */
   .text-display-xl {
     font-size: clamp(2.25rem, 7vw, 4.5rem);
@@ -99,30 +83,35 @@
     line-height: 1.08;
     letter-spacing: -0.04em;
   }
+
   .text-display-lg {
     font-size: clamp(1.85rem, 5.5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.035em;
   }
+
   .text-display-md {
     font-size: clamp(1.6rem, 4.2vw, 2.5rem);
     font-weight: 700;
     line-height: 1.18;
     letter-spacing: -0.03em;
   }
+
   .text-display-sm {
     font-size: clamp(1.35rem, 3.2vw, 2rem);
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.025em;
   }
+
   .text-stat-display {
     font-size: clamp(2.25rem, 5.5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.0;
     letter-spacing: -0.03em;
   }
+
   .text-label-caps {
     font-size: clamp(10px, 2.2vw, 12px);
     font-weight: 600;
@@ -135,6 +124,7 @@
   .border-hairline {
     border-color: var(--color-hairline);
   }
+
   .border-hairline-strong {
     border-color: var(--color-hairline-strong);
   }
@@ -144,97 +134,37 @@
     width: 6px;
     height: 6px;
   }
+
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: var(--color-surface-elevated);
     border-radius: var(--radius-pill);
     border: 2px solid var(--color-background);
   }
+
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--color-hairline-strong);
   }
-  
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: var(--color-background);
   }
+
   ::-webkit-scrollbar-thumb {
     background: var(--color-surface-elevated);
     border-radius: var(--radius-pill);
     border: 2px solid var(--color-background);
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-hairline-strong);
-  }
-}
-
-/* ─── Premium Team Card Glows ─── */
-@layer utilities {
-  /* Core Team — animated gold pulse glow */
-  .glow-core {
-    position: relative;
-    border: 1px solid rgba(250, 255, 105, 0.35);
-    box-shadow:
-      0 0 15px rgba(250, 255, 105, 0.12),
-      0 0 30px rgba(250, 255, 105, 0.06),
-      inset 0 0 15px rgba(250, 255, 105, 0.03);
-    transition: all 0.3s ease-in-out;
-  }
-  .glow-core:hover {
-    border-color: rgba(250, 255, 105, 0.55);
-    box-shadow:
-      0 0 20px rgba(250, 255, 105, 0.2),
-      0 0 40px rgba(250, 255, 105, 0.1),
-      inset 0 0 20px rgba(250, 255, 105, 0.05);
-  }
-
-  /* Director — cyan/teal glow */
-  .glow-director {
-    position: relative;
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    box-shadow:
-      0 0 12px rgba(56, 189, 248, 0.1),
-      0 0 25px rgba(56, 189, 248, 0.05);
-    transition: all 0.3s ease-in-out;
-  }
-  .glow-director:hover {
-    border-color: rgba(56, 189, 248, 0.5);
-    box-shadow:
-      0 0 18px rgba(56, 189, 248, 0.18),
-      0 0 35px rgba(56, 189, 248, 0.09);
-  }
-
-  /* Dy. Director — softer teal */
-  .glow-dy-director {
-    position: relative;
-    border: 1px solid rgba(56, 189, 248, 0.18);
-    box-shadow:
-      0 0 8px rgba(56, 189, 248, 0.06),
-      0 0 16px rgba(56, 189, 248, 0.03);
-    transition: all 0.3s ease-in-out;
-  }
-  .glow-dy-director:hover {
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow:
-      0 0 12px rgba(56, 189, 248, 0.12),
-      0 0 24px rgba(56, 189, 248, 0.06);
-  }
-
-  /* Faculty Coordinator — elegant warm gradient border */
-  .glow-faculty {
-    border: 1px solid rgba(250, 255, 105, 0.25);
-    background: linear-gradient(135deg, rgba(250, 255, 105, 0.03), transparent 60%);
-    transition: all 0.3s ease-in-out;
-  }
-  .glow-faculty:hover {
-    border-color: rgba(250, 255, 105, 0.4);
-    box-shadow:
-      0 0 20px rgba(250, 255, 105, 0.1),
-      inset 0 0 10px rgba(250, 255, 105, 0.05);
   }
 }
