@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -86,13 +85,10 @@ export default function Navigation() {
               </a>
             ))}
           </nav>
-          <div className="h-4 w-[1px] bg-[var(--color-hairline)] mx-1" />
-          <ThemeToggle />
         </div>
 
         {/* Mobile Header Controls */}
         <div className="lg:hidden flex items-center gap-2 z-50 relative">
-          <ThemeToggle />
           <button
             className="text-[var(--color-text-main)] p-2 rounded-md hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-elevated)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}

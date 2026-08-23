@@ -5,35 +5,7 @@
   --font-outfit: var(--font-outfit);
   --font-mono: var(--font-jetbrains);
 
-  /* Light Theme */
-  --color-primary: #faff69;
-  --color-primary-hover: #e6eb52;
-  --color-background: #fbfbfa;
-  --color-surface: #ffffff;
-  --color-surface-elevated: #f3f4f6;
-  --color-hairline: #e5e7eb;
-  --color-hairline-strong: #d1d5db;
-  --color-text-main: #09090b;
-  --color-text-muted: #52525b;
-  --color-text-inverse: #0a0a0a;
-  --color-success: #22c55e;
-  --color-error: #ef4444;
-
-  --theme-cursor-dot: #09090b;
-  --theme-cursor-ring: rgba(0, 0, 0, 0.25);
-  --theme-glow: rgba(250, 255, 105, 0.35);
-
-  /* Strict Radii */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  /* Buttons */
-  --radius-lg: 12px;
-  /* Cards */
-  --radius-pill: 9999px;
-}
-
-.dark {
-  /* Dark Theme (High-Velocity Engineering) */
+  /* Dark Theme (High-Velocity Engineering) - Default */
   --color-primary: #faff69;
   --color-primary-hover: #e6eb52;
   --color-background: #0a0a0a;
@@ -50,6 +22,14 @@
   --theme-cursor-dot: #ffffff;
   --theme-cursor-ring: rgba(255, 255, 255, 0.25);
   --theme-glow: rgba(250, 255, 105, 0.2);
+
+  /* Strict Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  /* Buttons */
+  --radius-lg: 12px;
+  /* Cards */
+  --radius-pill: 9999px;
 }
 
 @theme inline {

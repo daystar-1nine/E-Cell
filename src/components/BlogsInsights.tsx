@@ -58,7 +58,7 @@ const blogsData: BlogPost[] = [
     "date": "August 23, 2026",
     "readTime": "3 min read",
     "excerpt": "Comparing the early strategies of Tesla and SpaceX to show why the best approach is the one that fits your specific problem.",
-    "image": "/images/tesla.jpg",
+    "image": "/images/Tesla.jpg",
     "author": "E-Cell, IIT Bombay",
     "authorRole": "Entrepreneurship Cell",
     "content": {
@@ -384,6 +384,18 @@ export default function BlogsInsights() {
                         </button>
 
                         <div className="flex items-center gap-1.5 sm:gap-2">
+                          {/* LinkedIn Button */}
+                          <a
+                            href="https://www.linkedin.com/in/ecell-sjcem?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn"
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-md bg-[var(--color-background)] border border-hairline flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                          </a>
+
                           {/* Share Button */}
                           <button
                             onClick={(e) => handleShare(blog, e)}
