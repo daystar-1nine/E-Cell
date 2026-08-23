@@ -21,12 +21,6 @@ const Linkedin = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const Twitter = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-  </svg>
-);
-
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
@@ -93,14 +87,23 @@ export default function Contact() {
             </div>
 
             <div className="pt-5 sm:pt-6 border-t border-hairline flex gap-3 sm:gap-4">
-              <a href="#" aria-label="Instagram" className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] border border-hairline flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors">
+              <a 
+                href="https://www.instagram.com/ecell_sjcem?igsi=a3B4NDFsOWhhajZ5" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram" 
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] border border-hairline flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" aria-label="LinkedIn" className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] border border-hairline flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors">
+              <a 
+                href="https://www.linkedin.com/in/ecell-sjcem?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn" 
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] border border-hairline flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors"
+              >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" aria-label="Twitter" className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] border border-hairline flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors">
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
