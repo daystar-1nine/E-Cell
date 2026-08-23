@@ -9,43 +9,27 @@ export type Event = {
 
 export const eventsData: Event[] = [
   {
-    id: "e1",
-    title: "Startup Weekend 2026",
-    date: "August 15-17, 2026",
-    description: "A 54-hour event where developers, designers, and business developers come together to pitch ideas and launch startups.",
-    imageUrl: "/images/event1.png", // PLACEHOLDER: replace with real image url
+    id: "eureka-pitch-2026",
+    title: "Eureka! Pitch Competition",
+    date: "August 25, 2026",
+    description: "Presented in collaboration with IIT Bombay's National Entrepreneurship Challenge (NEC). Prize pool of ₹5,000. 'Think It. Pitch It. Launch It.' at MMS Hall, SJCEM.",
+    imageUrl: "/images/event_eureka.jpg",
     status: "upcoming",
   },
   {
-    id: "e2",
-    title: "Founder's Talk Series: AI Innovations",
-    date: "September 5, 2026",
-    description: "An exclusive fireside chat with industry leaders discussing the future of AI in the Indian startup ecosystem.",
-    imageUrl: "/images/event2.png", // PLACEHOLDER: replace with real image url
-    status: "upcoming",
-  },
-  {
-    id: "e3",
-    title: "E-Summit 2026",
-    date: "March 10, 2026",
-    description: "Our flagship entrepreneurial summit featuring keynote speakers, panel discussions, and a pitch competition.",
-    imageUrl: "/images/event3.png", // PLACEHOLDER: replace with real image url
+    id: "ecell-inauguration",
+    title: "E-Cell SJCEM Grand Inauguration",
+    date: "August 17, 2026",
+    description: "Official grand inaugural ceremony of the Entrepreneurship Cell under IIC at St. John College of Engineering and Management at MMS Hall.",
+    imageUrl: "/images/campus_photo.png",
     status: "past",
   },
   {
-    id: "e4",
-    title: "Pitch Perfect Workshop",
-    date: "February 20, 2026",
-    description: "A hands-on workshop focused on crafting the perfect investor pitch deck and mastering delivery.",
-    imageUrl: "/images/event4.png", // PLACEHOLDER: replace with real image url
-    status: "past",
-  },
-  {
-    id: "e5",
-    title: "Idea Validation Bootcamp",
-    date: "January 15, 2026",
-    description: "A one-day intensive bootcamp helping students test and validate their business ideas before building.",
-    imageUrl: "/images/event5.png", // PLACEHOLDER: replace with real image url
+    id: "expert-session-arjun-gupta",
+    title: "Expert Session: From Campus to Entrepreneurship",
+    date: "August 17, 2026",
+    description: "Insightful masterclass with guest speaker Mr. Arjun Gupta (Founder & CMD, AR Technologies) on navigating the journey from engineering graduate to successful founder.",
+    imageUrl: "/images/event_expert_session.png",
     status: "past",
   },
 ];
