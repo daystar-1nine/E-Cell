@@ -13,9 +13,16 @@ export default function Footer() {
           
           {/* Brand & Socials */}
           <div className="flex flex-col gap-3 sm:gap-4 max-w-sm">
-            <div>
-              <span className="text-lg sm:text-xl font-bold font-inter text-[var(--color-text-main)]">E-Cell </span>
-              <span className="text-lg sm:text-xl font-light font-inter text-[var(--color-text-muted)]">SJCEM</span>
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/images/logo.png"
+                alt="E-Cell Logo"
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain"
+              />
+              <div>
+                <span className="text-lg sm:text-xl font-bold font-inter text-[var(--color-text-main)]">E-Cell </span>
+                <span className="text-lg sm:text-xl font-light font-inter text-[var(--color-text-muted)]">SJCEM</span>
+              </div>
             </div>
             <p className="text-xs sm:text-sm text-[var(--color-text-muted)] font-mono leading-relaxed">
               Sparking ideas, fueling ambition, and building India's next generation of founders.

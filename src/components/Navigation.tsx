@@ -58,12 +58,19 @@ export default function Navigation() {
         <a
           href="#home"
           onClick={() => setIsOpen(false)}
-          className="text-lg sm:text-xl md:text-2xl font-bold font-inter text-[var(--color-text-main)] tracking-tight flex items-center gap-2 z-50 relative p-1.5 -ml-1.5 group"
+          className="text-lg sm:text-xl md:text-2xl font-bold font-inter text-[var(--color-text-main)] tracking-tight flex items-center gap-2.5 z-50 relative p-1 -ml-1 group"
         >
-          <span className="text-[var(--color-primary)] transition-colors duration-300">
-            E-Cell
-          </span>
-          <span className="font-light text-[var(--color-text-main)]">SJCEM</span>
+          <img
+            src="/images/logo.png"
+            alt="E-Cell Logo"
+            className="w-8 h-8 sm:w-9 sm:h-9 object-contain"
+          />
+          <div className="flex items-center gap-1">
+            <span className="text-[var(--color-primary)] transition-colors duration-300">
+              E-Cell
+            </span>
+            <span className="font-light text-[var(--color-text-main)]">SJCEM</span>
+          </div>
         </a>
 
         {/* Desktop Nav & Theme Toggle */}

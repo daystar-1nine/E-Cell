@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MapPin, Mail } from "lucide-react";
+import { Send, MapPin, Mail, Phone } from "lucide-react";
 
 // Brand Icons
 const Instagram = ({ className }: { className?: string }) => (
@@ -68,11 +68,18 @@ export default function Contact() {
             </div>
             
             <div className="space-y-4 sm:space-y-6">
-              <a href="mailto:ecell@sjcem.edu.in" className="flex items-center gap-3 sm:gap-4 text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors group">
+              <a href="mailto:edcell@sjcem.edu.in" className="flex items-center gap-3 sm:gap-4 text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors group">
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] flex items-center justify-center transition-colors border border-hairline group-hover:border-[var(--color-primary)] group-hover:text-[var(--color-primary)] shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
-                <div className="font-mono text-xs sm:text-sm md:text-base truncate">ecell@sjcem.edu.in</div>
+                <div className="font-mono text-xs sm:text-sm md:text-base truncate">edcell@sjcem.edu.in</div>
+              </a>
+
+              <a href="tel:+917218757424" className="flex items-center gap-3 sm:gap-4 text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors group">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] flex items-center justify-center transition-colors border border-hairline group-hover:border-[var(--color-primary)] group-hover:text-[var(--color-primary)] shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="font-mono text-xs sm:text-sm md:text-base truncate">+91 721 875 7424 (President)</div>
               </a>
               
               <div className="flex items-center gap-3 sm:gap-4 text-[var(--color-text-muted)] group">

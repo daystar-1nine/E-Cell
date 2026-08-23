@@ -20,7 +20,6 @@ export const teamsData: Team[] = [
       { name: "Sahas Bochare", role: "Vice-President", photoUrl: "" },
       { name: "Yash Tripathi", role: "Secretary", photoUrl: "" },
       { name: "Bhagwan Mourya", role: "Advisor", photoUrl: "" },
-      { name: "Yash Raut", role: "Advisor", photoUrl: "" },
     ],
   },
   {
@@ -61,8 +60,7 @@ export const teamsData: Team[] = [
     name: "Public Relation (PR)",
     members: [
       { name: "Keyur Bidawat", role: "Director", photoUrl: "" },
-      { name: "Diksha Gharat", role: "Dy. Director", photoUrl: "" },
-      { name: "Shamitha Palai", role: "Member", photoUrl: "" },
+      { name: "Shamitha Pillai", role: "Dy. Director", photoUrl: "" },
       { name: "Tanu Sharma", role: "Member", photoUrl: "" },
       { name: "Aditi Patil", role: "Member", photoUrl: "" },
       { name: "Bipin Maurya", role: "Member", photoUrl: "" },
