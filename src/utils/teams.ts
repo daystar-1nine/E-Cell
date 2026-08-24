@@ -44,7 +44,7 @@ export const facultyCoordinators: FacultyCoordinator[] = [
   },
 ];
 
-// Wings for capsule filtering
+// Wings for capsule filtering: Sub-Faculty Coordinators first, then Core Team, then departments
 export const wings = [  
   "Faculty SubCoordinators",
   "Core Team",
@@ -58,14 +58,13 @@ export const wings = [
 
 export type Wing = (typeof wings)[number];
 
-
-// Core Team (President, VP, Secretary, Advisor)
+// Faculty SubCoordinators (Mentors)
 export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Mrs. Maya Patil",
     role: "Documentation Mentor",
     photoUrl: "/images/team/Maya.jpg",
-    badges: ["DOC"],
+    badges: ["Mentor", "DOC"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/maya-patil-29955a314?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -74,68 +73,68 @@ export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Mrs. Navajyothi Katela",
     role: "Planning & Operations Mentor",
-    photoUrl: "/images/team/Navjyoti mam.JPG",
-    badges: ["Vice-"],
-    wing: "Faculty SubCoordinators",
-    instagramUrl: "#",
-    linkedinUrl: "",
-    githubUrl: "#",
-  },
-   {
-    name: "Mrs. Janhavi Narkhede",
-    role: "Planning & Operations Mentor",
-    photoUrl: "/images/team/",
-    badges: ["Vice-"],
+    photoUrl: "/images/team/Navjyoti_mam.JPG",
+    badges: ["Mentor", "Planning & Ops"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "",
     githubUrl: "#",
   },
   {
+    name: "Mrs. Rosy Pradhan",
+    role: "Media & Design Mentor",
+    photoUrl: "/images/team/Rosy_mam.JPG",
+    badges: ["Mentor", "Media & Design"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/rosy-pradhan-96051a288?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    githubUrl: "#",
+  },
+  {
     name: "Mr. Avinash Chavan",
     role: "Corporate Relations Mentor",
-    photoUrl: "/images/team/Avinash Sir.JPG",
-    badges: ["Secretary"],
+    photoUrl: "/images/team/Avinash_Sir.JPG",
+    badges: ["Mentor", "Corporate"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/avinashinnovation?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     githubUrl: "#",
   },
   {
-    name: "Mrs. Rosy Pradhan",
-    role: "Media & Design Mentor",
-    photoUrl: "/images/team/Rosy mam.JPG",
-    badges: ["Advisor"],
-    wing: "Faculty SubCoordinators",
-    instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/rosy-pradhan-96051a288?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    githubUrl: "#",
-  },
-   {
-    name: "Mr. Ashok Meti",
-    role: "Corporate Relations Mentor",
-    photoUrl: "/images/team/",
-    badges: ["Advisor"],
-    wing: "Faculty SubCoordinators",
-    instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/ashok-meti-231a38142?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    githubUrl: "#",
-  },
-   {
-    name: "Ms. Susmitha Mary ",
-    role: "Public Relations Mentor",
-    photoUrl: "/images/team/",
-    badges: ["Advisor"],
+    name: "Mrs. Janhavi Narkhede",
+    role: "Planning & Operations Mentor",
+    photoUrl: "",
+    badges: ["Mentor", "Planning & Ops"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "",
     githubUrl: "#",
   },
-    {
+  {
+    name: "Mr. Ashok Meti",
+    role: "Corporate Relations Mentor",
+    photoUrl: "",
+    badges: ["Mentor", "Corporate"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/ashok-meti-231a38142?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    githubUrl: "#",
+  },
+  {
+    name: "Ms. Susmitha Mary",
+    role: "Public Relations Mentor",
+    photoUrl: "",
+    badges: ["Mentor", "PR"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "",
+    githubUrl: "#",
+  },
+  {
     name: "Dr. Jagdish Pawar",
     role: "Technical Mentor",
-    photoUrl: "/images/team/",
-    badges: ["Advisor"],
+    photoUrl: "",
+    badges: ["Mentor", "Technical"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/jagdishpawar?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -144,15 +143,14 @@ export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Mr. Hemant Bansal",
     role: "Corporate Relations Mentor",
-    photoUrl: "/images/team/",
-    badges: ["Advisor"],
+    photoUrl: "",
+    badges: ["Mentor", "Corporate"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "",
     githubUrl: "#",
   },
 ];
-
 
 // Core Team (President, VP, Secretary, Advisor)
 export const coreTeam: TeamMember[] = [
@@ -169,7 +167,7 @@ export const coreTeam: TeamMember[] = [
   {
     name: "Sahas Bochare",
     role: "Vice-President",
-    photoUrl: "/images/team/Sahas NEW.JPG",
+    photoUrl: "/images/team/Sahas_NEW.JPG",
     badges: ["Vice-President"],
     wing: "Core Team",
     instagramUrl: "#",
@@ -179,7 +177,7 @@ export const coreTeam: TeamMember[] = [
   {
     name: "Yash Tripathi",
     role: "Secretary",
-    photoUrl: "/images/team/Honourable Secretary.JPG",
+    photoUrl: "/images/team/Honourable_Secretary.JPG",
     badges: ["Secretary"],
     wing: "Core Team",
     instagramUrl: "#",
@@ -214,7 +212,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Kunal Bhandarkar",
     role: "Dy. Director",
-    photoUrl: "/images/team/Kunal Bhandarkar.JPG",
+    photoUrl: "/images/team/Kunal_Bhandarkar.JPG",
     badges: ["Dy. Director", "Technical"],
     wing: "Technical",
     instagramUrl: "#",
@@ -276,7 +274,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Shubhra Shinde",
     role: "Member",
-    photoUrl: "/images/team/shubhra shinde .jpg",
+    photoUrl: "/images/team/shubhra_shinde.jpg",
     badges: ["Member", "Media & Design"],
     wing: "Media & Design",
     instagramUrl: "#",
@@ -328,7 +326,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Vaishnavi Khandagale",
     role: "Dy. Director",
-    photoUrl: "/images/team/Vaishnavi Khandagale.jpg",
+    photoUrl: "/images/team/Vaishnavi_Khandagale.jpg",
     badges: ["Dy. Director", "Corporate"],
     wing: "Corporate",
     instagramUrl: "#",
@@ -338,7 +336,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Bhavesh Mishra",
     role: "Member",
-    photoUrl: "/images/team/Bhavesh Mishra.JPG",
+    photoUrl: "/images/team/Bhavesh_Mishra.JPG",
     badges: ["Member", "Corporate"],
     wing: "Corporate",
     instagramUrl: "#",
@@ -390,7 +388,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Aditi Patil",
     role: "Member",
-    photoUrl: "/images/team/aditi patil.jpg",
+    photoUrl: "/images/team/aditi_patil.jpg",
     badges: ["Member", "PR"],
     wing: "PR",
     instagramUrl: "#",
@@ -412,7 +410,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Advait Chavan",
     role: "Director",
-    photoUrl: "/images/team/advait .JPG",
+    photoUrl: "/images/team/advait.JPG",
     badges: ["Director", "Planning & Ops"],
     wing: "Planning & Ops",
     instagramUrl: "#",
@@ -452,7 +450,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Shubham Gole",
     role: "Member",
-    photoUrl: "/images/team/Shubham Gole.JPG",
+    photoUrl: "/images/team/Shubham_Gole.JPG",
     badges: ["Member", "Planning & Ops"],
     wing: "Planning & Ops",
     instagramUrl: "#",
@@ -462,7 +460,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Nehru Yadav",
     role: "Member",
-    photoUrl: "/images/team/Nehru Yadav.JPG",
+    photoUrl: "/images/team/Nehru_Yadav.JPG",
     badges: ["Member", "Planning & Ops"],
     wing: "Planning & Ops",
     instagramUrl: "#",
@@ -474,7 +472,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Anand Ambhore",
     role: "Director",
-    photoUrl: "/images/team/anand .png",
+    photoUrl: "/images/team/anand.png",
     badges: ["Director", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
@@ -494,7 +492,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Zeel Panchal",
     role: "Member",
-    photoUrl: "/images/team/Zeel Panchal .jpg",
+    photoUrl: "/images/team/Zeel_Panchal.jpg",
     badges: ["Member", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
@@ -514,7 +512,7 @@ export const departmentMembers: TeamMember[] = [
   {
     name: "Tanvi Walam",
     role: "Member",
-    photoUrl: "/images/team/Tanvi Walam.JPG",
+    photoUrl: "/images/team/Tanvi_Walam.JPG",
     badges: ["Member", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",

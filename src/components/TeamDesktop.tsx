@@ -7,7 +7,6 @@ import {
   facultyCoordinators,
   FacultySubCoordinators,
   coreTeam,
-  departmentMembers,
   wings,
   getMembersByWing,
   type TeamMember,
@@ -84,8 +83,15 @@ function SocialButton({ href, icon: Icon, label }: { href: string; icon: React.E
   );
 }
 
-/* ─── Faculty Coordinator Card (Largest images — centered vertical layout) ─── */
+function isValidImage(url?: string): boolean {
+  return Boolean(url && url.trim() !== "" && url !== "/images/team/" && !url.endsWith("/"));
+}
+
+/* ─── Faculty Coordinator Card ─── */
 function FacultyCard({ coordinator }: { coordinator: FacultyCoordinator }) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = isValidImage(coordinator.photoUrl) && !imgError;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -96,14 +102,15 @@ function FacultyCard({ coordinator }: { coordinator: FacultyCoordinator }) {
       {/* Subtle background gradient */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[var(--color-primary)]/5 to-transparent pointer-events-none" />
 
-      {/* Profile Image — LARGEST */}
-      <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-full bg-[var(--color-surface-elevated)] mb-5 flex items-center justify-center overflow-hidden border-3 border-[var(--color-primary)]/35 z-10">
-        {coordinator.photoUrl ? (
+      {/* Profile Image */}
+      <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-full bg-[var(--color-surface-elevated)] mb-5 flex items-center justify-center overflow-hidden border-3 border-[var(--color-primary)]/35 z-10 relative">
+        {showImage ? (
           <img
             src={coordinator.photoUrl}
             alt={coordinator.name}
             loading="lazy"
             decoding="async"
+            onError={() => setImgError(true)}
             className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
           />
         ) : (
@@ -136,32 +143,36 @@ function FacultyCard({ coordinator }: { coordinator: FacultyCoordinator }) {
   );
 }
 
-
-/* ─── Core Team Card (Large portrait images with gold glow) ─── */
+/* ─── Faculty Sub-Coordinator Card ─── */
 function FacultySubCoordinatorCard({ member, index }: { member: TeamMember; index: number }) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = isValidImage(member.photoUrl) && !imgError;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.1 }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.08 }}
       className="glow-core bg-[var(--color-surface)] rounded-xl overflow-hidden transition-all duration-300 relative group cursor-pointer"
     >
       {/* Gold shimmer gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 via-transparent to-yellow-400/5 pointer-events-none z-[1]" />
 
       {/* Large Portrait Image */}
-      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden relative">
-        {member.photoUrl ? (
+      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden relative flex items-center justify-center">
+        {showImage ? (
           <img
             src={member.photoUrl}
             alt={member.name}
             loading="lazy"
             decoding="async"
+            onError={() => setImgError(true)}
             className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <User className="w-16 h-16 text-amber-400 opacity-40" />
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-[var(--color-surface-elevated)] p-4 text-center">
+            <User className="w-16 h-16 text-amber-400/70" />
+            <span className="text-[11px] font-mono uppercase tracking-wider text-amber-400/60 font-semibold">Faculty Mentor</span>
           </div>
         )}
       </div>
@@ -191,8 +202,11 @@ function FacultySubCoordinatorCard({ member, index }: { member: TeamMember; inde
   );
 }
 
-/* ─── Core Team Card (Large portrait images with gold glow) ─── */
+/* ─── Core Team Card ─── */
 function CoreCard({ member, index }: { member: TeamMember; index: number }) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = isValidImage(member.photoUrl) && !imgError;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -204,13 +218,14 @@ function CoreCard({ member, index }: { member: TeamMember; index: number }) {
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 via-transparent to-yellow-400/5 pointer-events-none z-[1]" />
 
       {/* Large Portrait Image */}
-      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden relative">
-        {member.photoUrl ? (
+      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden relative flex items-center justify-center">
+        {showImage ? (
           <img
             src={member.photoUrl}
             alt={member.name}
             loading="lazy"
             decoding="async"
+            onError={() => setImgError(true)}
             className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
           />
         ) : (
@@ -245,8 +260,11 @@ function CoreCard({ member, index }: { member: TeamMember; index: number }) {
   );
 }
 
-/* ─── Department Member Card (Large portrait images) ─── */
+/* ─── Department Member Card ─── */
 function MemberCard({ member, index }: { member: TeamMember; index: number }) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = isValidImage(member.photoUrl) && !imgError;
+
   const isDirector = member.role === "Director";
   const isDyDirector = member.role === "Dy. Director";
   const glowClass = isDirector ? "glow-director" : isDyDirector ? "glow-dy-director" : "";
@@ -255,17 +273,18 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut", delay: index % 4 * 0.08 }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: (index % 4) * 0.08 }}
       className={`${glowClass} bg-[var(--color-surface)] ${!isDirector && !isDyDirector ? 'border border-[var(--color-hairline)]' : ''} rounded-xl overflow-hidden hover:shadow-md transition-all duration-300 group cursor-pointer`}
     >
       {/* Large Portrait Image */}
-      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden">
-        {member.photoUrl ? (
+      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden flex items-center justify-center">
+        {showImage ? (
           <img
             src={member.photoUrl}
             alt={member.name}
             loading="lazy"
             decoding="async"
+            onError={() => setImgError(true)}
             className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
           />
         ) : (
@@ -336,12 +355,13 @@ function WingCapsules({
       {wings.map((wing) => {
         const isActive = activeWing === wing;
         const isCore = wing === "Core Team";
+        const isFacultySub = wing === "Faculty SubCoordinators";
         return (
           <button
             key={wing}
             onClick={() => onSelect(wing)}
             className={`relative px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold font-inter transition-all duration-200 cursor-pointer border ${
-              isActive && isCore
+              isActive && (isCore || isFacultySub)
                 ? "bg-gradient-to-r from-amber-400 to-yellow-300 text-gray-900 border-amber-400 shadow-[0_0_12px_rgba(250,255,105,0.3)]"
                 : isActive
                 ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)] shadow-sm"
@@ -360,7 +380,8 @@ function WingCapsules({
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 export default function TeamDesktop() {
-  const [activeWing, setActiveWing] = useState<Wing>("Core Team");
+  // Order: 1. Sub-Faculty Coordinators displayed first, 2. Core Team, 3. Other categories
+  const [activeWing, setActiveWing] = useState<Wing>("Faculty SubCoordinators");
 
   const activeMembers = getMembersByWing(activeWing);
   const isCore = activeWing === "Core Team";
@@ -383,7 +404,7 @@ export default function TeamDesktop() {
             Meet Our Team
           </h2>
           <p className="text-[var(--color-text-muted)] font-inter text-sm sm:text-base md:text-lg max-w-xl mx-auto">
-            Our dedicated faculty coordinator and student department members who drive the Entrepreneurship Cell forward.
+            Our dedicated faculty coordinators, mentors, and student members who drive the Entrepreneurship Cell forward.
           </p>
         </div>
 
@@ -395,8 +416,8 @@ export default function TeamDesktop() {
           ))}
         </div>
 
-        {/* ─── Student Teams with Capsule Filters ─── */}
-        <SectionLabel label="Student Team" />
+        {/* ─── Team Wings with Capsule Filters (Sub-Faculty Coordinators first) ─── */}
+        <SectionLabel label="Team Wings & Mentors" />
         <WingCapsules activeWing={activeWing} onSelect={setActiveWing} />
 
         {/* Team Grid */}
@@ -409,13 +430,13 @@ export default function TeamDesktop() {
             transition={{ duration: 0.3 }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
           >
-            {isCore
-              ? coreTeam.map((member, idx) => (
-                  <CoreCard key={member.name} member={member} index={idx} />
-                ))
-              : isFacultySubCoordinator
+            {isFacultySubCoordinator
               ? FacultySubCoordinators.map((member, idx) => (
                   <FacultySubCoordinatorCard key={member.name} member={member} index={idx} />
+                ))
+              : isCore
+              ? coreTeam.map((member, idx) => (
+                  <CoreCard key={member.name} member={member} index={idx} />
                 ))
               : activeMembers.map((member, idx) => (
                   <MemberCard key={member.name} member={member} index={idx} />
@@ -423,7 +444,7 @@ export default function TeamDesktop() {
           </motion.div>
         </AnimatePresence>
 
-        {activeMembers.length === 0 && !isCore && (
+        {activeMembers.length === 0 && !isCore && !isFacultySubCoordinator && (
           <div className="text-center py-16 text-[var(--color-text-muted)] font-inter text-sm">
             No members found in this wing.
           </div>
