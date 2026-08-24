@@ -73,17 +73,25 @@ export default function Contact() {
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] flex items-center justify-center transition-colors border border-hairline group-hover:border-[var(--color-primary)] group-hover:text-[var(--color-primary)] shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
-                <div className="font-mono text-xs sm:text-sm md:text-base truncate">+91 721 875 7424 (President)</div>
+                <div className="flex flex-col">
+                  <span className="font-mono text-xs sm:text-sm md:text-base">Tejas Bhavthankar (President)</span>
+                  <span className="font-mono text-xs sm:text-sm md:text-base truncate">+91 721 875 7424</span>
+                </div>
               </a>
-              
-              <div className="flex items-center gap-3 sm:gap-4 text-[var(--color-text-muted)] group">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] flex items-center justify-center border border-hairline shrink-0">
+
+              <a
+                href="https://www.google.com/maps/place/St.+John+College+of+Engineering+and+Management/@19.7060402,72.7835079,820m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3be71c92fbd91e67:0x2a3ce68676417a45!8m2!3d19.7060402!4d72.7835079!16s%2Fg%2F11b637ggxx?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 sm:gap-4 text-[var(--color-text-muted)] group hover:text-[var(--color-primary)] transition-colors cursor-pointer"
+              >
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-md bg-[var(--color-surface)] flex items-center justify-center border border-hairline shrink-0 group-hover:border-[var(--color-primary)] transition-colors">
                   <MapPin className="w-5 h-5 text-[var(--color-primary)]" />
                 </div>
                 <div className="font-inter text-xs sm:text-sm md:text-base">
                   SJCEM Campus, Palghar, Maharashtra
                 </div>
-              </div>
+              </a>
             </div>
 
             <div className="pt-5 sm:pt-6 border-t border-hairline flex gap-3 sm:gap-4">

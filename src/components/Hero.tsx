@@ -59,7 +59,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="mt-6 sm:mt-8 text-sm sm:text-base md:text-xl text-[var(--color-text-muted)] max-w-2xl font-normal font-inter pointer-events-auto px-2 leading-relaxed"
         >
-          Transforming student ideas into real-world startups through dedicated mentorship, intensive ideation, and comprehensive ecosystem support.
+          Think It , Pitch It , Launch It.
         </motion.p>
 
         <motion.div
