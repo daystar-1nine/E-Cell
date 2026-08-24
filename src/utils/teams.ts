@@ -119,7 +119,7 @@ export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Dr. Jagdish Pawar",
     role: "Technical Mentor",
-    photoUrl: "/images/team/jagdish.jpeg",
+    photoUrl: "/images/team/Jagdish.jpeg",
     badges: ["Mentor", "Technical"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
@@ -130,7 +130,7 @@ export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Mr. Hemant Bansal",
     role: "Corporate Relations Mentor",
-    photoUrl: "/images/team/Hemant.jpg",
+    photoUrl: "/images/team/Hemant.JPG",
     badges: ["Mentor", "Corporate"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
