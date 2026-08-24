@@ -32,7 +32,7 @@ export const facultyCoordinators: FacultyCoordinator[] = [
     title: "Faculty Co-ordinator",
     department: "SJCEM Palghar",
     photoUrl: "/images/team/shilpa_katre.jpeg",
-    linkedinUrl: "https://www.linkedin.com/in/",
+    linkedinUrl: "https://www.linkedin.com/in/shilpa-katre-568613256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     emailUrl: "shilpak@sjcem.edu.in",
   },
   {
@@ -40,7 +40,7 @@ export const facultyCoordinators: FacultyCoordinator[] = [
     title: "Faculty Co-ordinator",
     department: "SJCEM Palghar",
     photoUrl: "/images/team/uday.jpeg",
-    linkedinUrl: "https://www.linkedin.com/in/",
+    linkedinUrl: "https://www.linkedin.com/in/uday-prajapati-9a3b4b101",
     emailUrl: "udayp@sjcem.edu.in",
   },
 ];
@@ -108,7 +108,7 @@ export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Mrs. Janhavi Narkhede",
     role: "Planning & Operations Mentor",
-    photoUrl: "",
+    photoUrl: "/images/team/Janhavi.jpeg",
     badges: ["Mentor", "Planning & Ops"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
@@ -117,31 +117,9 @@ export const FacultySubCoordinators: TeamMember[] = [
     emailUrl: "janhavin@sjcem.edu.in",
   },
   {
-    name: "Mr. Ashok Meti",
-    role: "Corporate Relations Mentor",
-    photoUrl: "",
-    badges: ["Mentor", "Corporate"],
-    wing: "Faculty SubCoordinators",
-    instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/ashok-meti-231a38142?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    githubUrl: "#",
-    emailUrl: "ashokm@sjcem.edu.in",
-  },
-  {
-    name: "Ms. Susmitha Mary",
-    role: "Public Relations Mentor",
-    photoUrl: "",
-    badges: ["Mentor", "PR"],
-    wing: "Faculty SubCoordinators",
-    instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/",
-    githubUrl: "#",
-    emailUrl: "sushmitam@sjcem.edu.in",
-  },
-  {
     name: "Dr. Jagdish Pawar",
     role: "Technical Mentor",
-    photoUrl: "",
+    photoUrl: "/images/team/jagdish.jpeg",
     badges: ["Mentor", "Technical"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
@@ -152,7 +130,7 @@ export const FacultySubCoordinators: TeamMember[] = [
   {
     name: "Mr. Hemant Bansal",
     role: "Corporate Relations Mentor",
-    photoUrl: "",
+    photoUrl: "/images/team/Hemant.jpg",
     badges: ["Mentor", "Corporate"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
@@ -160,6 +138,28 @@ export const FacultySubCoordinators: TeamMember[] = [
     githubUrl: "#",
     emailUrl: "hemantb@sjcem.edu.in",
   },
+  {
+    name: "Mr. Ashok Meti",
+    role: "Corporate Relations Mentor",
+    photoUrl: "/images/team/Ashok.jpeg",
+    badges: ["Mentor", "Corporate"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/ashok-meti-231a38142?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    githubUrl: "#",
+    emailUrl: "ashokm@sjcem.edu.in",
+  },
+  {
+    name: "Ms. Susmitha Mary",
+    role: "Public Relations Mentor",
+    photoUrl: "/images/team/",
+    badges: ["Mentor", "PR"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/",
+    githubUrl: "#",
+    emailUrl: "sushmitam@sjcem.edu.in",
+  }
 ];
 
 // Core Team (President, VP, Secretary, Advisor)
