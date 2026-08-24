@@ -75,7 +75,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     name: "Mrs. Navajyothi Katela ",
     role: "Vice-President",
     photoUrl: "/images/team/Navjyoti mam.JPG",
-    badges: ["Vice-President"],
+    badges: ["Vice-"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/sahasbochare",
@@ -88,7 +88,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     badges: ["Secretary"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/yash-tripathi-744509295",
+    linkedinUrl: "https://www.linkedin.com/https://www.linkedin.com/in/avinashinnovation?utm_source=share_via&utm_content=profile&utm_medium=member_android/yash-tripathi-744509295",
     githubUrl: "#",
   },
   {
@@ -98,7 +98,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     badges: ["Advisor"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/bhagwan-mourya-0598a3293",
+    linkedinUrl: "https://www.linkedin.com/in/bhagwan-https://www.linkedin.com/in/rosy-pradhan-96051a288?utm_source=share_via&utm_content=profile&utm_medium=member_android-0598a3293",
     githubUrl: "#",
   },
 ];
