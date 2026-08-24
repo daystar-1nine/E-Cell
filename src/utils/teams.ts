@@ -7,6 +7,7 @@ export type TeamMember = {
   instagramUrl?: string;
   linkedinUrl?: string;
   githubUrl?: string;
+  emailUrl?: string;
 };
 
 export type FacultyCoordinator = {
@@ -27,25 +28,25 @@ export type Team = {
 // Faculty Coordinators
 export const facultyCoordinators: FacultyCoordinator[] = [
   {
-    name: "Ms. Shilpa Katre",
+    name: "MRS. Shilpa Katre",
     title: "Faculty Co-ordinator",
     department: "SJCEM Palghar",
     photoUrl: "/images/team/shilpa_katre.jpeg",
-    linkedinUrl: "#",
-    emailUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/",
+    emailUrl: "shilpak@sjcem.edu.in",
   },
   {
     name: "Mr. Uday Prajapati",
     title: "Faculty Co-ordinator",
     department: "SJCEM Palghar",
     photoUrl: "/images/team/uday.jpeg",
-    linkedinUrl: "#",
-    emailUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/",
+    emailUrl: "udayp@sjcem.edu.in",
   },
 ];
 
 // Wings for capsule filtering: Sub-Faculty Coordinators first, then Core Team, then departments
-export const wings = [  
+export const wings = [
   "Faculty SubCoordinators",
   "Core Team",
   "Technical",
@@ -69,6 +70,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/maya-patil-29955a314?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     githubUrl: "#",
+    emailUrl: "mayap@sjcem.edu.in:",
   },
   {
     name: "Mrs. Navajyothi Katela",
@@ -77,8 +79,9 @@ export const FacultySubCoordinators: TeamMember[] = [
     badges: ["Mentor", "Planning & Ops"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/",
     githubUrl: "#",
+    emailUrl: "navjyothik@sjcem.edu.in",
   },
   {
     name: "Mrs. Rosy Pradhan",
@@ -89,6 +92,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/rosy-pradhan-96051a288?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     githubUrl: "#",
+    emailUrl: "rosyp@sjcem.edu.in",
   },
   {
     name: "Mr. Avinash Chavan",
@@ -99,6 +103,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/avinashinnovation?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     githubUrl: "#",
+    emailUrl: "avinashc@sjcem.edu.in",
   },
   {
     name: "Mrs. Janhavi Narkhede",
@@ -107,8 +112,9 @@ export const FacultySubCoordinators: TeamMember[] = [
     badges: ["Mentor", "Planning & Ops"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/",
     githubUrl: "#",
+    emailUrl: "janhavin@sjcem.edu.in",
   },
   {
     name: "Mr. Ashok Meti",
@@ -119,6 +125,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/ashok-meti-231a38142?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     githubUrl: "#",
+    emailUrl: "ashokm@sjcem.edu.in",
   },
   {
     name: "Ms. Susmitha Mary",
@@ -127,8 +134,9 @@ export const FacultySubCoordinators: TeamMember[] = [
     badges: ["Mentor", "PR"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/",
     githubUrl: "#",
+    emailUrl: "sushmitam@sjcem.edu.in",
   },
   {
     name: "Dr. Jagdish Pawar",
@@ -139,6 +147,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/jagdishpawar?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     githubUrl: "#",
+    emailUrl: "jagdhishp@sjcem.edu.in",
   },
   {
     name: "Mr. Hemant Bansal",
@@ -147,8 +156,9 @@ export const FacultySubCoordinators: TeamMember[] = [
     badges: ["Mentor", "Corporate"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
-    linkedinUrl: "",
+    linkedinUrl: "https://www.linkedin.com/in/",
     githubUrl: "#",
+    emailUrl: "hemantb@sjcem.edu.in",
   },
 ];
 

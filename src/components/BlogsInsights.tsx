@@ -14,6 +14,7 @@ export interface BlogPost {
   image: string;
   author: string;
   authorRole: string;
+  linkedinUrl?: string;
   content: {
     intro: string;
     sections: { heading: string; body: string }[];
@@ -24,14 +25,45 @@ export interface BlogPost {
 const blogsData: BlogPost[] = [
   {
     "id": 1,
+    "title": "Your first 10 customers aren’t there to prove your startup is right. They’re there to show you where it’s wrong.",
+    "category": "Customer Discovery",
+    "date": "August 24, 2026",
+    "readTime": "2 min read",
+    "excerpt": "Why early-stage founders should focus on customer feedback and discovery rather than chasing rapid scale.",
+    "image": "/images/E.jpg",
+    "author": "E-Cell, SJCEM",
+    "authorRole": "Entrepreneurship Cell",
+    "linkedinUrl": "https://www.linkedin.com/posts/ecell-sjcem_entrepreneurship-startuplessons-customerdiscovery-activity-7497669557025824768-6h_z?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFyExNcBXZ5E73xO-LX-Yt29hK_aWlhC-4w",
+    "content": {
+      "intro": "In the early days of a startup, founders have assumptions everywhere: what customers need, what they will pay for, which features matter, and why they might say no. Your first few customers turn those assumptions into facts.",
+      "sections": [
+        {
+          "heading": "Discovering the Real Product",
+          "body": "One customer tells you a feature is unnecessary. Another tells you they would pay for the product, but only if you solve a different problem first. Someone else reveals a pain point you never even considered. And suddenly, those first 10 customers are doing more than buying your product. They are helping you discover what your product should actually become."
+        },
+        {
+          "heading": "The Feedback Loop",
+          "body": "That’s why early-stage founders shouldn’t chase scale too quickly. Talk to customers. Sell personally. Listen carefully. Improve constantly. The best founders don’t treat that feedback as criticism. They treat it as direction."
+        }
+      ],
+      "keyTakeaways": [
+        "Your first 10 customers are not just your first revenue; they are your first product feedback loop.",
+        "Early-stage founders shouldn’t chase scale too quickly; prioritize personal selling and listening.",
+        "Build less from assumptions and build more from what your customers keep telling you."
+      ]
+    }
+  },
+  {
+    "id": 2,
     "title": "BlackBerry had the customers, the technology, the brand, and the market. So how did it lose all four?",
     "category": "Business Strategy",
-    "date": "August 23, 2026",
+    "date": "August 22, 2026",
     "readTime": "3 min read",
     "excerpt": "A product can be successful today and still become irrelevant tomorrow. Why evolving with the market is critical for survival.",
     "image": "/images/BlackBerrys.jpg",
-    "author": "E-Cell, IIT Bombay",
+    "author": "E-Cell, SJCEM",
     "authorRole": "Entrepreneurship Cell",
+    "linkedinUrl": "https://lnkd.in/p/dUu6sQGT",
     "content": {
       "intro": "At its peak, BlackBerry was one of the strongest names in smartphones. Its edge was clear security, reliability, enterprise communication and productivity. It built a loyal customer base around exactly these strengths. But then, the market started changing.",
       "sections": [
@@ -52,15 +84,16 @@ const blogsData: BlogPost[] = [
     }
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "What if Tesla had tried to compete on price from Day 1?",
     "category": "Startup Strategy",
-    "date": "August 23, 2026",
+    "date": "August 20, 2026",
     "readTime": "3 min read",
     "excerpt": "Comparing the early strategies of Tesla and SpaceX to show why the best approach is the one that fits your specific problem.",
     "image": "/images/Tesla.jpg",
-    "author": "E-Cell, IIT Bombay",
+    "author": "E-Cell, SJCEM",
     "authorRole": "Entrepreneurship Cell",
+    "linkedinUrl": "https://lnkd.in/p/drb8w6dN",
     "content": {
       "intro": "What if Tesla had tried to compete on price from Day 1? It might have never become Tesla. That’s what makes its journey so interesting when you put it next to SpaceX.",
       "sections": [
@@ -81,15 +114,16 @@ const blogsData: BlogPost[] = [
     }
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "P.C. Mustafa’s first big business lesson came from customers returning his product.",
     "category": "Startup Lessons",
-    "date": "August 23, 2026",
+    "date": "August 18, 2026",
     "readTime": "3 min read",
     "excerpt": "How iD Fresh Foods turned initial product failures into a lesson on adaptation, trust, and long-term growth.",
     "image": "/images/ID_Fresh.jpg",
-    "author": "E-Cell, IIT Bombay",
+    "author": "E-Cell, SJCEM",
     "authorRole": "Entrepreneurship Cell",
+    "linkedinUrl": "https://lnkd.in/p/dHFGDc75",
     "content": {
       "intro": "When iD Fresh Foods was just starting out, a large majority of the batter packets were coming back. For most founders, that would be a reason to stop. For Mustafa, it became a reason to rethink. The business had started with just ₹50,000, a 50 sq. ft. kitchen and a simple idea make better-quality idli and dosa batter than what customers were already getting.",
       "sections": [
@@ -108,36 +142,7 @@ const blogsData: BlogPost[] = [
         "Sometimes, a big business begins with nothing more than a small problem worth solving well."
       ]
     }
-  },
-  // {
-  //   id: 4,
-  //   title: "What We Learned from Startup Weekend 2026",
-  //   category: "Events",
-  //   date: "July 10, 2026",
-  //   readTime: "3 min read",
-  //   excerpt: "Key takeaways, memorable moments, and the winning ideas that stood out.",
-  //   image: "/images/blog_events.png",
-  //   author: "Events Core Team",
-  //   authorRole: "E-Cell Event Organizers",
-  //   content: {
-  //     intro: "Over 54 intense hours, 200+ student participants turned rough concepts into viable pitch-ready prototypes during SJCEM's flagship Startup Weekend 2026.",
-  //     sections: [
-  //       {
-  //         heading: "Rapid Prototyping Under Time Pressure",
-  //         body: "Teams were forced to distill their pitch deck to core values, build working UI prototypes, and formulate business revenue models within two days—proving how much speed matters in startup culture."
-  //       },
-  //       {
-  //         heading: "Mentor Feedback is Gold",
-  //         body: "Direct feedback from seasoned venture capitalists and founders helped teams pivot quickly before final pitches to jury panels."
-  //       }
-  //     ],
-  //     keyTakeaways: [
-  //       "Speed of execution beats perfection in early stages.",
-  //       "Crisp, storytelling-driven pitches resonate best with investors.",
-  //       "Collaboration under constraints brings out peak creativity."
-  //     ]
-  //   }
-  // }
+  }
 ];
 
 export default function BlogsInsights() {
@@ -386,7 +391,7 @@ export default function BlogsInsights() {
                         <div className="flex items-center gap-1.5 sm:gap-2">
                           {/* LinkedIn Button */}
                           <a
-                            href="https://www.linkedin.com/in/ecell-sjcem?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                            href={blog.linkedinUrl || "https://www.linkedin.com/in/ecell-sjcem?utm_source=share_via&utm_content=profile&utm_medium=member_android"}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="LinkedIn"

@@ -51,7 +51,7 @@ export const eventsData: Event[] = [
     time: "10:00 AM",
     venue: "MMS Hall, SJCEM",
     description: "The official grand inaugural ceremony of the Institution's Innovation Council (IIC) Entrepreneurship Cell at St. John College of Engineering and Management, establishing a dedicated ecosystem to foster student innovation and entrepreneurship.",
-    imageUrl: "/images/campus_photo.png",
+    imageUrl: "/images/image.png",
     status: "past",
     highlights: [
       "Official inauguration and council reveal",

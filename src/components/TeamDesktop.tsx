@@ -196,6 +196,9 @@ function FacultySubCoordinatorCard({ member, index }: { member: TeamMember; inde
           {member.githubUrl && member.githubUrl !== "#" && (
             <SocialButton href={member.githubUrl} icon={GithubIcon} label={`${member.name} GitHub`} />
           )}
+          {member.emailUrl && member.emailUrl !== "#" && (
+            <SocialButton href={member.emailUrl} icon={MailIcon} label={`${member.name} Email`} />
+          )}
         </div>
       </div>
     </motion.div>
