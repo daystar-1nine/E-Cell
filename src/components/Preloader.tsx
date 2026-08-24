@@ -138,18 +138,18 @@ export default function Preloader() {
                 /* Phase 2: Refined Brand Reveal */
                 <motion.div
                   key="climax"
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
-                  className="flex flex-col items-center space-y-5 max-w-xl"
+                  initial={{ opacity: 0, scale: 0.9, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.05, y: -15 }}
+                  transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                  className="flex flex-col items-center space-y-6 max-w-2xl"
                 >
-                  {/* Circular Seal */}
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden p-1 border border-white/15 bg-white/[0.02] shadow-2xl flex items-center justify-center">
+                  {/* Big Circular Seal */}
+                  <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full overflow-hidden p-2 border border-white/20 bg-white/[0.03] shadow-2xl flex items-center justify-center">
                     <img
                       src="/images/logo.png"
                       alt="E-Cell SJCEM"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain drop-shadow-xl"
                     />
                   </div>
 
@@ -158,7 +158,7 @@ export default function Preloader() {
                     <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-inter tracking-tight text-white">
                       Entrepreneurship <span className="text-[var(--color-primary)]">Cell</span>
                     </h2>
-                    <p className="font-mono text-[11px] sm:text-xs text-neutral-400 tracking-wider uppercase">
+                    <p className="font-mono text-xs sm:text-sm text-neutral-400 tracking-wider uppercase">
                       St. John College of Engineering and Management (Autonomous)
                     </p>
                   </div>
