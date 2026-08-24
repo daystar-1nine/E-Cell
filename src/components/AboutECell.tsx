@@ -5,10 +5,10 @@ import { motion, Variants, useInView, useMotionValue, useSpring } from "framer-m
 import { Users, Rocket, Target, Handshake, CheckCircle2 } from "lucide-react";
 
 const stats = [
-  { label: "Founded", numericValue: 2015, suffix: "", icon: Rocket, featured: false },
-  { label: "Students Impacted", numericValue: 5000, suffix: "+", icon: Users, featured: true },
-  { label: "Startups Mentored", numericValue: 25, suffix: "+", icon: Target, featured: true },
-  { label: "Industry Partners", numericValue: 40, suffix: "+", icon: Handshake, featured: false },
+  { label: "Founded", numericValue: 2018, suffix: "", icon: Rocket, featured: false },
+  { label: "Students Impacted", numericValue: 1500, suffix: "+", icon: Users, featured: true },
+  { label: "Startups Mentored", numericValue: 15, suffix: "+", icon: Target, featured: true },
+  { label: "Industry Partners", numericValue: 35, suffix: "+", icon: Handshake, featured: false },
 ];
 
 const containerVariants: Variants = {

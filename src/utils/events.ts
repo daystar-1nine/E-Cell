@@ -40,9 +40,7 @@ export const eventsData: Event[] = [
       "Get fast-tracked to Eureka 2026 Zonal Rounds",
     ],
     coordinators: [
-      { name: "Tejas Bhavthankar", phone: "+91 7218757424" },
-      { name: "Prachi Sharma", phone: "+91 7387111547" },
-      { name: "Sahas Bochare", phone: "+91 7620676020" },
+      { name: "Tejas Bhavthankar", phone: "+91 7218757424" }
     ],
   },
   {
@@ -79,8 +77,7 @@ export const eventsData: Event[] = [
       "Live interactive Q&A session with attendees",
     ],
     coordinators: [
-      { name: "Dhvani Sawani", phone: "8369963043" },
-      { name: "Soham Gunjal", phone: "9421338676" },
+      { name: "Tejas Bhavthankar", phone: "+91 7218757424" }
     ],
   },
 ];

@@ -45,7 +45,8 @@ export const facultyCoordinators: FacultyCoordinator[] = [
 ];
 
 // Wings for capsule filtering
-export const wings = [
+export const wings = [  
+  "Faculty SubCoordinators",
   "Core Team",
   "Technical",
   "Media & Design",
@@ -56,6 +57,52 @@ export const wings = [
 ] as const;
 
 export type Wing = (typeof wings)[number];
+
+
+// Core Team (President, VP, Secretary, Advisor)
+export const FacultySubCoordinators: TeamMember[] = [
+  {
+    name: "Ms. Maya Patil ",
+    role: "DOC",
+    photoUrl: "/images/team/Maya.jpg",
+    badges: ["DOC"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/maya-patil-29955a314?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    githubUrl: "#",
+  },
+  {
+    name: "Mrs. Navajyothi Katela ",
+    role: "Vice-President",
+    photoUrl: "/images/team/Navjyoti mam.JPG",
+    badges: ["Vice-President"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/sahasbochare",
+    githubUrl: "#",
+  },
+  {
+    name: "Mr. Avinash Chavan ",
+    role: "Secretary",
+    photoUrl: "/images/team/Avinash Sir.JPG",
+    badges: ["Secretary"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/yash-tripathi-744509295",
+    githubUrl: "#",
+  },
+  {
+    name: "Mrs. Rosy Pradhan ",
+    role: "Advisor",
+    photoUrl: "/images/team/Rosy mam.Jpg",
+    badges: ["Advisor"],
+    wing: "Faculty SubCoordinators",
+    instagramUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/bhagwan-mourya-0598a3293",
+    githubUrl: "#",
+  },
+];
+
 
 // Core Team (President, VP, Secretary, Advisor)
 export const coreTeam: TeamMember[] = [
@@ -428,6 +475,7 @@ export const departmentMembers: TeamMember[] = [
 
 // Helper: get members by wing
 export function getMembersByWing(wing: Wing): TeamMember[] {
+  if (wing === "Faculty SubCoordinators") return FacultySubCoordinators;
   if (wing === "Core Team") return coreTeam;
   return departmentMembers.filter((m) => m.wing === wing);
 }

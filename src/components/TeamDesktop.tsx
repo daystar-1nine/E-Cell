@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { User, GraduationCap } from "lucide-react";
 import {
   facultyCoordinators,
+  FacultySubCoordinators,
   coreTeam,
   departmentMembers,
   wings,
@@ -128,6 +129,61 @@ function FacultyCard({ coordinator }: { coordinator: FacultyCoordinator }) {
           )}
           {coordinator.emailUrl && coordinator.emailUrl !== "#" && (
             <SocialButton href={coordinator.emailUrl} icon={MailIcon} label={`${coordinator.name} Email`} />
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+
+/* ─── Core Team Card (Large portrait images with gold glow) ─── */
+function FacultySubCoordinatorCard({ member, index }: { member: TeamMember; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.1 }}
+      className="glow-core bg-[var(--color-surface)] rounded-xl overflow-hidden transition-all duration-300 relative group cursor-pointer"
+    >
+      {/* Gold shimmer gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 via-transparent to-yellow-400/5 pointer-events-none z-[1]" />
+
+      {/* Large Portrait Image */}
+      <div className="w-full aspect-[3/4] bg-[var(--color-surface-elevated)] overflow-hidden relative">
+        {member.photoUrl ? (
+          <img
+            src={member.photoUrl}
+            alt={member.name}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <User className="w-16 h-16 text-amber-400 opacity-40" />
+          </div>
+        )}
+      </div>
+
+      {/* Info Section */}
+      <div className="p-4 sm:p-5 text-center relative z-10">
+        <Badge label={member.role} variant="core" />
+
+        <h4 className="text-sm sm:text-base font-bold font-inter text-[var(--color-text-main)] mt-2 mb-3 uppercase tracking-wide">
+          {member.name}
+        </h4>
+
+        {/* Social Links */}
+        <div className="flex items-center justify-center gap-1">
+          {member.instagramUrl && member.instagramUrl !== "#" && (
+            <SocialButton href={member.instagramUrl} icon={InstagramIcon} label={`${member.name} Instagram`} />
+          )}
+          {member.linkedinUrl && member.linkedinUrl !== "#" && (
+            <SocialButton href={member.linkedinUrl} icon={LinkedinIcon} label={`${member.name} LinkedIn`} />
+          )}
+          {member.githubUrl && member.githubUrl !== "#" && (
+            <SocialButton href={member.githubUrl} icon={GithubIcon} label={`${member.name} GitHub`} />
           )}
         </div>
       </div>
@@ -308,6 +364,7 @@ export default function TeamDesktop() {
 
   const activeMembers = getMembersByWing(activeWing);
   const isCore = activeWing === "Core Team";
+  const isFacultySubCoordinator = activeWing === "Faculty SubCoordinators";
 
   return (
     <section id="team" className="relative w-full py-16 sm:py-24 lg:py-32 z-10">
@@ -355,6 +412,10 @@ export default function TeamDesktop() {
             {isCore
               ? coreTeam.map((member, idx) => (
                   <CoreCard key={member.name} member={member} index={idx} />
+                ))
+              : isFacultySubCoordinator
+              ? FacultySubCoordinators.map((member, idx) => (
+                  <FacultySubCoordinatorCard key={member.name} member={member} index={idx} />
                 ))
               : activeMembers.map((member, idx) => (
                   <MemberCard key={member.name} member={member} index={idx} />
