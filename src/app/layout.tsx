@@ -5,6 +5,8 @@ import SmoothScrolling from "@/components/SmoothScrolling";
 import Navigation from "@/components/Navigation";
 import Cursor from "@/components/Cursor";
 
+import Preloader from "@/components/Preloader";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
@@ -19,8 +21,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "E-Cell SJCEM",
   description: "IIC's Entrepreneurship Cell, SJCEM",
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
 };
-
 
 export default function RootLayout({
   children,
@@ -32,6 +38,7 @@ export default function RootLayout({
       <head>
       </head>
       <body className="min-h-[100dvh] overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-white dark:selection:text-black cursor-none" style={{ colorScheme: 'dark' }}>
+        <Preloader />
         <SmoothScrolling>
           <Cursor />
           <Navigation />

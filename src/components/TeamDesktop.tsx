@@ -375,7 +375,7 @@ export default function TeamDesktop() {
           <div className="mb-3 sm:mb-4 flex items-center justify-center gap-3 sm:gap-4">
             <div className="h-[2px] w-8 sm:w-12 bg-[var(--color-primary)]" />
             <span className="text-[var(--color-primary)] text-label-caps">
-              People Behind ITSA
+              People Behind Entrepreneurship Cell
             </span>
             <div className="h-[2px] w-8 sm:w-12 bg-[var(--color-primary)]" />
           </div>
@@ -383,7 +383,7 @@ export default function TeamDesktop() {
             Meet Our Team
           </h2>
           <p className="text-[var(--color-text-muted)] font-inter text-sm sm:text-base md:text-lg max-w-xl mx-auto">
-            Our dedicated faculty coordinator and student department members who drive ITSA forward.
+            Our dedicated faculty coordinator and student department members who drive the Entrepreneurship Cell forward.
           </p>
         </div>
 
