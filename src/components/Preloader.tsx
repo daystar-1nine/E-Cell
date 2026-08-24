@@ -43,23 +43,26 @@ export default function Preloader() {
     lenis?.stop();
     document.body.style.overflow = "hidden";
 
-    // Step through the words sequence (800ms each)
-    const wordInterval = 800;
+    // Step durations
+    const thinkDuration = 1200;  // "Think It." holds for 1.2s
+    const pitchDuration = 3000;  // "Pitch It." holds for 3s
+    const launchDuration = 3000; // "Launch It." holds for 3s
+    const logoDuration = 1800;   // E-Cell logo holds for 1.8s
 
-    const step1Timer = setTimeout(() => setCurrentStepIndex(1), wordInterval);
-    const step2Timer = setTimeout(() => setCurrentStepIndex(2), wordInterval * 2);
+    const step1Timer = setTimeout(() => setCurrentStepIndex(1), thinkDuration);
+    const step2Timer = setTimeout(() => setCurrentStepIndex(2), thinkDuration + pitchDuration);
 
-    // Switch to clean Brand Reveal
+    // Switch to clean Brand Reveal after Launch It completes its 3s hold
     const climaxTimer = setTimeout(() => {
       setPhase("climax");
-    }, wordInterval * 3);
+    }, thinkDuration + pitchDuration + launchDuration);
 
     // Smooth curtain exit
     const exitTimer = setTimeout(() => {
       setPhase("exit");
       lenis?.start();
       document.body.style.overflow = "";
-    }, wordInterval * 3 + 1100);
+    }, thinkDuration + pitchDuration + launchDuration + logoDuration);
 
     return () => {
       clearTimeout(step1Timer);

@@ -359,7 +359,7 @@ export default function Events() {
                       {selectedEvent.coordinators && (
                         <div className="space-y-2">
                           <h4 className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-[var(--color-text-muted)] font-semibold">
-                            Student Coordinators
+                            Event Coordinators
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                             {selectedEvent.coordinators.map((c, i) => (

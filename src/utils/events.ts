@@ -80,4 +80,25 @@ export const eventsData: Event[] = [
       { name: "Tejas Bhavthankar", phone: "+91 7218757424" }
     ],
   },
+  {
+    id: "iit-bombay-esummit-2025",
+    title: "IIT Bombay's E-Summit 2025",
+    tagline: "National Level Entrepreneurship Summit & Competition",
+    date: "December 10 - 12, 2025",
+    time: "08:00 AM",
+    venue: "IIT Bombay, Powai, Mumbai",
+    description: "A 3-day national delegation of 15 E-Cell SJCEM members participating in IIT Bombay's flagship E-Summit 2025. Students competed in high-pressure entrepreneurial tasks including case study analysis, pitch presentations, and quizzes, successfully securing 3rd Place in the National Semi-Finals.",
+    imageUrl: "/images/event_iitb_esummit.jpg",
+    status: "past",
+    highlights: [
+      "Secured 3rd Place in the National Semi-Finals with commendable scores",
+      "Hands-on participation in real-time startup case studies, quizzes, and pitch decks",
+      "Direct networking and learning from industry leaders & successful startup founders",
+      "15-member SJCEM student delegation with faculty mentorship",
+    ],
+    coordinators: [
+      { name: "Mrs. Shilpa Katre (Activity In-charge)" },
+      { name: "Mrs. Meenal Kate & Mrs. Rosy Pradhan (Coordinators)" }
+    ],
+  },
 ];
