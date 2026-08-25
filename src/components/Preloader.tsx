@@ -44,10 +44,10 @@ export default function Preloader() {
     document.body.style.overflow = "hidden";
 
     // Step durations
-    const thinkDuration = 1200;  // "Think It." holds for 1.2s
-    const pitchDuration = 1500;  // "Pitch It." holds for 3s
-    const launchDuration = 1500; // "Launch It." holds for 3s
-    const logoDuration = 1800;   // E-Cell logo holds for 1.8s
+    const thinkDuration = 700;  // "Think It." holds for 1.2s
+    const pitchDuration = 800;  // "Pitch It." holds for 3s
+    const launchDuration = 800; // "Launch It." holds for 3s
+    const logoDuration = 1000;   // E-Cell logo holds for 1.8s
 
     const step1Timer = setTimeout(() => setCurrentStepIndex(1), thinkDuration);
     const step2Timer = setTimeout(() => setCurrentStepIndex(2), thinkDuration + pitchDuration);
@@ -182,12 +182,12 @@ export default function Preloader() {
                 <div
                   key={idx}
                   className={`h-1.5 rounded-full transition-all duration-300 ${phase === "climax"
+                    ? "w-8 bg-[var(--color-primary)]"
+                    : idx === currentStepIndex
                       ? "w-8 bg-[var(--color-primary)]"
-                      : idx === currentStepIndex
-                        ? "w-8 bg-[var(--color-primary)]"
-                        : idx < currentStepIndex
-                          ? "w-4 bg-white/40"
-                          : "w-2 bg-white/15"
+                      : idx < currentStepIndex
+                        ? "w-4 bg-white/40"
+                        : "w-2 bg-white/15"
                     }`}
                 />
               ))}
