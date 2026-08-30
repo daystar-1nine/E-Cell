@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Trophy, Medal, Award, CheckCircle2 } from "lucide-react";
 
 export default function EurekaPitch2026() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -12,7 +12,7 @@ export default function EurekaPitch2026() {
     },
   };
 
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
@@ -120,7 +120,7 @@ export default function EurekaPitch2026() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
-                <p className="text-[var(--color-text-muted)]">2-minute startup pitching followed by a 3-minute jury Q&A session.</p>
+                <p className="text-[var(--color-text-muted)]">2-minute startup pitching followed by a 3-minute jury Q&amp;A session.</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -138,7 +138,7 @@ export default function EurekaPitch2026() {
             <div className="space-y-4 text-base text-[var(--color-text-muted)]">
               <p><strong className="text-white text-lg block mb-1">Kanhayya Gupta</strong> AI Product Manager at Rahi, with a strong engineering and AI background.</p>
               <p><strong className="text-white text-lg block mb-1">Shreyas Magar</strong> SAP BASIS Consultant and Application Administrator with professional experience in enterprise technology.</p>
-              <p><strong className="text-white text-lg block mb-1">Satyam Pandey</strong> Product & Business Operations professional at Raahiworks with a background in software and technology.</p>
+              <p><strong className="text-white text-lg block mb-1">Satyam Pandey</strong> Product &amp; Business Operations professional at Raahiworks with a background in software and technology.</p>
               <p><strong className="text-white text-lg block mb-1">Samtani Edwin</strong> Founder of Kantascrypt, working in innovation, technology development and IT consulting.</p>
             </div>
           </motion.div>
@@ -184,8 +184,8 @@ export default function EurekaPitch2026() {
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Opening and Event Briefing</p>
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Introduction of Jury Members</p>
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Startup Pitching Round – 2 minutes per team</p>
-              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Jury Q&A Session – 3 minutes per team</p>
-              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Jury Feedback & Evaluation</p>
+              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Jury Q&amp;A Session – 3 minutes per team</p>
+              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Jury Feedback &amp; Evaluation</p>
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Score Compilation and Selection of Top 3 Teams</p>
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Winner Announcement</p>
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Certificate Distribution and Cash Prizes</p>

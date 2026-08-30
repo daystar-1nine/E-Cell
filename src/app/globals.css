@@ -32,6 +32,7 @@
   --radius-pill: 9999px;
 }
 
+/* stylelint-disable-next-line at-rule-no-unknown */
 @theme inline {
   --font-inter: var(--font-inter);
   --font-outfit: var(--font-outfit);
