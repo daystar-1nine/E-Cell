@@ -30,7 +30,7 @@ export const eventsData: Event[] = [
     venue: "MMS Hall, SJCEM",
     description: "The E-Cell SJCEM proudly presents the Eureka Pitch Competition, in collaboration with IIT Bombay's National Entrepreneurship Challenge (NEC). Showcase your startup ideas to top mentors, ignite innovation, and get fast-tracked to the Eureka 2026 Zonal Rounds.",
     imageUrl: "/images/event_eureka.jpg",
-    status: "upcoming",
+    status: "past",
     prizePool: "₹5,000",
     entryFee: "₹200",
     highlights: [

@@ -90,14 +90,20 @@ export default function Events() {
 
         {/* Dynamic Events Cards */}
         <div className="w-full">
-          <div
-            className={
-              filter === "upcoming"
-                ? "max-w-3xl mx-auto"
-                : "grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 max-w-5xl mx-auto"
-            }
-          >
-            {filteredEvents.map((event) => (
+          {filteredEvents.length === 0 ? (
+            <div className="text-center py-16 bg-[var(--color-surface)] border border-hairline rounded-2xl max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-[var(--color-text-main)] mb-2">No Upcoming Events</h3>
+              <p className="text-[var(--color-text-muted)] font-inter">Stay tuned! We are planning something exciting.</p>
+            </div>
+          ) : (
+            <div
+              className={
+                filter === "upcoming"
+                  ? "max-w-3xl mx-auto"
+                  : "grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 max-w-5xl mx-auto"
+              }
+            >
+              {filteredEvents.map((event) => (
               <div
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
@@ -187,7 +193,8 @@ export default function Events() {
                 </div>
               </div>
             ))}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Rich Event Details Spotlight Modal rendered via React Portal directly into body */}
