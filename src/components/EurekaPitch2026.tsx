@@ -63,9 +63,9 @@ export default function EurekaPitch2026() {
             <h3 className="text-2xl font-bold text-[var(--color-text-main)] mb-2">Team Vecna</h3>
             <p className="text-[var(--color-primary)] font-semibold mb-4">2nd Place</p>
             <div className="text-sm text-[var(--color-text-muted)] text-center space-y-1">
-              <p>Parveen Shaikh (Leader)</p>
+              {/* <p>Parveen Shaikh (Leader)</p>
               <p>Vidhi Jain</p>
-              <p>Ankita Jalkote</p>
+              <p>Ankita Jalkote</p> */}
             </div>
           </motion.div>
 
@@ -81,10 +81,10 @@ export default function EurekaPitch2026() {
             <h3 className="text-3xl font-bold text-[var(--color-text-main)] mb-2 mt-2">Biosense</h3>
             <p className="text-[#FFD700] font-bold text-lg mb-4">1st Place Winners</p>
             <div className="text-sm text-[var(--color-text-muted)] text-center space-y-1">
-              <p>Anand Ambhore (Leader)</p>
+              {/* <p>Anand Ambhore (Leader)</p>
               <p>Kunal Bhandarkar</p>
               <p>Keyur Bidawat</p>
-              <p>Tejas Bhavthankar</p>
+              <p>Tejas Bhavthankar</p> */}
             </div>
           </motion.div>
 
@@ -99,16 +99,16 @@ export default function EurekaPitch2026() {
             <h3 className="text-2xl font-bold text-[var(--color-text-main)] mb-2">Phantom</h3>
             <p className="text-[var(--color-primary)] font-semibold mb-4">3rd Place</p>
             <div className="text-sm text-[var(--color-text-muted)] text-center space-y-1">
-              <p>Kundan Yadav (Leader)</p>
+              {/* <p>Kundan Yadav (Leader)</p>
               <p>Ankit Rajpurohit</p>
               <p>Mahesh Sharma</p>
-              <p>Vivek Mandal</p>
+              <p>Vivek Mandal</p> */}
             </div>
           </motion.div>
         </motion.div>
 
         {/* Details & Jury */}
-        <motion.div 
+        {/* <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12"
           initial="hidden"
           whileInView="visible"
@@ -142,10 +142,10 @@ export default function EurekaPitch2026() {
               <p><strong className="text-white text-lg block mb-1">Samtani Edwin</strong> Founder of Kantascrypt, working in innovation, technology development and IT consulting.</p>
             </div>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Evaluation & Event Flow */}
-        <motion.div 
+        {/* <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4"
           initial="hidden"
           whileInView="visible"
@@ -176,9 +176,9 @@ export default function EurekaPitch2026() {
                 <span className="text-[var(--color-primary)] font-bold">20 Marks</span>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
 
-          <motion.div variants={textVariants} className="bg-[var(--color-surface)] p-6 md:p-8 rounded-xl border border-hairline">
+          {/* <motion.div variants={textVariants} className="bg-[var(--color-surface)] p-6 md:p-8 rounded-xl border border-hairline">
             <h4 className="text-xl font-bold text-[var(--color-text-main)] mb-6">Event Structure and Flow</h4>
             <div className="space-y-3 text-[var(--color-text-muted)]">
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Opening and Event Briefing</p>
@@ -191,10 +191,10 @@ export default function EurekaPitch2026() {
               <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span> Certificate Distribution and Cash Prizes</p>
             </div>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Gallery */}
-        <motion.div 
+        {/* <motion.div 
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8"
           initial="hidden"
           whileInView="visible"
@@ -210,7 +210,7 @@ export default function EurekaPitch2026() {
           <motion.div variants={textVariants} className="aspect-video rounded-lg overflow-hidden">
             <img src="/event_images/event_photo_3.JPG" alt="Event Moment 3" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
       </div>
     </section>

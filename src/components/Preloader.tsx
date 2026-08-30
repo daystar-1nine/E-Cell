@@ -38,10 +38,23 @@ export default function Preloader() {
   const [isMounted, setIsMounted] = useState(false);
   const lenis = useLenis();
 
+  // useEffect(() => {
+  //   setIsMounted(true);
+  //   lenis?.stop();
+  //   document.body.style.overflow = "hidden";
+
   useEffect(() => {
-    setIsMounted(true);
-    lenis?.stop();
-    document.body.style.overflow = "hidden";
+  setIsMounted(true);
+
+  // Always start from the top / Hero section on refresh
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  window.scrollTo(0, 0);
+
+  lenis?.stop();
+  document.body.style.overflow = "hidden";
 
     // Step durations
     const thinkDuration = 700;  // "Think It." holds for 1.2s
@@ -58,11 +71,33 @@ export default function Preloader() {
     }, thinkDuration + pitchDuration + launchDuration);
 
     // Smooth curtain exit
+    // const exitTimer = setTimeout(() => {
+    //   setPhase("exit");
+    //   lenis?.start();
+    //   document.body.style.overflow = "";
+    // }, thinkDuration + pitchDuration + launchDuration + logoDuration);
+
     const exitTimer = setTimeout(() => {
-      setPhase("exit");
-      lenis?.start();
-      document.body.style.overflow = "";
-    }, thinkDuration + pitchDuration + launchDuration + logoDuration);
+  setPhase("exit");
+
+  // Restore scrolling
+  document.body.style.overflow = "";
+  lenis?.start();
+
+  // Make sure the site lands on the Hero section
+  requestAnimationFrame(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+
+    // Also reset Lenis scroll position
+    lenis?.scrollTo(0, {
+      immediate: true,
+    });
+  });
+}, thinkDuration + pitchDuration + launchDuration + logoDuration);
 
     return () => {
       clearTimeout(step1Timer);
