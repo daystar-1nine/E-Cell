@@ -105,17 +105,18 @@ export const FacultySubCoordinators: TeamMember[] = [
     githubUrl: "#",
     emailUrl: "avinashc@sjcem.edu.in",
   },
-  {
-    name: "Mrs. Janhavi Narkhede",
-    role: "Planning & Operations Mentor",
-    photoUrl: "/images/team/Janhavi.jpeg",
-    badges: ["Mentor", "Planning & Ops"],
+   {
+    name: "Ms. Susmitha Mary",
+    role: "Public Relations Mentor",
+    photoUrl: "/images/team/sushmitha marry.jpeg",
+    badges: ["Mentor", "PR"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/",
     githubUrl: "#",
-    emailUrl: "janhavin@sjcem.edu.in",
+    emailUrl: "sushmitam@sjcem.edu.in",
   },
+
   {
     name: "Dr. Jagdish Pawar",
     role: "Technical Mentor",
@@ -149,17 +150,17 @@ export const FacultySubCoordinators: TeamMember[] = [
     githubUrl: "#",
     emailUrl: "ashokm@sjcem.edu.in",
   },
-  {
-    name: "Ms. Susmitha Mary",
-    role: "Public Relations Mentor",
-    photoUrl: "/images/team/",
-    badges: ["Mentor", "PR"],
+   {
+    name: "Mrs. Janhavi Narkhede",
+    role: "Planning & Operations Mentor",
+    photoUrl: "/images/team/Janhavi.jpeg",
+    badges: ["Mentor", "Planning & Ops"],
     wing: "Faculty SubCoordinators",
     instagramUrl: "#",
     linkedinUrl: "https://www.linkedin.com/in/",
     githubUrl: "#",
-    emailUrl: "sushmitam@sjcem.edu.in",
-  }
+    emailUrl: "janhavin@sjcem.edu.in",
+  },
 ];
 
 // Core Team (President, VP, Secretary, Advisor)
