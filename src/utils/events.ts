@@ -15,6 +15,7 @@ export type Event = {
   status: "upcoming" | "past";
   prizePool?: string;
   entryFee?: string;
+  format?: string;
   speaker?: string;
   coordinators?: EventCoordinator[];
   highlights?: string[];
@@ -22,22 +23,45 @@ export type Event = {
 
 export const eventsData: Event[] = [
   {
+    id: "illuminate-2026",
+    title: "illuminate 2026",
+    tagline: "Empowering the Next Generation of Changemakers",
+    date: "September 23, 2026",
+    time: "09:30 AM",
+    venue: "MMS Hall, SJCEM",
+    description: "illuminate, a premier flagship workshop initiative by E-Cell IIT Bombay in collaboration with E-Cell SJCEM, aims to spark the entrepreneurial spirit and build practical business acumen among students across India. Through interactive masterclasses on business model validation, startup finance, and core entrepreneurial principles, students learn how to turn ideas into viable ventures.",
+    imageUrl: "/images/event_illuminate.png",
+    status: "upcoming",
+    entryFee: "₹400 per person",
+    format: "Individual Event (No Teams)",
+    highlights: [
+      "Exclusive workshop conducted by E-Cell IIT Bombay at SJCEM",
+      "Official certificates certified directly by E-Cell IIT Bombay for all student participants",
+      "Exclusive Startup Kits provided to all participants including Business Model Canvas (BMC)",
+      "Learn directly from seasoned entrepreneurs, industry experts, and trainers",
+      "Format: Individual event (no team required)",
+    ],
+    coordinators: [
+      { name: "Tejas Bhavthankar", phone: "+91 7218757424" }
+    ],
+  },
+  {
     id: "eureka-pitch-2026",
     title: "Eureka! Pitch Competition",
     tagline: "Think It. Pitch It. Launch It.",
     date: "August 25, 2026",
     time: "10:00 AM",
     venue: "MMS Hall, SJCEM",
-    description: "The E-Cell SJCEM proudly presents the Eureka Pitch Competition, in collaboration with IIT Bombay's National Entrepreneurship Challenge (NEC). Showcase your startup ideas to top mentors, ignite innovation, and get fast-tracked to the Eureka 2026 Zonal Rounds.",
+    description: "The E-Cell SJCEM proudly presented the Eureka Pitch Competition, in collaboration with IIT Bombay's National Entrepreneurship Challenge (NEC). Students showcased their startup ideas to top mentors, ignited innovation, and competed for fast-track entry to the Eureka 2026 Zonal Rounds.",
     imageUrl: "/images/event_eureka.jpg",
     status: "past",
     prizePool: "₹5,000",
     entryFee: "₹200",
     highlights: [
-      "Showcase your startup idea to top mentors & industry experts",
-      "Unlock networking opportunities with startup founders",
-      "Gain valuable feedback to sharpen your investor pitch",
-      "Get fast-tracked to Eureka 2026 Zonal Rounds",
+      "Showcased startup ideas to top mentors & industry experts",
+      "Unlocked networking opportunities with startup founders",
+      "Gained valuable feedback to sharpen investor pitch decks",
+      "Fast-tracked winners to Eureka 2026 Zonal Rounds",
     ],
     coordinators: [
       { name: "Tejas Bhavthankar", phone: "+91 7218757424" }

@@ -124,13 +124,25 @@ export default function Events() {
                     </span>
                   </div>
 
-                  {/* Prize Badge if applicable */}
-                  {event.prizePool && (
-                    <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 bg-black/80 backdrop-blur-md text-[var(--color-primary)] border border-[var(--color-primary)]/40 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
-                      <Trophy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                      Prize Pool: {event.prizePool}
-                    </div>
-                  )}
+                  {/* Badges if applicable */}
+                  <div className="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 flex flex-wrap gap-1.5 z-10">
+                    {event.prizePool && (
+                      <div className="bg-black/85 backdrop-blur-md text-[var(--color-primary)] border border-[var(--color-primary)]/40 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                        <Trophy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        Prize: {event.prizePool}
+                      </div>
+                    )}
+                    {event.entryFee && (
+                      <div className="bg-black/85 backdrop-blur-md text-white border border-white/20 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-medium shadow-sm">
+                        Fee: {event.entryFee}
+                      </div>
+                    )}
+                    {event.format && (
+                      <div className="bg-black/85 backdrop-blur-md text-[var(--color-primary)] border border-[var(--color-primary)]/30 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono shadow-sm">
+                        {event.format}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Card Content */}
@@ -279,7 +291,12 @@ export default function Events() {
                         )}
                         {selectedEvent.entryFee && (
                           <span className="bg-[var(--color-surface-elevated)] border border-hairline text-[var(--color-text-muted)] text-[10px] sm:text-xs font-mono px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full">
-                            Entry: {selectedEvent.entryFee}
+                            Fee: {selectedEvent.entryFee}
+                          </span>
+                        )}
+                        {selectedEvent.format && (
+                          <span className="bg-[var(--color-surface-elevated)] border border-[var(--color-primary)]/40 text-[var(--color-primary)] text-[10px] sm:text-xs font-mono font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                            {selectedEvent.format}
                           </span>
                         )}
                       </div>
