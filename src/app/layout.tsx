@@ -1,14 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import Navigation from "@/components/Navigation";
 import Cursor from "@/components/Cursor";
-
 import Preloader from "@/components/Preloader";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -34,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable} antialiased dark`}>
+    <html lang="en" suppressHydrationWarning className="antialiased dark">
       <head>
       </head>
       <body className="min-h-[100dvh] overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-white dark:selection:text-black cursor-none" style={{ colorScheme: 'dark' }}>

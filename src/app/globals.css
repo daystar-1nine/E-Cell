@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --font-inter: var(--font-inter);
-  --font-outfit: var(--font-outfit);
-  --font-mono: var(--font-jetbrains);
+  --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-outfit: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* Dark Theme (High-Velocity Engineering) - Default */
   --color-primary: #faff69;

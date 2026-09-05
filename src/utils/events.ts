@@ -16,6 +16,7 @@ export type Event = {
   prizePool?: string;
   entryFee?: string;
   format?: string;
+  registrationUrl?: string;
   speaker?: string;
   coordinators?: EventCoordinator[];
   highlights?: string[];
@@ -33,6 +34,7 @@ export const eventsData: Event[] = [
     status: "upcoming",
     entryFee: "₹400 per person",
     format: "Individual Event (No Teams)",
+    registrationUrl: "https://forms.gle/9xpSNjZg8Wcn5t1T6",
     highlights: [
       "Exclusive workshop conducted by E-Cell IIT Bombay at SJCEM",
       "Official certificates certified directly by E-Cell IIT Bombay for all student participants",
@@ -41,7 +43,8 @@ export const eventsData: Event[] = [
       "Format: Individual event (no team required)",
     ],
     coordinators: [
-      { name: "Tejas Bhavthankar", phone: "+91 7218757424" }
+      { name: "Tejas Bhavthankar", phone: "+91 7218757424" },
+      { name: "Bhagwan Maurya" }
     ],
   },
   {

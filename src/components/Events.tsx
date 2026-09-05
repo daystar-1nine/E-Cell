@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, MapPin, ArrowRight, X, Sparkles, Trophy, CheckCircle2, Phone, User, Award } from "lucide-react";
+import { Calendar, Clock, MapPin, ArrowRight, X, Sparkles, Trophy, CheckCircle2, Phone, User, Award, ExternalLink } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { eventsData, Event } from "@/utils/events";
 
@@ -194,13 +194,26 @@ export default function Events() {
                   </div>
 
                   {/* Action CTA */}
-                  <div className="pt-3 sm:pt-4 border-t border-hairline flex items-center justify-between mt-auto">
+                  <div className="pt-3 sm:pt-4 border-t border-hairline flex items-center justify-between mt-auto gap-2">
                     <span className="text-xs sm:text-sm text-[var(--color-primary)] font-bold flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                       View Full Details <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </span>
-                    <span className="text-[11px] sm:text-xs font-mono text-[var(--color-text-muted)]">
-                      Tap to open
-                    </span>
+                    {event.registrationUrl ? (
+                      <a
+                        href={event.registrationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-1.5 rounded-md bg-[var(--color-primary)] text-[var(--color-text-inverse)] text-xs font-bold font-inter hover:bg-[var(--color-primary-hover)] transition-all flex items-center gap-1.5 shadow-sm cursor-pointer shrink-0 z-10"
+                      >
+                        <span>Register Now</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    ) : (
+                      <span className="text-[11px] sm:text-xs font-mono text-[var(--color-text-muted)]">
+                        Tap to open
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -403,20 +416,57 @@ export default function Events() {
                         </div>
                       )}
 
+                      {/* Registration CTA banner inside Modal */}
+                      {selectedEvent.registrationUrl && (
+                        <div className="p-4 sm:p-5 bg-gradient-to-r from-[var(--color-primary)]/10 via-[var(--color-surface)] to-[var(--color-surface)] border border-[var(--color-primary)]/40 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 sm:mt-5 shadow-sm">
+                          <div>
+                            <div className="flex items-center gap-1.5 text-xs font-bold text-[var(--color-primary)] font-mono uppercase tracking-wider mb-1">
+                              <Sparkles className="w-3.5 h-3.5" />
+                              Registrations Open
+                            </div>
+                            <p className="text-xs sm:text-sm text-[var(--color-text-muted)] font-inter">
+                              {selectedEvent.entryFee ? `Fee: ${selectedEvent.entryFee}. ` : ""}Click below to fill the official Google Form.
+                            </p>
+                          </div>
+                          <a
+                            href={selectedEvent.registrationUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto px-5 py-2.5 bg-[var(--color-primary)] text-[var(--color-text-inverse)] font-bold text-xs sm:text-sm rounded-lg hover:bg-[var(--color-primary-hover)] transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer shrink-0"
+                          >
+                            <span>Register Now</span>
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </div>
+                      )}
+
                     </div>
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="p-3 sm:p-4 bg-[var(--color-surface-elevated)] border-t border-hairline flex items-center justify-between shrink-0">
+                  <div className="p-3 sm:p-4 bg-[var(--color-surface-elevated)] border-t border-hairline flex items-center justify-between shrink-0 gap-3">
                     <span className="text-[10px] sm:text-xs font-mono text-[var(--color-text-muted)] truncate mr-2">
                       E-Cell SJCEM
                     </span>
-                    <button
-                      onClick={() => setSelectedEvent(null)}
-                      className="px-4 sm:px-5 py-1.5 sm:py-2 bg-[var(--color-primary)] text-[var(--color-text-inverse)] font-bold text-xs sm:text-sm rounded-md hover:bg-[var(--color-primary-hover)] transition-colors cursor-pointer min-h-[36px] flex items-center justify-center shrink-0"
-                    >
-                      Close
-                    </button>
+                    <div className="flex items-center gap-2">
+                      {selectedEvent.registrationUrl && (
+                        <a
+                          href={selectedEvent.registrationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 sm:px-6 py-1.5 sm:py-2 bg-[var(--color-primary)] text-[var(--color-text-inverse)] font-bold text-xs sm:text-sm rounded-md hover:bg-[var(--color-primary-hover)] transition-all cursor-pointer min-h-[36px] flex items-center justify-center gap-1.5 shadow-md shrink-0"
+                        >
+                          <span>Register Now</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                      <button
+                        onClick={() => setSelectedEvent(null)}
+                        className="px-4 sm:px-5 py-1.5 sm:py-2 bg-[var(--color-surface)] border border-hairline text-[var(--color-text-main)] font-semibold text-xs sm:text-sm rounded-md hover:bg-[var(--color-surface-elevated)] transition-colors cursor-pointer min-h-[36px] flex items-center justify-center shrink-0"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               </div>
