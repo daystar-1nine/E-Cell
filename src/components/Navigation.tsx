@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLenis } from "lenis/react";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -17,6 +18,7 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +40,18 @@ export default function Navigation() {
     };
   }, [isOpen]);
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (href?: string) => {
     setIsOpen(false);
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("close-blog-modal"));
+      if (href && href.startsWith("#")) {
+        const target = document.querySelector(href);
+        if (target) {
+          if (lenis) {
+            lenis.scrollTo(target as HTMLElement, { offset: -80 });
+          }
+        }
+      }
     }
   };
 
@@ -56,7 +66,7 @@ export default function Navigation() {
         {/* Logo */}
         <a
           href="#home"
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleLinkClick("#home")}
           className="text-lg sm:text-xl md:text-2xl font-bold font-inter text-[var(--color-text-main)] tracking-tight flex items-center gap-2.5 z-50 relative p-1 -ml-1 group"
         >
           <img
@@ -79,7 +89,7 @@ export default function Navigation() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={handleLinkClick}
+                onClick={() => handleLinkClick(link.href)}
                 className="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-inverse)] hover:bg-[var(--color-primary)] transition-colors py-1.5 px-3 rounded-md"
               >
                 {link.name}
@@ -122,7 +132,7 @@ export default function Navigation() {
                   transition={{ delay: i * 0.04 }}
                   key={link.name}
                   href={link.href}
-                  onClick={handleLinkClick}
+                  onClick={() => handleLinkClick(link.href)}
                   className="text-lg sm:text-xl font-bold font-inter text-[var(--color-text-main)] hover:text-[var(--color-text-inverse)] hover:bg-[var(--color-primary)] transition-colors py-3.5 px-6 w-full text-center rounded-lg border border-transparent hover:border-hairline min-h-[48px] flex items-center justify-center"
                 >
                   {link.name}

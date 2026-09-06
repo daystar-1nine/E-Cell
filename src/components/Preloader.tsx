@@ -44,60 +44,60 @@ export default function Preloader() {
   //   document.body.style.overflow = "hidden";
 
   useEffect(() => {
-  setIsMounted(true);
+    setIsMounted(true);
 
-  // Always start from the top / Hero section on refresh
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
+    // If user opened with a direct anchor hash (e.g. #events, #team), skip preloader entirely
+    if (typeof window !== "undefined" && window.location.hash) {
+      setPhase("exit");
+      document.body.style.overflow = "";
+      lenis?.start();
+      return;
+    }
 
-  window.scrollTo(0, 0);
+    // Always start from the top / Hero section on normal refresh (without hash)
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
 
-  lenis?.stop();
-  document.body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
+
+    lenis?.stop();
+    document.body.style.overflow = "hidden";
 
     // Step durations
-    const thinkDuration = 700;  // "Think It." holds for 1.2s
-    const pitchDuration = 800;  // "Pitch It." holds for 3s
-    const launchDuration = 800; // "Launch It." holds for 3s
-    const logoDuration = 1000;   // E-Cell logo holds for 1.8s
+    const thinkDuration = 1000;
+    const pitchDuration = 2500;
+    const launchDuration = 2500;
+    const logoDuration = 1500;
 
     const step1Timer = setTimeout(() => setCurrentStepIndex(1), thinkDuration);
     const step2Timer = setTimeout(() => setCurrentStepIndex(2), thinkDuration + pitchDuration);
 
-    // Switch to clean Brand Reveal after Launch It completes its 3s hold
+    // Switch to clean Brand Reveal
     const climaxTimer = setTimeout(() => {
       setPhase("climax");
     }, thinkDuration + pitchDuration + launchDuration);
 
-    // Smooth curtain exit
-    // const exitTimer = setTimeout(() => {
-    //   setPhase("exit");
-    //   lenis?.start();
-    //   document.body.style.overflow = "";
-    // }, thinkDuration + pitchDuration + launchDuration + logoDuration);
-
     const exitTimer = setTimeout(() => {
-  setPhase("exit");
+      setPhase("exit");
+      document.body.style.overflow = "";
+      lenis?.start();
 
-  // Restore scrolling
-  document.body.style.overflow = "";
-  lenis?.start();
+      // Only force top on normal load if user has not navigated to a hash
+      if (typeof window !== "undefined" && !window.location.hash) {
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant",
+          });
 
-  // Make sure the site lands on the Hero section
-  requestAnimationFrame(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-
-    // Also reset Lenis scroll position
-    lenis?.scrollTo(0, {
-      immediate: true,
-    });
-  });
-}, thinkDuration + pitchDuration + launchDuration + logoDuration);
+          lenis?.scrollTo(0, {
+            immediate: true,
+          });
+        });
+      }
+    }, thinkDuration + pitchDuration + launchDuration + logoDuration);
 
     return () => {
       clearTimeout(step1Timer);
@@ -109,7 +109,7 @@ export default function Preloader() {
     };
   }, [lenis]);
 
-  if (!isMounted) return null;
+  if (!isMounted || (typeof window !== "undefined" && window.location.hash)) return null;
 
   const current = steps[currentStepIndex];
 
