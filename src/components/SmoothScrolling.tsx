@@ -8,7 +8,7 @@ function HashScrollHandler() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const scrollToHash = () => {
+    const scrollToHash = (immediate = false) => {
       const hash = window.location.hash;
       if (!hash) return;
 
@@ -16,29 +16,30 @@ function HashScrollHandler() {
       if (target) {
         if (lenis) {
           lenis.scrollTo(target as HTMLElement, {
-            offset: -80,
-            immediate: false,
-            duration: 1.0,
+            offset: -75,
+            immediate,
+            duration: immediate ? 0 : 0.9,
           });
         } else {
-          target.scrollIntoView({ behavior: "smooth" });
+          target.scrollIntoView({ behavior: immediate ? "instant" : "smooth" });
         }
       }
     };
 
-    // Run on initial mount and when DOM settles
-    scrollToHash();
-    const t1 = setTimeout(scrollToHash, 100);
-    const t2 = setTimeout(scrollToHash, 300);
-    const t3 = setTimeout(scrollToHash, 600);
+    // Immediate jump on direct deep link load (e.g. #events)
+    scrollToHash(true);
+    const t1 = setTimeout(() => scrollToHash(true), 60);
+    const t2 = setTimeout(() => scrollToHash(true), 250);
+    const t3 = setTimeout(() => scrollToHash(false), 600);
 
-    window.addEventListener("hashchange", scrollToHash);
+    const onHashChange = () => scrollToHash(false);
+    window.addEventListener("hashchange", onHashChange);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
-      window.removeEventListener("hashchange", scrollToHash);
+      window.removeEventListener("hashchange", onHashChange);
     };
   }, [lenis]);
 

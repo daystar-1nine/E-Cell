@@ -45,7 +45,7 @@ export default function Events() {
   const filteredEvents = eventsData.filter((e) => e.status === filter);
 
   return (
-    <section id="events" className="relative w-full py-12 sm:py-20 lg:py-32 z-10">
+    <section id="events" className="relative w-full pt-6 sm:pt-10 lg:pt-12 pb-16 sm:pb-24 lg:pb-32 z-10 scroll-mt-16 sm:scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-6xl">
         
         {/* Section Header & Tab Controls */}
