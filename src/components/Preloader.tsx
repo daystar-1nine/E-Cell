@@ -46,29 +46,23 @@ export default function Preloader() {
   useEffect(() => {
     setIsMounted(true);
 
-    // If user opened with a direct anchor hash (e.g. #events, #team), skip preloader entirely
-    if (typeof window !== "undefined" && window.location.hash) {
-      setPhase("exit");
-      document.body.style.overflow = "";
-      lenis?.start();
-      return;
-    }
-
-    // Always start from the top / Hero section on normal refresh (without hash)
+    // Always start from manual scroll restoration on refresh/deep-link
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
 
-    window.scrollTo(0, 0);
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
 
     lenis?.stop();
     document.body.style.overflow = "hidden";
 
     // Step durations
-    const thinkDuration = 1000;
-    const pitchDuration = 2500;
-    const launchDuration = 2500;
-    const logoDuration = 1500;
+    const thinkDuration = 500;
+    const pitchDuration = 800;
+    const launchDuration = 800;
+    const logoDuration = 1000;
 
     const step1Timer = setTimeout(() => setCurrentStepIndex(1), thinkDuration);
     const step2Timer = setTimeout(() => setCurrentStepIndex(2), thinkDuration + pitchDuration);
@@ -79,12 +73,27 @@ export default function Preloader() {
     }, thinkDuration + pitchDuration + launchDuration);
 
     const exitTimer = setTimeout(() => {
+      const hash = typeof window !== "undefined" ? window.location.hash : "";
+
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          if (lenis) {
+            lenis.scrollTo(target as HTMLElement, {
+              offset: -75,
+              immediate: true,
+            });
+          } else {
+            target.scrollIntoView({ behavior: "instant" });
+          }
+        }
+      }
+
       setPhase("exit");
       document.body.style.overflow = "";
       lenis?.start();
 
-      // Only force top on normal load if user has not navigated to a hash
-      if (typeof window !== "undefined" && !window.location.hash) {
+      if (!hash) {
         requestAnimationFrame(() => {
           window.scrollTo({
             top: 0,
@@ -95,6 +104,16 @@ export default function Preloader() {
           lenis?.scrollTo(0, {
             immediate: true,
           });
+        });
+      } else {
+        requestAnimationFrame(() => {
+          const target = document.querySelector(hash);
+          if (target) {
+            lenis?.scrollTo(target as HTMLElement, {
+              offset: -75,
+              immediate: true,
+            });
+          }
         });
       }
     }, thinkDuration + pitchDuration + launchDuration + logoDuration);
@@ -109,7 +128,7 @@ export default function Preloader() {
     };
   }, [lenis]);
 
-  if (!isMounted || (typeof window !== "undefined" && window.location.hash)) return null;
+  if (!isMounted) return null;
 
   const current = steps[currentStepIndex];
 
