@@ -105,7 +105,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     githubUrl: "#",
     emailUrl: "avinashc@sjcem.edu.in",
   },
-   {
+  {
     name: "Ms. Susmitha Mary",
     role: "Public Relations Mentor",
     photoUrl: "/images/team/sushmitha marry.jpeg",
@@ -150,7 +150,7 @@ export const FacultySubCoordinators: TeamMember[] = [
     githubUrl: "#",
     emailUrl: "ashokm@sjcem.edu.in",
   },
-   {
+  {
     name: "Mrs. Janhavi Narkhede",
     role: "Planning & Operations Mentor",
     photoUrl: "/images/team/Janhavi.jpeg",
@@ -354,16 +354,6 @@ export const departmentMembers: TeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/bhavesh-mishra-b1a832373",
     githubUrl: "#",
   },
-  {
-    name: "Nidhi Yadav",
-    role: "Member",
-    photoUrl: "/images/team/Nidhi.JPG",
-    badges: ["Member", "Corporate"],
-    wing: "Corporate",
-    instagramUrl: "#",
-    linkedinUrl: "#",
-    githubUrl: "#",
-  },
 
   // Public Relations
   {
@@ -504,26 +494,6 @@ export const departmentMembers: TeamMember[] = [
     name: "Zeel Panchal",
     role: "Member",
     photoUrl: "/images/team/Zeel_Panchal.jpg",
-    badges: ["Member", "Documentation"],
-    wing: "Documentation",
-    instagramUrl: "#",
-    linkedinUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    name: "Shalu Singh",
-    role: "Member",
-    photoUrl: "/images/team/Shalu.jpg",
-    badges: ["Member", "Documentation"],
-    wing: "Documentation",
-    instagramUrl: "#",
-    linkedinUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    name: "Tanvi Walam",
-    role: "Member",
-    photoUrl: "/images/team/Tanvi_Walam.JPG",
     badges: ["Member", "Documentation"],
     wing: "Documentation",
     instagramUrl: "#",
