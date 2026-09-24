@@ -7,6 +7,7 @@ export type Event = {
   id: string;
   title: string;
   tagline?: string;
+  statusLabel?: string;
   date: string;
   time?: string;
   venue?: string;
@@ -26,20 +27,20 @@ export const eventsData: Event[] = [
   {
     id: "illuminate-2026",
     title: "illuminate 2026",
-    tagline: "Empowering the Next Generation of Changemakers",
+    tagline: "Successfully Done • Empowering the Next Generation of Changemakers",
     date: "September 23, 2026",
     time: "11:00 AM onwards",
-    description: "illuminate, a premier flagship workshop initiative by E-Cell IIT Bombay in collaboration with E-Cell SJCEM, aims to spark the entrepreneurial spirit and build practical business acumen among students across India. Through interactive masterclasses on business model validation, startup finance, and core entrepreneurial principles, students learn how to turn ideas into viable ventures.",
+    description: "Successfully conducted! illuminate, a premier flagship workshop initiative by E-Cell IIT Bombay in collaboration with E-Cell SJCEM, aims to spark the entrepreneurial spirit and build practical business acumen among students across India. Through interactive masterclasses on business model validation, startup finance, and core entrepreneurial principles, students learned how to turn ideas into viable ventures.",
     imageUrl: "/images/event_illuminate.png",
-    status: "upcoming",
+    status: "past",
+    statusLabel: "Successfully Done",
     entryFee: "₹400 per person",
     format: "Individual Event (No Teams)",
-    registrationUrl: "https://forms.gle/9xpSNjZg8Wcn5t1T6",
     highlights: [
-      "Exclusive workshop conducted by E-Cell IIT Bombay at SJCEM",
+      "Successfully conducted flagship workshop by E-Cell IIT Bombay at SJCEM",
       "Official certificates certified directly by E-Cell IIT Bombay for all student participants",
       "Exclusive Startup Kits provided to all participants including Business Model Canvas (BMC)",
-      "Learn directly from seasoned entrepreneurs, industry experts, and trainers",
+      "Learned directly from seasoned entrepreneurs, industry experts, and trainers",
       "Format: Individual event (no team required)",
     ],
     coordinators: [

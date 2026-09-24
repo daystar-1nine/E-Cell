@@ -8,7 +8,8 @@ import { useLenis } from "lenis/react";
 import { eventsData, Event } from "@/utils/events";
 
 export default function Events() {
-  const [filter, setFilter] = useState<"upcoming" | "past">("upcoming");
+  const hasUpcoming = eventsData.some((e) => e.status === "upcoming");
+  const [filter, setFilter] = useState<"upcoming" | "past">(hasUpcoming ? "upcoming" : "past");
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [mounted, setMounted] = useState(false);
   const modalScrollRef = useRef<HTMLDivElement>(null);
@@ -119,8 +120,16 @@ export default function Events() {
 
                   {/* Status Badge */}
                   <div className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-10">
-                    <span className="bg-[var(--color-primary)] text-[var(--color-text-inverse)] text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md">
-                      {event.status === "upcoming" ? "Registration Open" : "Completed"}
+                    <span
+                      className={`text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md ${
+                        event.status === "upcoming"
+                          ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                          : "bg-emerald-600 text-white"
+                      }`}
+                    >
+                      {event.status === "upcoming"
+                        ? "Registration Open"
+                        : event.statusLabel || "Successfully Done"}
                     </span>
                   </div>
 
@@ -198,7 +207,7 @@ export default function Events() {
                     <span className="text-xs sm:text-sm text-[var(--color-primary)] font-bold flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                       View Full Details <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </span>
-                    {event.registrationUrl ? (
+                    {event.status === "upcoming" && event.registrationUrl ? (
                       <a
                         href={event.registrationUrl}
                         target="_blank"
@@ -210,8 +219,9 @@ export default function Events() {
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     ) : (
-                      <span className="text-[11px] sm:text-xs font-mono text-[var(--color-text-muted)]">
-                        Tap to open
+                      <span className="text-[11px] sm:text-xs font-mono text-emerald-500 font-semibold flex items-center gap-1">
+                        {event.status === "past" && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
+                        {event.statusLabel || "Completed"}
                       </span>
                     )}
                   </div>
@@ -294,8 +304,16 @@ export default function Events() {
                     {/* Title & Key Badges */}
                     <div>
                       <div className="flex flex-wrap items-center gap-2 mb-2 sm:mb-3">
-                        <span className="bg-[var(--color-primary)] text-[var(--color-text-inverse)] text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider">
-                          {selectedEvent.status === "upcoming" ? "Upcoming" : "Past Event"}
+                        <span
+                          className={`text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider ${
+                            selectedEvent.status === "upcoming"
+                              ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                              : "bg-emerald-600 text-white"
+                          }`}
+                        >
+                          {selectedEvent.status === "upcoming"
+                            ? "Upcoming"
+                            : selectedEvent.statusLabel || "Successfully Done"}
                         </span>
                         {selectedEvent.prizePool && (
                           <span className="bg-[var(--color-surface-elevated)] border border-[var(--color-primary)]/40 text-[var(--color-primary)] text-[10px] sm:text-xs font-mono font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full">
@@ -416,8 +434,8 @@ export default function Events() {
                         </div>
                       )}
 
-                      {/* Registration CTA banner inside Modal */}
-                      {selectedEvent.registrationUrl && (
+                      {/* Registration CTA banner inside Modal (upcoming only) */}
+                      {selectedEvent.status === "upcoming" && selectedEvent.registrationUrl && (
                         <div className="p-4 sm:p-5 bg-gradient-to-r from-[var(--color-primary)]/10 via-[var(--color-surface)] to-[var(--color-surface)] border border-[var(--color-primary)]/40 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 sm:mt-5 shadow-sm">
                           <div>
                             <div className="flex items-center gap-1.5 text-xs font-bold text-[var(--color-primary)] font-mono uppercase tracking-wider mb-1">
@@ -440,6 +458,21 @@ export default function Events() {
                         </div>
                       )}
 
+                      {/* Successfully Done Banner inside Modal for concluded events */}
+                      {selectedEvent.status === "past" && (
+                        <div className="p-4 sm:p-5 bg-emerald-500/10 border border-emerald-500/30 rounded-xl flex items-center gap-3 sm:gap-4 mt-4 sm:mt-5">
+                          <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0" />
+                          <div>
+                            <h4 className="text-xs sm:text-sm font-bold font-inter text-emerald-400">
+                              {selectedEvent.statusLabel || "Successfully Done"}
+                            </h4>
+                            <p className="text-[11px] sm:text-xs text-[var(--color-text-muted)] font-inter">
+                              This event was successfully conducted. Thank you to all attendees, guest speakers, and coordinators!
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
                     </div>
                   </div>
 
@@ -449,7 +482,7 @@ export default function Events() {
                       E-Cell SJCEM
                     </span>
                     <div className="flex items-center gap-2">
-                      {selectedEvent.registrationUrl && (
+                      {selectedEvent.status === "upcoming" && selectedEvent.registrationUrl && (
                         <a
                           href={selectedEvent.registrationUrl}
                           target="_blank"
