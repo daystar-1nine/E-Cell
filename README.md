@@ -66,6 +66,13 @@ Currently, the site is structurally complete but populated with placeholders pen
 - **Events**: Located in `src/utils/events.ts`. Update the event descriptions, dates, and images here.
 - **Contact Info**: Placeholder email and location are currently hardcoded in `src/components/Contact.tsx`. 
 
+## 💡 Core Philosophy: Embracing Mistakes & Radical Ownership
+
+At E-Cell SJCEM, we believe that true leadership and building great products require humility, self-awareness, and relentless learning:
+- **Radical Accountability**: When mistakes happen—whether in code, design, or team execution—we don't defend egos or assign blame. We accept them openly, conduct blameless post-mortems, and focus on fixing the root cause.
+- **Fast Admission = Fast Innovation**: The faster an error is admitted, the faster it can be resolved. Transparency saves time, preserves trust, and turns temporary missteps into long-term compounding wisdom.
+- **Psychological Safety**: Openly owning mistakes creates an inclusive environment where builders feel safe taking ambitious risks and innovating boldly.
+
 ## 🤝 Contributing
 
 1. Create a new branch for your feature or fix (e.g., `feature/add-new-event` or `fix/nav-bug`).
