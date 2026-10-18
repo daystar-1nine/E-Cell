@@ -56,6 +56,7 @@ export default function Footer() {
               <h4 className="text-[var(--color-text-main)] font-inter font-semibold text-xs sm:text-sm uppercase tracking-wider mb-0.5">Navigation</h4>
               <Link href="#home" className="text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors font-mono py-0.5">Home</Link>
               <Link href="#about-ecell" className="text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors font-mono py-0.5">About Us</Link>
+              <Link href="#blogs-insights" className="text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors font-mono py-0.5">Blogs & Insights</Link>
               <Link href="#team" className="text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors font-mono py-0.5">Team</Link>
               <Link href="#events" className="text-xs sm:text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors font-mono py-0.5">Events</Link>
             </div>

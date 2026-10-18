@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Team", href: "#team" },
   { name: "Eureka 2026", href: "#eureka-2026" },
   { name: "Events", href: "#events" },
+  { name: "Blogs & Insights", href: "#blogs-insights" },
   { name: "Contact", href: "#contact" },
 ];
 
