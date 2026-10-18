@@ -23,6 +23,132 @@ export interface BlogPost {
 }
 
 const blogsData: BlogPost[] = [
+   
+{
+  "id": 12,
+  "title": "Lenskart’s Vision Beyond Eyewear",
+  "category": "Innovation & Healthcare Technology",
+  "date": "October 16, 2026",
+  "readTime": "3 min read",
+  "excerpt": "Discover how Lenskart is transforming eyewear through AI-powered recommendations, virtual try-ons, accessible eye care, and an omnichannel business model.",
+  "image": "/images/blog_lenskart_vision_beyond_eyewear.png",
+  "author": "E-Cell, SJCEM",
+  "authorRole": "Startup Spotlight Series",
+  "linkedinUrl": "https://www.linkedin.com/company/lenskart-com/",
+  "content": {
+    "intro": "Lenskart, co-founded by Peyush Bansal, has transformed how people discover, purchase, and experience eyewear in India. By combining affordability, technology, and customer-focused services, the company has made eyewear more accessible to a wide range of consumers. Its approach goes beyond selling spectacles, bringing together digital innovation, retail experiences, and eye care services to help people see better and live with greater confidence.",
+    "sections": [
+      {
+        "heading": "Transforming Eyewear Through Technology",
+        "body": "Lenskart uses technology to make eyewear shopping more convenient and personalized. Features such as virtual try-ons help customers preview how different frames may look before making a purchase.\n\nAI-powered recommendations can help customers explore styles based on their preferences, while technology-enabled services support a more seamless shopping experience.\n\nBy combining digital tools with customer-focused services, Lenskart demonstrates how technology can improve a traditional retail industry and make products easier to discover and purchase."
+      },
+      {
+        "heading": "The Power of an Omnichannel Business Model",
+        "body": "One of Lenskart's defining strengths is its omnichannel approach, which combines online shopping with physical retail stores.\n\nCustomers can explore products digitally while also visiting stores to try frames, receive assistance, and access relevant eye care services. This combination provides flexibility for people with different shopping preferences.\n\nIts direct-to-consumer approach and connected retail experience also help the company build stronger relationships with customers while working to maintain product quality and affordability."
+      },
+      {
+        "heading": "Innovation Designed for Indian Consumers",
+        "body": "Lenskart focuses on developing eyewear that combines style, comfort, durability, and affordability. Its product range serves customers with different needs and preferences, from everyday spectacles to fashionable frames.\n\nInvestment in product development, technology, and research helps the company adapt to changing customer expectations. Its expansion beyond India also reflects its ambition to serve customers in international markets.\n\nBy connecting product design with technology and retail innovation, Lenskart illustrates how an Indian consumer brand can pursue growth while continuing to improve the customer experience."
+      },
+      {
+        "heading": "What Aspiring Entrepreneurs Can Learn from Lenskart",
+        "body": "Lenskart offers several valuable lessons for aspiring entrepreneurs and startup founders:\n\n✅ Solve everyday problems: Look for opportunities to improve products and services people use regularly.\n\n✅ Use technology effectively: Digital tools can make customer experiences more convenient and personalized.\n\n✅ Combine online and offline channels: An integrated business model can serve customers with different preferences.\n\n✅ Make affordability a priority: Accessible pricing can help a brand reach a broader audience.\n\n✅ Keep innovating: Product development and customer feedback are important for long-term growth.\n\nLenskart shows that building a successful business is not only about selling a product. It is about understanding customer needs, removing barriers, and creating an experience that combines convenience, quality, and trust."
+      }
+    ],
+    "keyTakeaways": [
+      "Lenskart combines eyewear retail, technology, and eye care services to improve the customer experience.",
+      "Virtual try-ons and AI-powered recommendations help make online eyewear shopping more interactive and personalized.",
+      "Its omnichannel model connects online shopping with physical retail stores.",
+      "Product innovation, affordability, and customer convenience are central themes in its business approach.",
+      "Aspiring entrepreneurs can learn to solve everyday problems by combining technology, customer understanding, and an adaptable business model."
+    ]
+  }
+},
+
+   
+{
+  "id": 11,
+  "title": "Tech Mahindra: Driving the Future of Digital Transformation",
+  "category": "Digital Transformation & Innovation",
+  "date": "October 12, 2026",
+  "readTime": "3 min read",
+  "excerpt": "Explore how Tech Mahindra is transforming global businesses through AI, cloud computing, 5G, blockchain, and cybersecurity while promoting sustainability and digital inclusion.",
+  "image": "/images/blog_tech_mahindra_digital_transformation.png",
+  "author": "E-Cell, SJCEM",
+  "authorRole": "Industry Insights Series",
+  "linkedinUrl": "https://www.linkedin.com/company/tech-mahindra/",
+  "content": {
+    "intro": "Tech Mahindra, a part of the Mahindra Group, has established itself as a major player in the global IT services and consulting industry. With a focus on digital innovation, connectivity, and sustainability, the company helps businesses adapt to an increasingly technology-driven world. By combining advanced technologies with customer-focused solutions, Tech Mahindra aims to improve business performance and create meaningful digital experiences.",
+    "sections": [
+      {
+        "heading": "Driving Digital Transformation",
+        "body": "Tech Mahindra helps businesses modernize their operations and adapt to changing digital demands. Its expertise spans artificial intelligence, cloud computing, 5G, blockchain, and cybersecurity.\n\nThese technologies enable organizations to improve efficiency, strengthen security, automate processes, and develop new digital services. By providing technology consulting and implementation support, Tech Mahindra helps businesses across industries navigate digital transformation.\n\nIts focus on innovation and next-generation solutions positions the company as a technology partner for enterprises seeking to remain competitive in a rapidly evolving market."
+      },
+      {
+        "heading": "Innovation, Connectivity, and Global Reach",
+        "body": "A defining strength of Tech Mahindra is its ability to combine technological expertise with customer-centric solutions. The company serves clients across international markets and works with organizations in multiple industries.\n\nIts vision of 'Connected World, Connected Experiences' highlights the importance of using technology to create seamless connections between people, businesses, and digital systems.\n\nThrough research, emerging technologies, and continuous innovation, Tech Mahindra aims to develop solutions that improve customer experiences and help businesses respond to new opportunities."
+      },
+      {
+        "heading": "Building an Inclusive and Sustainable Future",
+        "body": "Tech Mahindra's approach extends beyond technology services to include sustainability and social responsibility.\n\nThrough initiatives related to education, skill development, and environmental responsibility, the company works toward creating positive social impact. These efforts highlight the importance of developing digital skills and preparing people for opportunities in a technology-driven economy.\n\nThe company's emphasis on diversity, inclusion, and adaptability also reflects the need for workplaces that can respond to changing business requirements while supporting different perspectives and capabilities."
+      },
+      {
+        "heading": "What Aspiring Entrepreneurs Can Learn from Tech Mahindra",
+        "body": "Tech Mahindra offers several valuable lessons for aspiring entrepreneurs and future technology leaders:\n\n✅ Embrace emerging technologies: AI, cloud computing, and cybersecurity can create new business opportunities.\n\n✅ Focus on customers: Successful digital solutions begin with understanding real customer needs.\n\n✅ Innovate continuously: Businesses must adapt as technology and customer expectations evolve.\n\n✅ Think globally: Technology enables businesses to serve customers across different markets and industries.\n\n✅ Build responsibly: Sustainability, inclusion, and social impact should be part of long-term business strategy.\n\nTech Mahindra demonstrates that digital transformation is not simply about adopting new technologies. It is about using innovation to solve problems, improve experiences, and create sustainable value for businesses and society."
+      }
+    ],
+    "keyTakeaways": [
+      "Tech Mahindra uses AI, cloud computing, 5G, blockchain, and cybersecurity to support digital transformation.",
+      "Customer-centric innovation helps businesses improve efficiency and deliver better digital experiences.",
+      "Its global presence reflects the growing importance of technology services across industries.",
+      "Education, skill development, inclusion, and environmental responsibility contribute to its broader social impact.",
+      "Aspiring entrepreneurs can learn to combine technological innovation with customer needs and sustainable business practices."
+    ]
+  }
+},
+
+   
+{
+  "id": 10,
+  "title": "Meesho: Empowering India’s Entrepreneurs",
+  "category": "Entrepreneurship & Social Commerce",
+  "date": "October 8, 2026",
+  "readTime": "3 min read",
+  "excerpt": "Discover how Meesho is democratizing e-commerce by empowering women, small business owners, and aspiring entrepreneurs to start online businesses with zero investment.",
+  "image": "/images/blog_meesho_empowering_entrepreneurs.png",
+  "author": "E-Cell, SJCEM",
+  "authorRole": "Startup Spotlight Series",
+  "linkedinUrl": "https://www.linkedin.com/company/meesho/",
+  "content": {
+    "intro": "Founded by Vidit Aatrey and Sanjeev Barnwal, Meesho has become a major player in India's e-commerce landscape. Unlike traditional online marketplaces, Meesho focuses on democratizing commerce by helping individuals, especially women and small business owners, start and grow online businesses with minimal upfront investment. By combining affordability, accessibility, and digital inclusion, Meesho is creating new opportunities for entrepreneurs across India.",
+    "sections": [
+      {
+        "heading": "Democratizing E-Commerce for Everyone",
+        "body": "Meesho is changing how people participate in India's digital economy. Its platform enables small business owners and aspiring entrepreneurs to showcase and sell products online without the need to establish expensive physical stores.\n\nFrom fashion and home products to everyday essentials, sellers can access a wide customer base across the country. By lowering traditional barriers to entry, Meesho helps individuals explore entrepreneurship and build businesses with fewer initial costs.\n\nThis approach is particularly valuable for women entrepreneurs and people in smaller towns, where access to traditional business opportunities may be limited."
+      },
+      {
+        "heading": "The Power of Social Commerce",
+        "body": "One of the key ideas behind Meesho's growth is social commerce, which connects online selling with social networks and digital communities.\n\nPlatforms such as WhatsApp, Facebook, and Instagram have helped entrepreneurs share product information, connect with potential customers, and promote their businesses through their existing networks.\n\nBy making online selling accessible through smartphones, Meesho has helped bring more people into the digital marketplace. Entrepreneurs can reach customers beyond their local communities and explore opportunities in India's growing e-commerce ecosystem."
+      },
+      {
+        "heading": "Empowering Women and Small Businesses",
+        "body": "Meesho's business model creates opportunities for people who want to start earning independently or expand an existing small business.\n\nIts accessible online marketplace allows sellers to connect with customers without the costs associated with opening a physical shop. This can help women entrepreneurs, home-based businesses, and small sellers reach a wider audience.\n\nBeyond product sales, this model encourages digital participation, financial independence, and entrepreneurial confidence. It demonstrates how technology can make business opportunities more accessible to people from different backgrounds."
+      },
+      {
+        "heading": "What Aspiring Entrepreneurs Can Learn from Meesho",
+        "body": "Meesho offers several valuable lessons for anyone planning to build a startup:\n\n✅ Solve real problems: Identify barriers that prevent people from starting or growing a business.\n\n✅ Make accessibility a priority: Products and services should be easy to use and available to a broad audience.\n\n✅ Use technology wisely: Digital platforms can connect small businesses with customers across geographical boundaries.\n\n✅ Build an inclusive ecosystem: Helping sellers succeed can create value for customers, entrepreneurs, and the wider economy.\n\n✅ Focus on affordability: Reducing entry barriers can help bring more people into the market.\n\nMeesho's journey shows that entrepreneurship is not only about building a profitable company. It can also be about creating opportunities, supporting small businesses, and making digital commerce accessible to more people across India."
+      }
+    ],
+    "keyTakeaways": [
+      "Meesho demonstrates how technology can democratize e-commerce and make online selling more accessible.",
+      "Its platform helps small business owners and aspiring entrepreneurs reach customers across India.",
+      "Social commerce uses digital networks and communities to help businesses promote and sell products.",
+      "Affordable and accessible business models can create opportunities for women entrepreneurs and small sellers.",
+      "The key lesson for startups is to solve real problems, reduce barriers to entry, and create value for an entire ecosystem."
+    ]
+  }
+},
+
   {
     "id": 9,
     "title": "10 Startup Ideas Every College Student Can Start With Low Investment",
