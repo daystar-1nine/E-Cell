@@ -105,17 +105,6 @@ export const FacultySubCoordinators: TeamMember[] = [
     githubUrl: "#",
     emailUrl: "avinashc@sjcem.edu.in",
   },
-  {
-    name: "Ms. Susmitha Mary",
-    role: "Public Relations Mentor",
-    photoUrl: "/images/team/sushmitha marry.jpeg",
-    badges: ["Mentor", "PR"],
-    wing: "Faculty SubCoordinators",
-    instagramUrl: "#",
-    linkedinUrl: "https://www.linkedin.com/in/",
-    githubUrl: "#",
-    emailUrl: "sushmitam@sjcem.edu.in",
-  },
 
   {
     name: "Dr. Jagdish Pawar",
